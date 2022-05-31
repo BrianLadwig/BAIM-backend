@@ -1,13 +1,13 @@
 import express from "express";
 import User from "../models/User.js";
 import { validationResult } from "express-validator";
-import userRegisterValidators from "../validators/userRegisterValidators.js";
-import userLoginValidators from "../validators/userLoginValidators.js";
+import userRegisterValidators from "../validators/userRegestrationValidator.js"
+// import userLoginValidators from "../validators/userLoginValidator.js";
 
 const userRouter = express.Router();
 
-app.post(
-	"/api/user/register",
+userRouter.post(
+	"/register",
 	userRegisterValidators,
 	async (req, res, next) => {
 		const errors = validationResult(req);

@@ -1,0 +1,31 @@
+@url = http://localhost:8000
+
+
+
+# USER #################################
+
+### Get all Users
+GET {{url}}/users
+
+### Get speciic user
+GET {{url}}/users/628e05b4652d8e3f89664380
+
+
+### Create and Register a new user
+POST {{url}}/user/register
+Content-Type: application/json
+
+{
+    "firstName":"Brian",
+    "lastName": "ladwig",
+    "profileName": "chocoladwig",
+    "email": "b.ladwig@gmail.com",
+    "password": "KAnoN-1X7-ZtOY8903",
+    "confirmPassword":"KAnoN-1X7-ZtOY8903",
+    "userAddress": {
+        "street":"TestStraße 4" ,
+		"city":"Berlin" ,
+		"zip":"" ,
+		"country":"Germany"
+    }
+}

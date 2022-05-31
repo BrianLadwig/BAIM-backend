@@ -15,7 +15,7 @@ const trim = true;
 const recipeSchema = new Schema(
   {
     author: { type: Schema.Types.ObjectId, ref: "user", required },
-    type: {default:"recipe"},
+    type: { type:String,default:"recipe"},
     title: { type: String, required, trim },
     prepTime: { type: String },
     // ingredients: { type: [ingredientsSchema] },

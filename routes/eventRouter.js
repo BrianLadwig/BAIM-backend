@@ -1,6 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
-import Event from "../models/Event"
+import Event from "../models/Event.js"
 import User from "../models/User.js"
 
 const eventRouter = express.Router();
@@ -29,7 +29,7 @@ eventRouter
             res.status(409).json({ message: error.message })
         }
     })
-    .patch("/:id", (req, res) => {
+    .patch("/:id",async (req, res) => {
         const { id:_id } = req.params
 
         if(!mongoose.Types.ObjectId.isValid(_id)) {
@@ -39,7 +39,7 @@ eventRouter
         const updatedEvent = await Event.findByIdAndUpdate(_id, req.body, { new: true })
         res.json({message: 'Updated'})
     })
-    .delete("/:id", (req, res) => {
+    .delete("/:id", async(req, res) => {
         const { id:_id } = req.params
         const event = await Event.findById(_id)
         const user = await User.findById(post.user)
@@ -55,7 +55,7 @@ eventRouter
         // await Post.findByIdAndDelete(_id)
         res.json({ message: "Deleted", deleted: post })
     })
-    .patch("/:id/like", (req, res) => {
+    .patch("/:id/like",async (req, res) => {
         const { id:_id } = req.params
 
         if(!req.userId) {

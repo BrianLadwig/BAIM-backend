@@ -33,14 +33,14 @@ const userRegisterValidators = [
 		.trim()
 		//escape will remove all the special characters from the string and replace them with their escaped version (e.g. \n and \r).
 		.escape(),
-	body("profilePicture")
-		.notEmpty()
-		.withMessage("Profile picture should not be empty")
-		.isURL()
-		.withMessage("Profile picture should be a valid URL")
-		.isIn(["PNG", "JPG", "JPEG"])
-		.trim()
-		.escape(),
+	// body("profilePicture")
+	// 	.notEmpty()
+	// 	.withMessage("Profile picture should not be empty")
+	// 	.isURL()
+	// 	.withMessage("Profile picture should be a valid URL")
+	// 	.isIn(["PNG", "JPG", "JPEG"])
+	// 	.trim()
+	// 	.escape(),
 	body("email")
 		.isEmail()
 		.withMessage("Not a valid email address")
