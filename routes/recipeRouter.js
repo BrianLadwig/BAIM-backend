@@ -1,7 +1,7 @@
 import express from "express";
-
+import createError from "http-errors";
 import Recipe from "../models/Recipe.js";
-import User from "../models/Recipe.js";
+import User from "../models/User.js";
 
 const recipeRouter = express.Router();
 
@@ -34,13 +34,12 @@ recipeRouter
   .post("/", async (req, res, next) => {
     try {
       const author = await User.findById(req.body.author);
-
       if (!author) {
         return next(createError(404, "User not found"));
       }
 
       const recipe = await Recipe.create(req.body);
-      author.recipes.push(recipe);
+      author.recipe.push(recipe);
       await author.save();
 
       res.send(recipe);
