@@ -2,6 +2,9 @@ import express from "express";
 import mongoose from "mongoose";
 import Garden from "../models/Garden.js"
 import User from "../models/User.js"
+import requestValidator from "../middlewares/requestValidator.js"
+import postValidator from "../validators/postValidators.js"
+import updatedPostValidator from "../validators/updatePostValidators.js"
 
 const gardenRouter = express.Router();
 
@@ -11,29 +14,33 @@ gardenRouter
             const gardenPosts = await Garden.find()
             res.status(200).json(gardenPosts)
         } catch (error) {
-            res.status(404).json({ message: error.message })
+            res.status(404).json({ errors: [error.message] })
         }
     })
-    .post("/", async (req, res) => {
+    .post("/", requestValidator(postValidator), async (req, res) => {
         const post = req.body;
         const newPost = new Garden(post)
-        const user = await User.findById(req.body.user)
+        const user = await User.findById(req.body.author)
+        if(!user) {
+            return res.status(404).json({ errors: ["User is not found"] })
+        }
+
         try {
             await newPost.save()
             // need to push the post to the user's post array
-            user.diy.push(newPost)
+            user.garden.push(newPost)
             await user.save()
 
             res.status(200).json(newPost)
         } catch (error) {
-            res.status(409).json({ message: error.message })
+            res.status(409).json({ errors: [error.message]})
         }
     })
-    .patch("/:id",async (req, res) => {
+    .patch("/:id", requestValidator(updatedPostValidator), async (req, res) => {
         const { id:_id } = req.params
 
         if(!mongoose.Types.ObjectId.isValid(_id)) {
-            return res.status(404).send('No post with that id')
+            return res.status(404).json({ errors: ['No post with that id'] })
         }
         // console.log(req.body);
         const updatedPost = await Garden.findByIdAndUpdate(_id, req.body, { new: true })
@@ -42,10 +49,14 @@ gardenRouter
     .delete("/:id", async (req, res) => {
         const { id:_id } = req.params
         const post = await Garden.findById(_id)
-        const user = await User.findById(post.user)
+        console.log('post :>> ', post);
+        const user = await User.findById(post.author)
+        if(!user) {
+            return res.status(404).json({ errors: ["User is not found"] })
+        }
 
         if(!mongoose.Types.ObjectId.isValid(_id)) {
-            return res.status(404).send('No post with that id')
+            return res.status(404).json({ errors: 'No post with that id'})
         }
         
         const postIndex = user.garden.indexOf(_id)
@@ -58,27 +69,27 @@ gardenRouter
     .patch("/:id/like",async (req, res) => {
         const { id:_id } = req.params
 
-        if(!req.userId) {
-            return res.status(401).json({ message: "Unauthenticated"})
+        if(!req.body.author) {
+            return res.status(401).json({ errors: "Unauthenticated"})
         }
 
         if(!mongoose.Types.ObjectId.isValid(_id)) {
-            return res.status(404).send('No post with that id')
+            return res.status(404).json({ errors: 'No post with that id'})
         }
 
         const post = await Garden.findById(_id)
 
-        const index = post.likes.findIndex(id => id === String(req.userId))
+        const index = post.likes.findIndex(id => id === String(req.body.author))
         if(index === -1) {
             // like
-            post.likes.push(req.userId)
+            post.likes.push(req.body.author)
         } else {
             // dislike
-            post.likes = post.likes.filter(id => id !== String(req.userId))
+            post.likes = post.likes.filter(id => id !== String(req.body.author))
         }
 
         const updatedPost = await Garden.findByIdAndUpdate(_id, post, { new: true })
-        res.json({message: "Liked"})
+        res.json({message: "toggle like"})
     })
 
 export default gardenRouter

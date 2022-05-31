@@ -36,8 +36,8 @@ const eventUpdateValidator=[
         
         body('address')
             .optional({checkFalsy: true})
-            .exist()
-            .widthMessage('address is required '),
+            .isArray()
+            .withMessage('address is required '),
 
         body('address.*.street')
             .optional({checkFalsy: true})

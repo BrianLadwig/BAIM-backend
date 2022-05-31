@@ -16,7 +16,7 @@ app.use(express.json());
 app.use('/user', userRouter)
 app.use('/beauty', beautyRouter)
 app.use('/diy', diyRouter)
-app.use('/beauty', gardenRouter)
+app.use('/garden', gardenRouter)
 app.use('/recipe', recipeRouter)
 app.use('/event', eventRouter)
 

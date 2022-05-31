@@ -1,15 +1,7 @@
-@url = http://localhost:8000
+@url = http://localhost:7000
 
-
-
-# USER #################################
-
-### Get all Users
-GET {{url}}/users
-
-### Get speciic user
-GET {{url}}/users/628e05b4652d8e3f89664380
-
+####################################################
+# USER #############################################
 
 ### Create and Register a new user
 POST {{url}}/user/register
@@ -17,7 +9,7 @@ Content-Type: application/json
 
 {
     "firstName":"Brian",
-    "lastName": "ladwig",
+    "lastName": "Ladwig",
     "profileName": "chocoladwig",
     "email": "b.ladwig@gmail.com",
     "password": "KAnoN-1X7-ZtOY8903",
@@ -29,3 +21,160 @@ Content-Type: application/json
 		"country":"Germany"
     }
 }
+
+######################################################
+# BEAUTY #############################################
+
+### Get all Beauty Posts
+GET {{url}}/beauty
+
+### Create a new Beauty Post
+POST {{url}}/beauty
+Content-Type: application/json
+
+{
+    "author": "6296817dc2d97d848c765e1e",
+    "title": "beauty test 3",
+    "description": "Just the third test beauty post"
+}
+
+### Update a Beauty Post
+PATCH  {{url}}/beauty/629681bec2d97d848c765e21
+Content-Type: application/json
+
+{
+    "author": "6296817dc2d97d848c765e1e",
+    "title": "beauty test 1",
+    "description": "Just the first test beauty post, and now I updated it"
+}
+
+### Like a Beauty Post
+PATCH  {{url}}/beauty/629681bec2d97d848c765e21/like
+Content-Type: application/json
+
+{
+    "author": "6296817dc2d97d848c765e1e"
+}
+
+### Delete a Beauty Post
+DELETE  {{url}}/beauty/629681c3c2d97d848c765e25
+Content-Type: application/json
+
+###################################################
+# DIY #############################################
+
+### Get all DIY Posts
+GET {{url}}/diy
+
+### Create a new DIY Post
+POST {{url}}/diy
+Content-Type: application/json
+
+{
+    "author": "6296817dc2d97d848c765e1e",
+    "title": "diy test 2",
+    "description": "Just the second test diy post"
+}
+
+### Update a DIY Post
+PATCH  {{url}}/diy/6296851a15a814035d8f2713
+Content-Type: application/json
+
+{
+    "author": "6296817dc2d97d848c765e1e",
+    "title": "diy test 1",
+    "description": "Just the updated the first diy test post"
+}
+
+### Like a DIY Post
+PATCH  {{url}}/diy/6296851a15a814035d8f2713/like
+Content-Type: application/json
+
+{
+    "author": "6296817dc2d97d848c765e1e"
+}
+
+### Delete a DIY Post
+DELETE  {{url}}/diy/6296853a15a814035d8f2717
+Content-Type: application/json
+
+###################################################
+# GARDEN #############################################
+
+### Get all garden Posts
+GET {{url}}/garden
+
+### Create a new garden Post
+POST {{url}}/garden
+Content-Type: application/json
+
+{
+    "author": "6296817dc2d97d848c765e1e",
+    "title": "garden test 2",
+    "description": "Just the second test garden post"
+}
+
+### Update a garden Post
+PATCH  {{url}}/garden/62968a4f61fe742351adbc0e
+Content-Type: application/json
+
+{
+    "author": "6296817dc2d97d848c765e1e",
+    "title": "garden test 1",
+    "description": "Just updated the first garden test post"
+}
+
+### Like a garden Post
+PATCH  {{url}}/garden/62968a4f61fe742351adbc0e/like
+Content-Type: application/json
+
+{
+    "author": "6296817dc2d97d848c765e1e"
+}
+
+### Delete a garden Post
+DELETE  {{url}}/garden/62968a5d61fe742351adbc12
+Content-Type: application/json
+
+###################################################
+# EVENT #############################################
+
+### Get all Events
+GET {{url}}/event
+
+### Create a new event
+POST {{url}}/event
+Content-Type: application/json
+
+{
+    "author": "6296817dc2d97d848c765e1e",
+    "title": "event test 2",
+    "description": "first event test",
+    "address": { 
+        "zip": 4317, 
+        "city": "Leipzig", 
+        "country": "Germany"
+    }
+}
+
+### Update an event
+PATCH  {{url}}/event/62968dd0932a725e85fe227a
+Content-Type: application/json
+
+{
+    "author": "6296817dc2d97d848c765e1e",
+    "title": "event test 1",
+    "description": "updating an event"
+}
+
+### Like an event
+PATCH  {{url}}/event/62968dd0932a725e85fe227a/like
+Content-Type: application/json
+
+{
+    "author": "6296817dc2d97d848c765e1e"
+}
+
+### Delete an event
+DELETE  {{url}}/event/62968fe5e04c07cf5cc53758
+Content-Type: application/json

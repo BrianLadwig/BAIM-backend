@@ -14,8 +14,8 @@ const addressSchema = new Schema({
 }, { _id: false })
 
 const eventSchema = Schema({
-    profile:      { type: Schema.Types.ObjectId, ref: "user", required },
-    type:         { type: String, required, default: "beauty" },
+    author:       { type: Schema.Types.ObjectId, ref: "user", required },
+    type:         { type: String, required, default: "event" },
     title:        { type: String, required },
     description:  { type: String, required },
     address:      { type: addressSchema, required },

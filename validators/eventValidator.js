@@ -33,8 +33,8 @@ const eventValidator=[
             .isURL({protocols:['http','https']}),
         
         body('address')
-            .exist()
-            .widthMessage('address is required '),
+            .isObject()
+            .withMessage('address is required '),
 
         body('address.*.street')
             .matches(/^[a-zA-Z0-9äöüÄÖÜß\ !@#*+\-;':"\ |,.\/?]*$/)

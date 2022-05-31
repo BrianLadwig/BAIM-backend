@@ -45,16 +45,7 @@ const updateDBRG = [
                 return Promise.reject("We only accept the following special characters including whitespace: !@#*()+\"-;':,.?") 
             }
             return Promise.resolve()
-        }),
-            
-        body('author')
-            .optional({checkFalsy: true})
-            .trim()
-            .notEmpty()
-            .withMessage('Author is required')
-            .matches(/^[a-zA-Z\s]*$/)
-            .withMessage('only alphabetic characters and white space'),
-        
+        })   
 ]
 
 export default updateDBRG

@@ -43,14 +43,7 @@ const BDRG = [
             return Promise.reject("We only accept the following special characters including whitespace: !@#*()+\"-;':,.?") 
         }
         return Promise.resolve()
-    }),
-        
-    body('author')
-        .trim()
-        .notEmpty()
-        .withMessage('Author is required')
-        .matches(/^[a-zA-Z\s]*$/)
-        .withMessage('only alphabetic characters and white space'),
+    })
     
 ]
 

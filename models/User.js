@@ -31,10 +31,11 @@ const UserSchema = new Schema(
 
 		userAddress: { type: AddressesSchema, required },
 
-		// beauty: { type: [Schema.Types.ObjectId], ref: "beauty" },
-		// recipe: { type: [Schema.Types.ObjectId], ref: "recipe" },
-		// dyi: { type: [Schema.Types.ObjectId], ref: "dyi" },
-		// garden: { type: [Schema.Types.ObjectId], ref: "garden" },
+		beauty: { type: [Schema.Types.ObjectId], ref: "beauty" },
+		recipe: { type: [Schema.Types.ObjectId], ref: "recipe" },
+		diy: { type: [Schema.Types.ObjectId], ref: "diy" },
+		garden: { type: [Schema.Types.ObjectId], ref: "garden" },
+		event: { type: [Schema.Types.ObjectId], ref: "event"}
 		// subs: { type: [Schema.Types.ObjectId], ref: "subs" },
 
 		// collection: { type: [Schema.Types.ObjectId], ref: "collection" },

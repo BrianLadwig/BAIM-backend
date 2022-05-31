@@ -7,8 +7,8 @@ const required = true
 // const lowercase = true
 
 const gardenSchema = Schema({
-    profile:      { type: Schema.Types.ObjectId, ref: "user", required },
-    type:         { type: String, required, default: "beauty" },
+    author:       { type: Schema.Types.ObjectId, ref: "user", required },
+    type:         { type: String, required, default: "garden" },
     title:        { type: String, required },
     description:  { type: String, required },
     video:        { type: String },
