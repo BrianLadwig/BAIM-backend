@@ -22,19 +22,16 @@ const eventUpdateValidator=[
         body('video')
             .optional({checkFalsy: true})
             .trim()
-            .optional({checkFalsy: true})
             .isURL({protocols:['http','https']}),
 
         body('image')
             .optional({checkFalsy: true})
             .trim()
-            .optional({checkFalsy: true})
             .isURL({protocols:['http','https']}),
 
         body('link')
             .optional({checkFalsy: true})
             .trim()
-            .optional({checkFalsy: true})
             .isURL({protocols:['http','https']}),
         
         body('address')
@@ -66,7 +63,6 @@ const eventUpdateValidator=[
         body('tags')
             .optional({checkFalsy: true})
             .isArray()
-            .optional({checkFalsy: true})
             .custom(value=>{ 
                 const array = value
                 const err= array.find(element => !element.match(/^[a-zA-Z0-9äöüÄÖÜß\ !@#*+\-;':"\ |,.\/?]*$/))
