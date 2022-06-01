@@ -1,5 +1,6 @@
 import express from "express"
 import dotenv from "dotenv";
+import cors from "cors";
 import cookieParser from "cookie-parser";
 import connect from "./lib/database.js";
 import userRouter from "./routes/userRouter.js"
@@ -10,14 +11,17 @@ import recipeRouter from "./routes/recipeRouter.js"
 import eventRouter from "./routes/eventRouter.js"
 import globalErrorHandler from "./middlewares/globalErrorHandler.js";
 import checkLogin from "./middlewares/checkLogin.js";
+import requestLogger from "./middlewares/requestLogger.js";
 
 
 dotenv.config();
 connect();
 const app = express();
+app.use(cors())
 app.use(express.json());
 app.use(cookieParser())
 
+app.use(requestLogger)
 app.use('/user', userRouter)
 app.use('/beauty', checkLogin, beautyRouter)
 app.use('/artsCraft', checkLogin, artsCraftRouter)
