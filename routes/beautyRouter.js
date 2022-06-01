@@ -10,7 +10,7 @@ const beautyRouter = express.Router();
 
 beautyRouter
     .get("/", async (req, res) => {
-        try {
+        try {s
             const beautyPosts = await Beauty.find()
             res.status(200).json(beautyPosts)
         } catch (error) {

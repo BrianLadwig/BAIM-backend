@@ -14,8 +14,8 @@ userRouter
 			const query = User.find(req.query, "-__v");
 			const users = await query.exec();
 			res.send(users);
-		} catch (error) {
-			next(error);
+		} catch (errors) {
+			next({ status: 404, errors });
 		}
 	})
 	.get("/:id", async (req, res, next) => {
@@ -25,8 +25,8 @@ userRouter
 				throw Error("User not found");
 			}
 			res.send(user);
-		} catch (error) {
-			next(error);
+		} catch (errors) {
+			next({ status: 404, errors });
 		}
 	})
 	.post("/register", userRegisterValidators, async (req, res, next) => {
@@ -43,8 +43,8 @@ userRouter
 			res.status(201).send({
 				message: "User created successfully.",
 			});
-		} catch (error) {
-			res.status(500).send({ errors: [error.message] });
+		} catch (errors) {
+			res.status(500).send({ errors });
 		}
 	})
 	.post("/login", userLoginValidators, async (req, res, next) => {
@@ -66,16 +66,18 @@ userRouter
 
 
 			const token = jwt.sign({ id: user._id }, process.env.SECRET, {
-				expiresIn: "7d",
+				expiresIn: "15s",
 			});
+
+			res.cookie("token", token, { httpOnly: true })
 
 			res.status(200).send({
 				message: `Welcome back ${user.firstName} ${user.lastName}`,
 				user,
 				token,
 			});
-		} catch (error) {
-			res.status(500).send({ errors: [error.message] });
+		} catch (errors) {
+			res.status(500).send({ errors });
 		}
 	})
 	.patch("/:id", async (req, res, next) => {
@@ -91,8 +93,8 @@ userRouter
 				message: "User updated successfully.",
 				user,
 			});
-		} catch (error) {
-			res.status(500).send({ errors: [error.message] });
+		} catch (errors) {
+			res.status(500).send({ errors });
 		}
 	})
 	.delete("/:id", async (req, res, next) => {
@@ -104,8 +106,8 @@ userRouter
 			res.status(200).send({
 				message: "User deleted successfully.",
 			});
-		} catch (error) {
-			next(error);
+		} catch (errors) {
+			next({ errors });
 		}
 	});
 
