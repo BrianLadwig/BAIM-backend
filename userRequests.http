@@ -1,0 +1,59 @@
+@url = http://localhost:6060
+
+### GET ALL USERS ###
+GET {{url}}/user
+
+
+### GET USER BY ID ###
+GET {{url}}/user/6296021df115f13c5f36f2cb
+
+
+### POST/REGISTER NEW USER ###
+POST {{url}}/user/register
+Content-Type: application/json
+
+{
+  "firstName": "jadel",
+  "lastName": "smith",
+  "profileName": "jade_smith",
+  "profilePicture": "https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50",
+  "email": "js@gravatar.com",
+  "password": "Mypassword123!",
+  "confirmPassword": "Mypassword123!",
+  "userAddress": {
+    "street": "123 Main St",
+    "city": "city",
+    "zip": "12345",
+    "country": "france"
+  }
+}
+
+
+### POST / USER LOGIN ###
+POST {{url}}/user/login
+Content-Type: application/json
+
+{
+  "email": "jades@gravatar.com",
+  "password": "NewPassword123@"
+}
+
+### UPDATE USER DATA ###
+PATCH {{url}}/user/62966085b12de62b47b7a9bf
+Content-Type: application/json
+
+{
+  "profileName": "jade_s",
+  "password":"NewPassword123@",
+  "confirmPassword":"NewPassword123@",
+  "userAddress": {
+    "street": "",
+    "city": "new city",
+    "zip": "11223",
+    "country": "canada"
+  }
+}
+
+
+### DELETE USER ###
+DELETE {{url}}/user/62965ebd41b51a4b76d7c9e0

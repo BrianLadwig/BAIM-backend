@@ -34,18 +34,17 @@ const userRegisterValidators = [
 		//escape will remove all the special characters from the string and replace them with their escaped version (e.g. \n and \r).
 		.escape(),
 	// body("profilePicture")
-	// 	.notEmpty()
-	// 	.withMessage("Profile picture should not be empty")
 	// 	.isURL()
 	// 	.withMessage("Profile picture should be a valid URL")
-	// 	.isIn(["PNG", "JPG", "JPEG"])
 	// 	.trim()
 	// 	.escape(),
 	body("email")
-		.isEmail()
-		.withMessage("Not a valid email address")
+		.notEmpty()
+		.withMessage("Email should not be empty")
 		.exists()
 		.withMessage("Email already exists!")
+		.isEmail()
+		.withMessage("Not a valid email address")
 		.trim()
 		.escape()
 		//normalizeEmail will convert the email to lowercase and remove all the special characters from the string and replace them with their escaped version (e.g. \n and \r).
@@ -70,7 +69,14 @@ const userRegisterValidators = [
 			return true;
 		})
 		.withMessage("Passwords do not match"),
-	body("userAddress").notEmpty().withMessage("Address should not be empty"),
+	body("userAddress.street")
+		.notEmpty()
+		.withMessage("Street should not be empty"),
+	body("userAddress.city").notEmpty().withMessage("City should not be empty"),
+	body("userAddress.country")
+		.notEmpty()
+		.withMessage("Country should not be empty"),
+
 	// body("agree")
 	// 	.isIn(["true"])
 	// 	.withMessage("You must agree to the terms and conditions")
