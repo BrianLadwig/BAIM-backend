@@ -2,7 +2,7 @@ import express from "express";
 import User from "../models/User.js";
 import { validationResult } from "express-validator";
 import userRegisterValidators from "../validators/userRegisterValidators.js"
-// import userLoginValidators from "../validators/userLoginValidator.js";
+import userLoginValidators from "../validators/userLoginValidator.js";
 
 const userRouter = express.Router();
 

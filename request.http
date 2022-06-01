@@ -136,7 +136,7 @@ Content-Type: application/json
 DELETE  {{url}}/garden/62968a5d61fe742351adbc12
 Content-Type: application/json
 
-###################################################
+#####################################################
 # EVENT #############################################
 
 ### Get all Events
@@ -177,4 +177,42 @@ Content-Type: application/json
 
 ### Delete an event
 DELETE  {{url}}/event/62968fe5e04c07cf5cc53758
+Content-Type: application/json
+
+######################################################
+# RECIPE #############################################
+
+### Get all recipe
+GET {{url}}/recipe
+
+### Create a recipe
+POST {{url}}/recipe
+Content-Type: application/json
+
+{
+    "author": "6296817dc2d97d848c765e1e",
+    "title": "recipe test 1",
+    "description": "testing out the recipe"
+}
+
+### Update a recipe
+PATCH  {{url}}/recipe/629726ac453c202b39cd150a
+Content-Type: application/json
+
+{
+    "author": "6296817dc2d97d848c765e1e",
+    "title": "recipe test 1",
+    "description": "updated the recipe routes"
+}
+
+### Like a recipe
+PATCH  {{url}}/recipe/629726ac453c202b39cd150a/like
+Content-Type: application/json
+
+{
+    "author": "6296817dc2d97d848c765e1e"
+}
+
+### Delete a recipe
+DELETE  {{url}}/recipe/629727aa453c202b39cd1511
 Content-Type: application/json
