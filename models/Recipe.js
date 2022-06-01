@@ -14,15 +14,18 @@ const trim = true;
 
 const recipeSchema = new Schema(
   {
-    author: { type: Schema.Types.ObjectId, ref: "user", required },
-    type: { type:String,default:"recipe"},
-    title: { type: String, required, trim },
-    prepTime: { type: String },
+    author:      { type: Schema.Types.ObjectId, ref: "user", required },
+    type:        { type:String, required, default:"recipe"},
+    title:       { type: String, required, trim },
+    // prepTime: { type: String },
     // ingredients: { type: [ingredientsSchema] },
-    instructions: { type: [String], required, trim },
-    tags:{type:[String]},
-    comments:{type:[Object]},
-    likes:{type:[String]}
+    description:  { type: String, required },
+    video:        { type: String },
+    image:        { type: String },
+    link:         { type: String },
+    tags:         { type: [String], default: [] },
+    comments:     { type: [Object], default: [] },
+    likes:        { type: [String], default: [] },
   },
   { timestamps }
 );
