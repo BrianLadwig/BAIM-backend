@@ -1,27 +1,5 @@
 
-@url = http://localhost:6060
-
-####################################################
-# USER #############################################
-
-### Create and Register a new user
-POST {{url}}/user/register
-Content-Type: application/json
-
-{
-    "firstName":"Brian",
-    "lastName": "Ladwig",
-    "profileName": "chocoladwig",
-    "email": "b.ladwig@gmail.com",
-    "password": "KAnoN-1X7-ZtOY8903",
-    "confirmPassword":"KAnoN-1X7-ZtOY8903",
-    "userAddress": {
-        "street":"TestStraße 4" ,
-		"city":"Berlin" ,
-		"zip":"" ,
-		"country":"Germany"
-    }
-}
+@url = http://localhost:7000
 
 ######################################################
 # BEAUTY #############################################
@@ -34,9 +12,9 @@ POST {{url}}/beauty
 Content-Type: application/json
 
 {
-    "author": "6296817dc2d97d848c765e1e",
-    "title": "beauty test 3",
-    "description": "Just the third test beauty post"
+    "author": "62973234d74ddd320dece567",
+    "title": "beauty test 1",
+    "description": "Just the third first beauty post"
 }
 
 ### Update a Beauty Post

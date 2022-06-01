@@ -6,9 +6,9 @@ const required = true
 // const unique = true
 // const lowercase = true
 
-const diySchema = Schema({
+const artsCraftSchema = Schema({
     author:       { type: Schema.Types.ObjectId, ref: "user", required },
-    type:         { type: String, required, default: "diy" },
+    type:         { type: String, required, default: "artsCraft" },
     title:        { type: String, required },
     description:  { type: String, required },
     video:        { type: String },
@@ -19,6 +19,6 @@ const diySchema = Schema({
     likes:        { type: [String], default: [] },
 }, { timestamps: true })
 
-const Diy = model("Diy", diySchema)
+const ArtCraft = model("Diy", artsCraftSchema)
 
-export default Diy
+export default ArtCraft

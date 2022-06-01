@@ -1,11 +1,11 @@
-@url = http://localhost:6060
+@url = http://localhost:7000
 
 ### GET ALL USERS ###
 GET {{url}}/user
 
 
 ### GET USER BY ID ###
-GET {{url}}/user/6296021df115f13c5f36f2cb
+GET {{url}}/user/62972f26679b794abd772f28
 
 
 ### POST/REGISTER NEW USER ###
@@ -34,12 +34,12 @@ POST {{url}}/user/login
 Content-Type: application/json
 
 {
-  "email": "jades@gravatar.com",
-  "password": "NewPassword123@"
+  "email": "js@gravatar.com",
+  "password": "Mypassword123!"
 }
 
 ### UPDATE USER DATA ###
-PATCH {{url}}/user/62966085b12de62b47b7a9bf
+PATCH {{url}}/user/62972f26679b794abd772f28
 Content-Type: application/json
 
 {
@@ -56,4 +56,4 @@ Content-Type: application/json
 
 
 ### DELETE USER ###
-DELETE {{url}}/user/62965ebd41b51a4b76d7c9e0
+DELETE {{url}}/user/62972f26679b794abd772f28

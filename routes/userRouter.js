@@ -56,13 +56,14 @@ userRouter
 		}
 		try {
 			const user = await User.findOne({ email: req.body.email });
-			const isValid = await compare(req.body.password, user.password);
-			if (!isValid) {
-				throw Error("Password mismatch");
-			}
 			if (!user) {
 				throw Error("User not found");
 			}
+			const isValid = await compare(req.body.password, user.password);
+			if (!isValid) {
+				throw Error("Incorrect password");
+			}
+
 
 			const token = jwt.sign({ id: user._id }, process.env.SECRET, {
 				expiresIn: "7d",

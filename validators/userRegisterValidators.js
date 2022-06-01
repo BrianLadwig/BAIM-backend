@@ -26,13 +26,10 @@ const userRegisterValidators = [
 		//(?!.*[_.]{2}) username does not have 2 _ or . in a row
 		//[a-zA-Z0-9._] username is alphanumeric, _ or .
 		//+(?<![_.]) no _ or . at the end
-
 		.matches(/^(?=.{4,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/)
-		.withMessage("Not a valid username")
-		//trim removes whitespace from the beginning and end of the string
-		.trim()
-		//escape will remove all the special characters from the string and replace them with their escaped version (e.g. \n and \r).
-		.escape(),
+		.withMessage("Not a valid username")	
+		.trim() //trim removes whitespace from the beginning and end of the string
+		.escape(), //escape will remove all the special characters from the string and replace them with their escaped version (e.g. \n and \r).
 	// body("profilePicture")
 	// 	.isURL()
 	// 	.withMessage("Profile picture should be a valid URL")

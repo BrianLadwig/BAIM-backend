@@ -1,26 +1,26 @@
 import express from "express";
 import mongoose from "mongoose";
-import Diy from "../models/Diy.js"
+import ArtsCraft from "../models/ArtsCraft.js"
 import User from "../models/User.js"
 import requestValidator from "../middlewares/requestValidator.js"
 import postValidator from "../validators/postValidators.js"
 import updatedPostValidator from "../validators/updatePostValidators.js"
 
 
-const diyRouter = express.Router();
+const artsCraftRouter = express.Router();
 
-diyRouter
+artsCraftRouter
     .get("/", async (req, res) => {
         try {
-            const diyPosts = await Diy.find()
-            res.status(200).json(diyPosts)
+            const artsCrafts = await ArtsCraft.find()
+            res.status(200).json(artsCrafts)
         } catch (error) {
             res.status(404).json({ errors: [error.message] })
         }
     })
     .post("/", requestValidator(postValidator), async (req, res) => {
         const post = req.body;
-        const newPost = new Diy(post)
+        const newPost = new ArtsCraft(post)
         const user = await User.findById(req.body.author)
         
         if(!user) {
@@ -29,7 +29,7 @@ diyRouter
 
         try {
             await newPost.save()
-            user.diy.push(newPost)
+            user.artsCraft.push(newPost)
             await user.save()
 
             res.status(200).json(newPost)
@@ -44,12 +44,12 @@ diyRouter
             return res.status(404).json({ errors: ['No post with that id'] })
         }
         // console.log(req.body);
-        const updatedPost = await Diy.findByIdAndUpdate(_id, req.body, { new: true })
+        const updatedPost = await ArtsCraft.findByIdAndUpdate(_id, req.body, { new: true })
         res.json({message: 'Updated'})
     })
     .delete("/:id", async (req, res) => {
         const { id:_id } = req.params
-        const post = await Diy.findById(_id)
+        const post = await ArtsCraft.findById(_id)
         const user = await User.findById(post.author)
         if(!user) {
             return res.status(404).json({ errors: ["User is not found"] })
@@ -59,8 +59,8 @@ diyRouter
             return res.status(404).json({ errors: 'No post with that id'})
         }
         
-        const postIndex = user.diy.indexOf(_id)
-        user.diy.splice(postIndex, 1)
+        const postIndex = user.artsCraft.indexOf(_id)
+        user.artsCraft.splice(postIndex, 1)
         await user.save()
         await post.remove()
         // await Post.findByIdAndDelete(_id)
@@ -77,7 +77,7 @@ diyRouter
             return res.status(404).json({ errors: 'No post with that id'})
         }
 
-        const post = await Diy.findById(_id)
+        const post = await ArtsCraft.findById(_id)
 
         const index = post.likes.findIndex(id => id === String(req.body.author))
         if(index === -1) {
@@ -88,8 +88,8 @@ diyRouter
             post.likes = post.likes.filter(id => id !== String(req.body.author))
         }
 
-        const updatedPost = await Diy.findByIdAndUpdate(_id, post, { new: true })
+        const updatedPost = await ArtsCraft.findByIdAndUpdate(_id, post, { new: true })
         res.json({message: "toggle like"})
     })
 
-export default diyRouter
+export default artsCraftRouter

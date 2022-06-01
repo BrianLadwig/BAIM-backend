@@ -8,9 +8,9 @@ const unique = true;
 
 const AddressesSchema = new Schema(
 	{
-		street: { type: String, trim },
-		city: 	{ type: String, required, trim },
-		zip: 	{ type: String, trim },
+		street:  { type: String, trim },
+		city: 	 { type: String, required, trim },
+		zip: 	 { type: String, trim },
 		country: { type: String, required, trim },
 	},
 	{
@@ -33,7 +33,7 @@ const UserSchema = new Schema(
 
 		beauty: 		{ type: [Schema.Types.ObjectId], ref: "beauty" },
 		recipe: 		{ type: [Schema.Types.ObjectId], ref: "recipe" },
-		diy: 			{ type: [Schema.Types.ObjectId], ref: "diy" },
+		artsCraft: 		{ type: [Schema.Types.ObjectId], ref: "artsCraft" },
 		garden: 		{ type: [Schema.Types.ObjectId], ref: "garden" },
 		event: 			{ type: [Schema.Types.ObjectId], ref: "event"}
 		// subs: { type: [Schema.Types.ObjectId], ref: "subs" },
