@@ -55,7 +55,6 @@ gardenRouter
         } catch (error) {
             res.status(404).json({ errors: error.message})
         }
-        
     })
     .patch("/:id/like",async (req, res) => {
         try {
