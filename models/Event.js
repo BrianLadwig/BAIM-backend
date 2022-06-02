@@ -7,10 +7,11 @@ const trim = true
 // const lowercase = true
 
 const addressSchema = new Schema({
-    street:  { type: String, trim },
-    zip:     { type: Number, trim, required },
-    city:    { type: String, trim, required },
-    country: { type: String, trim, required },
+    street:       { type: String, trim, required },
+    streetNumber: { type: String, trim, required },
+    zip:          { type: Number, trim, required },
+    city:         { type: String, trim, required },
+    country:      { type: String, trim, required },
 }, { _id: false })
 
 const eventSchema = Schema({
@@ -18,6 +19,10 @@ const eventSchema = Schema({
     type:         { type: String, required, default: "event" },
     title:        { type: String, required },
     description:  { type: String, required },
+    startDate:    { type: Date,   required }, // "yyyy-mm-dd"
+    startTime:    { type: String, required },
+    endDate:      { type: Date,   required },
+    endTime:      { type: String, required },
     address:      { type: addressSchema, required },
     video:        { type: String },
     image:        { type: String },
@@ -25,6 +30,7 @@ const eventSchema = Schema({
     tags:         { type: [String], default: [] },
     comments:     { type: [Object], default: [] },
     likes:        { type: [String], default: [] },
+    going:        { type: [Object], default: [] }
 }, { timestamps: true })
 
 const Event = model("Event", eventSchema)

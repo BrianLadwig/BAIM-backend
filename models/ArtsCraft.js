@@ -19,6 +19,6 @@ const artsCraftSchema = Schema({
     likes:        { type: [String], default: [] },
 }, { timestamps: true })
 
-const ArtCraft = model("Diy", artsCraftSchema)
+const ArtCraft = model("ArtCraft", artsCraftSchema)
 
 export default ArtCraft

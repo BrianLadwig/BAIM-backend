@@ -8,10 +8,11 @@ const unique = true;
 
 const AddressesSchema = new Schema(
 	{
-		street:  { type: String, trim },
-		city: 	 { type: String, required, trim },
-		zip: 	 { type: String, trim },
-		country: { type: String, required, trim },
+		street:  	  { type: String, trim },
+		streetNumber: { type: String, trim },
+		city: 	 	  { type: String, required, trim },
+		zip: 	 	  { type: String, trim },
+		country: 	  { type: String, required, trim },
 	},
 	{
 		_id: false,

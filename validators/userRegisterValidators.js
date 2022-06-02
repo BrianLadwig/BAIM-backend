@@ -53,7 +53,7 @@ const userRegisterValidators = [
 		.withMessage("Too short!, password must be at least 8 characters long")
 		//isStrongPassword will check if the password is strong enough and has at least one lowercase, one uppercase, one number and one special character and returns true or false
 		.isStrongPassword()
-		.withMessage("Too weak!, password is not strong enough")
+		.withMessage("Too weak!, password must contain at least 1 uppercase letter and 1 special character")
 		.trim()
 		.escape(),
 	body("confirmPassword")
@@ -66,11 +66,18 @@ const userRegisterValidators = [
 			return true;
 		})
 		.withMessage("Passwords do not match"),
-	body("userAddress.street")
+	body("userAddress.*.street")
+		.optional({checkFalsy: true})
 		.notEmpty()
 		.withMessage("Street should not be empty"),
-	body("userAddress.city").notEmpty().withMessage("City should not be empty"),
-	body("userAddress.country")
+	body('userAddress.*.streetNumber')
+		.optional({checkFalsy: true})
+		.matches(/^[a-zA-Z0-9äöüÄÖÜß\ !@#*+\-;':"\ |,.\/?]*$/)
+		.withMessage("We only accept the following special characters including whitespace: !@#*()+\"-;':,.?"),
+	body("userAddress.*.city")
+		.notEmpty()
+		.withMessage("City should not be empty"),
+	body("userAddress.*.country")
 		.notEmpty()
 		.withMessage("Country should not be empty"),
 

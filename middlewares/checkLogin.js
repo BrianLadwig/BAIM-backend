@@ -14,6 +14,7 @@ async function checkLogin(req, res, next) {
             next({ status: 401, errors: "User does not exist"})
             return
         }
+        req.user = user
         next()
     } catch (error) {
         console.log('error.message :>> ', error.message);
