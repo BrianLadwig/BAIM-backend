@@ -53,7 +53,7 @@ const userRegisterValidators = [
 		.withMessage("Too short!, password must be at least 8 characters long")
 		//isStrongPassword will check if the password is strong enough and has at least one lowercase, one uppercase, one number and one special character and returns true or false
 		.isStrongPassword()
-		.withMessage("Too weak!, password is not strong enough")
+		.withMessage("Too weak!, password must contain at least 1 uppercase letter and 1 special character")
 		.trim()
 		.escape(),
 	body("confirmPassword")

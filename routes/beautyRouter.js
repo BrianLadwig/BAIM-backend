@@ -48,6 +48,7 @@ beautyRouter
         res.json({message: 'Updated'})
     })
     .delete("/:id", async (req, res) => {
+        console.log('req.user._id :>> ', req.user._id);
         const { id:_id } = req.params
         const post = await Beauty.findById(_id)
         const user = await User.findById(post.author)

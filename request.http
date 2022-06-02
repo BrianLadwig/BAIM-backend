@@ -88,9 +88,8 @@ POST {{url}}/garden
 Content-Type: application/json
 
 {
-    "author": "6296817dc2d97d848c765e1e",
-    "title": "garden test 2",
-    "description": "Just the second test garden post"
+    "title": "garden test with cookie",
+    "description": "first test"
 }
 
 ### Update a garden Post
@@ -98,9 +97,8 @@ PATCH  {{url}}/garden/62968a4f61fe742351adbc0e
 Content-Type: application/json
 
 {
-    "author": "6296817dc2d97d848c765e1e",
-    "title": "garden test 1",
-    "description": "Just updated the first garden test post"
+    "title": "garden test with cookie",
+    "description": "Can this work with cookies?"
 }
 
 ### Like a garden Post

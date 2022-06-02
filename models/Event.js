@@ -18,6 +18,8 @@ const eventSchema = Schema({
     type:         { type: String, required, default: "event" },
     title:        { type: String, required },
     description:  { type: String, required },
+    startDate:    { type: Date,   required },
+    endDate:      { type: Date,   required },
     address:      { type: addressSchema, required },
     video:        { type: String },
     image:        { type: String },
