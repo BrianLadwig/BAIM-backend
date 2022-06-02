@@ -5,6 +5,8 @@ import { body } from 'express-validator'
 const eventValidator=[
 
         body('title')
+            .notEmpty()
+            .withMessage("title should not be empty")
             .trim()
             .isLength({min: 4 , max: 150})
             .withMessage('your title should not be bigger then 150 characters long')
@@ -12,6 +14,8 @@ const eventValidator=[
             .withMessage("we only accept he following characters including whitespace: !@#*()+\"-;':,.?"),
 
         body('description')
+            .notEmpty()
+            .withMessage("description should not be empty")
             .isLength({max:5000})
             .withMessage('no more then 5000 characters including whitespace')
             .matches(/^[a-zA-Z0-9äöüÄÖÜß\!@#*+\-;':"\ |,.\/?]*$/)
@@ -37,20 +41,25 @@ const eventValidator=[
             .withMessage('address is required '),
 
         body('address.*.street')
+            .isAlphanumeric()
+            .withMessage("We only accept the following special characters including whitespace: !@#*()+\"-;':,.?"),
+
+        body('address.*.streetNumber')
             .matches(/^[a-zA-Z0-9äöüÄÖÜß\ !@#*+\-;':"\ |,.\/?]*$/)
             .withMessage("We only accept the following special characters including whitespace: !@#*()+\"-;':,.?"),
+
             
         body('address.*.zip')
-        .matches(/^[0-9]*$/)
-        .withMessage('Only numbers are allowed'),
+            .matches(/^[0-9]*$/)
+            .withMessage('Only numbers are allowed'),
 
         body('address.*.city')
-        .matches(/^[a-zA-Z\s]*$/)
-        .withMessage('only alphabetic characters and white space'),
+            .matches(/^[a-zA-Z\s]*$/)
+            .withMessage('only alphabetic characters and white space'),
 
         body('address.*.country')
-        .matches(/^[a-zA-Z\s]*$/)
-        .withMessage('only alphabetic characters and white space'),
+            .matches(/^[a-zA-Z\s]*$/)
+            .withMessage('only alphabetic characters and white space'),
 
 
         body('tags')

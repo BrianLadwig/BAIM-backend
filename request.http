@@ -12,69 +12,55 @@ POST {{url}}/beauty
 Content-Type: application/json
 
 {
-    "author": "62973234d74ddd320dece567",
-    "title": "beauty test 1",
-    "description": "Just the third first beauty post"
+    "title": "beauty test with cookies"
 }
 
 ### Update a Beauty Post
-PATCH  {{url}}/beauty/629681bec2d97d848c765e21
+PATCH  {{url}}/beauty/629748f22a0811687ef577b3
 Content-Type: application/json
 
 {
-    "author": "6296817dc2d97d848c765e1e",
-    "title": "beauty test 1",
-    "description": "Just the first test beauty post, and now I updated it"
+    "description": "Cookies test and now I updated it"
 }
 
 ### Like a Beauty Post
-PATCH  {{url}}/beauty/629681bec2d97d848c765e21/like
+PATCH  {{url}}/beauty/629748f22a0811687ef577b3/like
 Content-Type: application/json
 
-{
-    "author": "6296817dc2d97d848c765e1e"
-}
 
 ### Delete a Beauty Post
-DELETE  {{url}}/beauty/629681c3c2d97d848c765e25
+DELETE  {{url}}/beauty/629748f22a0811687ef577b3
 Content-Type: application/json
 
 ###################################################
-# DIY #############################################
+# ArtsCraft #############################################
 
-### Get all DIY Posts
-GET {{url}}/diy
+### Get all ArtsCraft Posts
+GET {{url}}/artsCraft
 
-### Create a new DIY Post
-POST {{url}}/diy
+### Create a new ArtsCraft Post
+POST {{url}}/artsCraft
 Content-Type: application/json
 
 {
-    "author": "6296817dc2d97d848c765e1e",
-    "title": "diy test 2",
-    "description": "Just the second test diy post"
+    "title": "artsCraft with cookie",
+    "description": "Just the test"
 }
 
-### Update a DIY Post
-PATCH  {{url}}/diy/6296851a15a814035d8f2713
+### Update a ArtsCraft Post
+PATCH  {{url}}/artsCraft/62989b31a74dc2b61a1a7748
 Content-Type: application/json
 
 {
-    "author": "6296817dc2d97d848c765e1e",
-    "title": "diy test 1",
-    "description": "Just the updated the first diy test post"
+    "description": "updating test with cookie descp"
 }
 
-### Like a DIY Post
-PATCH  {{url}}/diy/6296851a15a814035d8f2713/like
+### Like a ArtsCraft Post
+PATCH  {{url}}/artsCraft/62989b31a74dc2b61a1a7749/like
 Content-Type: application/json
 
-{
-    "author": "6296817dc2d97d848c765e1e"
-}
-
-### Delete a DIY Post
-DELETE  {{url}}/diy/6296853a15a814035d8f2717
+### Delete a ArtsCraft Post
+DELETE  {{url}}/artsCraft/6296853a15a814035d8f2717
 Content-Type: application/json
 
 ###################################################
@@ -88,12 +74,12 @@ POST {{url}}/garden
 Content-Type: application/json
 
 {
-    "title": "garden test with cookie",
-    "description": "first test"
+    "title": "garden post with cookie 3",
+    "description": "3 test"
 }
 
 ### Update a garden Post
-PATCH  {{url}}/garden/62968a4f61fe742351adbc0e
+PATCH  {{url}}/garden/6298890f0e5de9ac71213563
 Content-Type: application/json
 
 {
@@ -102,15 +88,12 @@ Content-Type: application/json
 }
 
 ### Like a garden Post
-PATCH  {{url}}/garden/62968a4f61fe742351adbc0e/like
+PATCH  {{url}}/garden/6298890f0e5de9ac71213563/like
 Content-Type: application/json
 
-{
-    "author": "6296817dc2d97d848c765e1e"
-}
 
 ### Delete a garden Post
-DELETE  {{url}}/garden/62968a5d61fe742351adbc12
+DELETE  {{url}}/garden/62988aa606a3135453b2fd4a
 Content-Type: application/json
 
 #####################################################
@@ -124,10 +107,15 @@ POST {{url}}/event
 Content-Type: application/json
 
 {
-    "author": "6296817dc2d97d848c765e1e",
-    "title": "event test 2",
-    "description": "first event test",
+    "title": "event test with cookies2",
+    "description": "event test",
+    "startDate": "2022-06-10",
+    "startTime": "8:00am",
+    "endDate": "2022-06-11",
+    "endTime": "8:30am",
     "address": { 
+        "street": "Sesame str",
+        "streetNumber": "8a",
         "zip": 4317, 
         "city": "Leipzig", 
         "country": "Germany"
@@ -135,25 +123,20 @@ Content-Type: application/json
 }
 
 ### Update an event
-PATCH  {{url}}/event/62968dd0932a725e85fe227a
+PATCH  {{url}}/event/6298a5dcaf62f997d7be3e80
 Content-Type: application/json
 
 {
-    "author": "6296817dc2d97d848c765e1e",
-    "title": "event test 1",
-    "description": "updating an event"
+    "title": "event test with COOOKIIIES"
 }
 
 ### Like an event
-PATCH  {{url}}/event/62968dd0932a725e85fe227a/like
+PATCH  {{url}}/event/6298a5dcaf62f997d7be3e80/like
 Content-Type: application/json
 
-{
-    "author": "6296817dc2d97d848c765e1e"
-}
 
 ### Delete an event
-DELETE  {{url}}/event/62968fe5e04c07cf5cc53758
+DELETE  {{url}}/event/6298a2636bf335882883a224
 Content-Type: application/json
 
 ######################################################
@@ -167,29 +150,23 @@ POST {{url}}/recipe
 Content-Type: application/json
 
 {
-    "author": "6296817dc2d97d848c765e1e",
-    "title": "recipe test 1",
+    "title": "recipe test with cookies",
     "description": "testing out the recipe"
 }
 
 ### Update a recipe
-PATCH  {{url}}/recipe/629726ac453c202b39cd150a
+PATCH  {{url}}/recipe/62989d5ea09204b724f880b5
 Content-Type: application/json
 
 {
-    "author": "6296817dc2d97d848c765e1e",
-    "title": "recipe test 1",
     "description": "updated the recipe routes"
 }
 
 ### Like a recipe
-PATCH  {{url}}/recipe/629726ac453c202b39cd150a/like
+PATCH  {{url}}/recipe/62989d5ea09204b724f880b5/like
 Content-Type: application/json
 
-{
-    "author": "6296817dc2d97d848c765e1e"
-}
 
 ### Delete a recipe
-DELETE  {{url}}/recipe/629727aa453c202b39cd1511
+DELETE  {{url}}/recipe/62989d5ea09204b724f880b5
 Content-Type: application/json

@@ -66,11 +66,18 @@ const userRegisterValidators = [
 			return true;
 		})
 		.withMessage("Passwords do not match"),
-	body("userAddress.street")
+	body("userAddress.*.street")
+		.optional({checkFalsy: true})
 		.notEmpty()
 		.withMessage("Street should not be empty"),
-	body("userAddress.city").notEmpty().withMessage("City should not be empty"),
-	body("userAddress.country")
+	body('userAddress.*.streetNumber')
+		.optional({checkFalsy: true})
+		.matches(/^[a-zA-Z0-9äöüÄÖÜß\ !@#*+\-;':"\ |,.\/?]*$/)
+		.withMessage("We only accept the following special characters including whitespace: !@#*()+\"-;':,.?"),
+	body("userAddress.*.city")
+		.notEmpty()
+		.withMessage("City should not be empty"),
+	body("userAddress.*.country")
 		.notEmpty()
 		.withMessage("Country should not be empty"),
 

@@ -15,70 +15,62 @@ eventRouter
         }
     })
     .post("/", async (req, res) => {
-        const event = req.body;
-        const newEvent = new Event(evebt)
-        const user = await User.findById(req.body.user)
         try {
-            await newEvent.save()
+            const post = req.body;
+            post.author = req.user._id // the id is in the cookie
+            const newPost = new Event(post)
+            const user = await User.findById(req.body.author)
+            await newPost.save()
             // need to push the post to the user's post array
-            user.event.push(newEvent)
+            user.event.push(newPost)
             await user.save()
-
-            res.status(200).json(newEvent)
+            res.status(200).json(newPost)
         } catch (error) {
-            res.status(409).json({ errors: error.message })
+            res.status(409).json({ errors: error.message})
         }
     })
     .patch("/:id",async (req, res) => {
         const { id:_id } = req.params
-
-        if(!mongoose.Types.ObjectId.isValid(_id)) {
-            return res.status(404).send({ errors: 'No post with that id' })
+        const updatedPost = await Event.findByIdAndUpdate(_id, req.body, { new: true })
+        if(!updatedPost){
+            return res.status(404).json({ errors : "Event not found" })
         }
-        // console.log(req.body);
-        const updatedEvent = await Event.findByIdAndUpdate(_id, req.body, { new: true })
-        res.json({message: 'Updated'})
+        res.json({message: 'Updated', updatedPost})
     })
     .delete("/:id", async(req, res) => {
-        const { id:_id } = req.params
-        const event = await Event.findById(_id)
-        const user = await User.findById(post.user)
-
-        if(!mongoose.Types.ObjectId.isValid(_id)) {
-            return res.status(404).send({ errors: 'No post with that id' })
+        try {
+            const { id:_id } = req.params
+            const post = await Event.findById(_id)
+            post.author = req.user._id //adding the userId from cookies
+            const user = await User.findById(post.author)
+            const postIndex = user.event.indexOf(_id)
+            user.event.splice(postIndex, 1)
+            await user.save()
+            await post.remove()
+            // await Post.findByIdAndDelete(_id)
+            res.json({ message: "Deleted", deleted: post })
+        } catch (error) {
+            res.status(404).json({ errors: error.message})
         }
-        
-        const postIndex = user.garden.indexOf(_id)
-        user.event.splice(postIndex, 1)
-        await user.save()
-        await event.remove()
-        // await Post.findByIdAndDelete(_id)
-        res.json({ message: "Deleted", deleted: post })
     })
     .patch("/:id/like",async (req, res) => {
-        const { id:_id } = req.params
-
-        if(!req.userId) {
-            return res.status(401).json({ errors: "Unauthenticated"})
+        try {
+            const { id:_id } = req.params
+            req.body.author = req.user._id
+            const post = await Event.findById(_id)
+            const index = post.likes.findIndex(id => id === String(req.body.author))
+            if(index === -1) {
+                // like
+                post.likes.push(req.body.author)
+            } else {
+                // dislike
+                post.likes = post.likes.filter(id => id !== String(req.body.author))
+            }
+            const updatedPost = await Event.findByIdAndUpdate(_id, post, { new: true })
+            res.json({message: "toggle like"})
+        } catch (errors) {
+            res.status(404).json({ errors : errors.message })
         }
-
-        if(!mongoose.Types.ObjectId.isValid(_id)) {
-            return res.status(404).send({ errors: 'No post with that id'})
-        }
-
-        const event = await Event.findById(_id)
-
-        const index = event.likes.findIndex(id => id === String(req.userId))
-        if(index === -1) {
-            // like
-            event.likes.push(req.userId)
-        } else {
-            // dislike
-            event.likes = event.likes.filter(id => id !== String(req.userId))
-        }
-
-        const updatedEvent = await Event.findByIdAndUpdate(_id, post, { new: true })
-        res.json({message: "Liked"})
     })
 
 export default eventRouter
