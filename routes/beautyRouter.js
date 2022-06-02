@@ -10,7 +10,7 @@ const beautyRouter = express.Router();
 
 beautyRouter
     .get("/", async (req, res) => {
-        try {s
+        try {
             const beautyPosts = await Beauty.find()
             res.status(200).json(beautyPosts)
         } catch (error) {
@@ -18,80 +18,62 @@ beautyRouter
         }
     })
     .post("/", requestValidator(postValidator), async (req, res) => {
-        const post = req.body;
-        const newPost = new Beauty(post)
-        const user = await User.findById(req.body.author)
-   
-        if(!user) {
-            return res.status(404).json({ errors: ["User is not found"] })
-        }
-        
         try {
+            const post = req.body;
+            post.author = req.user._id // the id is in the cookie
+            const newPost = new Beauty(post)
+            const user = await User.findById(req.body.author)
             await newPost.save()
             // need to push the post to the user's post array
             user.beauty.push(newPost)
             await user.save()
-
             res.status(200).json(newPost)
         } catch (error) {
-            res.status(409).json({ errors: [error.message] })
+            res.status(409).json({ errors: error.message})
         }
     })
     .patch("/:id", requestValidator(updatedPostValidator), async (req, res) => {
         const { id:_id } = req.params
-
-        if(!mongoose.Types.ObjectId.isValid(_id)) {
-            return res.status(404).json({ errors: ['No post with that id'] })
-        }
-        // console.log(req.body);
         const updatedPost = await Beauty.findByIdAndUpdate(_id, req.body, { new: true })
-        res.json({message: 'Updated'})
+        if(!updatedPost){
+            return res.status(404).json({ errors : "Post not found" })
+        }
+        res.json({message: 'Updated', updatedPost})
     })
     .delete("/:id", async (req, res) => {
-        console.log('req.user._id :>> ', req.user._id);
-        const { id:_id } = req.params
-        const post = await Beauty.findById(_id)
-        const user = await User.findById(post.author)
-
-        if(!user) {
-            return res.status(404).json({ errors: ["User is not found"] })
+        try {
+            const { id:_id } = req.params
+            const post = await Beauty.findById(_id)
+            post.author = req.user._id //adding the userId from cookies
+            const user = await User.findById(post.author)
+            const postIndex = user.beauty.indexOf(_id)
+            user.beauty.splice(postIndex, 1)
+            await user.save()
+            await post.remove()
+            // await Post.findByIdAndDelete(_id)
+            res.json({ message: "Deleted", deleted: post })
+        } catch (error) {
+            res.status(404).json({ errors: error.message})
         }
-    
-        if(!mongoose.Types.ObjectId.isValid(_id)) {
-            return res.status(404).json({ errors: 'No post with that id'})
-        }
-        
-        const postIndex = user.beauty.indexOf(_id)
-        user.beauty.splice(postIndex, 1)
-        await user.save()
-        await post.remove()
-        // await Post.findByIdAndDelete(_id)
-        res.json({ message: "Deleted", deleted: post })
     })
     .patch("/:id/like", async (req, res) => {
-        const { id:_id } = req.params
-
-        if(!req.body.author) {
-            return res.status(401).json({ errors: "Unauthenticated"})
+        try {
+            const { id:_id } = req.params
+            req.body.author = req.user._id
+            const post = await Beauty.findById(_id)
+            const index = post.likes.findIndex(id => id === String(req.body.author))
+            if(index === -1) {
+                // like
+                post.likes.push(req.body.author)
+            } else {
+                // dislike
+                post.likes = post.likes.filter(id => id !== String(req.body.author))
+            }
+            const updatedPost = await Beauty.findByIdAndUpdate(_id, post, { new: true })
+            res.json({message: "toggle like"})
+        } catch (errors) {
+            res.status(404).json({ errors : errors.message })
         }
-
-        if(!mongoose.Types.ObjectId.isValid(_id)) {
-            return res.status(404).json({ errors: 'No post with that id'})
-        }
-
-        const post = await Beauty.findById(_id)
-
-        const index = post.likes.findIndex(id => id === String(req.body.author))
-        if(index === -1) {
-            // like
-            post.likes.push(req.body.author)
-        } else {
-            // dislike
-            post.likes = post.likes.filter(id => id !== String(req.body.author))
-        }
-
-        const updatedPost = await Beauty.findByIdAndUpdate(_id, post, { new: true })
-        res.json({message: "toggle like"})
     })
 
 export default beautyRouter
