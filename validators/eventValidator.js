@@ -47,7 +47,6 @@ const eventValidator=[
         body('address.*.streetNumber')
             .matches(/^[a-zA-Z0-9äöüÄÖÜß\ !@#*+\-;':"\ |,.\/?]*$/)
             .withMessage("We only accept the following special characters including whitespace: !@#*()+\"-;':,.?"),
-
             
         body('address.*.zip')
             .matches(/^[0-9]*$/)

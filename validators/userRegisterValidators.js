@@ -1,4 +1,5 @@
 import { body } from "express-validator";
+import User from "../models/User.js";
 
 // Custom error messages enable easier translation in the frontend
 const userRegisterValidators = [
@@ -17,18 +18,16 @@ const userRegisterValidators = [
 		.trim()
 		.escape(),
 	body("profileName")
-		.notEmpty()
-		.withMessage("Username should not be empty")
-		.exists()
-		.withMessage("Username already exists!")
-		//(?=.{4,20}$) username is 4-20 chara's long
-		//(?![_.]) username does not start with _ or .
-		//(?!.*[_.]{2}) username does not have 2 _ or . in a row
-		//[a-zA-Z0-9._] username is alphanumeric, _ or .
-		//+(?<![_.]) no _ or . at the end
-		.matches(/^(?=.{4,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/)
-		.withMessage("Not a valid username")	
+		.notEmpty().withMessage("Profile name should not be empty").bail()
 		.trim() //trim removes whitespace from the beginning and end of the string
+		.custom( value =>{
+            return User.find({profileName: value}).then(user =>{
+                if(user.length !== 0){
+                    return Promise.reject('Profile name already exists!')
+                }
+            })
+        })
+		.matches(/^(?=.{4,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/).withMessage("Not a valid username").bail()
 		.escape(), //escape will remove all the special characters from the string and replace them with their escaped version (e.g. \n and \r).
 	// body("profilePicture")
 	// 	.isURL()
@@ -38,8 +37,13 @@ const userRegisterValidators = [
 	body("email")
 		.notEmpty()
 		.withMessage("Email should not be empty")
-		.exists()
-		.withMessage("Email already exists!")
+		.custom( value =>{
+            return User.find({email: value}).then(user =>{
+                if(user.length !== 0){
+                    return Promise.reject('Email already exists!')
+                }
+            })
+        })
 		.isEmail()
 		.withMessage("Not a valid email address")
 		.trim()
@@ -66,18 +70,18 @@ const userRegisterValidators = [
 			return true;
 		})
 		.withMessage("Passwords do not match"),
-	body("userAddress.*.street")
+	body("userAddress.street")
 		.optional({checkFalsy: true})
 		.notEmpty()
 		.withMessage("Street should not be empty"),
-	body('userAddress.*.streetNumber')
+	body('userAddress.streetNumber')
 		.optional({checkFalsy: true})
 		.matches(/^[a-zA-Z0-9äöüÄÖÜß\ !@#*+\-;':"\ |,.\/?]*$/)
 		.withMessage("We only accept the following special characters including whitespace: !@#*()+\"-;':,.?"),
-	body("userAddress.*.city")
+	body("userAddress.city")
 		.notEmpty()
 		.withMessage("City should not be empty"),
-	body("userAddress.*.country")
+	body("userAddress.country")
 		.notEmpty()
 		.withMessage("Country should not be empty"),
 
@@ -89,3 +93,10 @@ const userRegisterValidators = [
 ];
 
 export default userRegisterValidators;
+
+		//(?=.{4,20}$) username is 4-20 characters's long
+		//(?![_.]) username does not start with _ or .
+		//(?!.*[_.]{2}) username does not have 2 _ or . in a row
+		//[a-zA-Z0-9._] username is alphanumeric, _ or .
+		//+(?<![_.]) no _ or . at the end
+		// .exists().withMessage("Profile name already exists!").bail()

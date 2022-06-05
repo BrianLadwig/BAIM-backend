@@ -1,5 +1,6 @@
 import express from "express"
 import dotenv from "dotenv";
+import cors from "cors";
 import cookieParser from "cookie-parser";
 import connect from "./lib/database.js";
 import userRouter from "./routes/userRouter.js"
@@ -12,11 +13,17 @@ import globalErrorHandler from "./middlewares/globalErrorHandler.js";
 import checkLogin from "./middlewares/checkLogin.js";
 
 
+const corsOptions = {
+  origin: true, //included origin as true
+  credentials: true, //included credentials as true
+};
+
 dotenv.config();
 connect();
 const app = express();
+app.use(cors(corsOptions));
 app.use(express.json());
-app.use(cookieParser())
+app.use(cookieParser());
 
 app.use('/user', userRouter)
 app.use('/beauty', checkLogin, beautyRouter)
