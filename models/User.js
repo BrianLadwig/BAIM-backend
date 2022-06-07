@@ -31,7 +31,7 @@ const UserSchema = new Schema(
 		password: 		{ type: String, required },
 
 		userAddress: 	{ type: AddressesSchema, required },
-		path: 			{ type: String, required},
+		// path: 			{ type: String, required}, do this in the frontend to save db
 
 		beauty: 		{ type: [Schema.Types.ObjectId], ref: "beauty" },
 		recipe: 		{ type: [Schema.Types.ObjectId], ref: "recipe" },
