@@ -23,7 +23,7 @@ const userLoginValidators = [
 		// .custom(value => {
 		// 	return User.find({password: value}).then(user =>{
 		// 		console.log('value, user :>> ', value, user);
-		// 		const isPasswordCorrect = compare(value, user.password)
+		// 		const isPasswordCorrect = compare(value, user.password)		
         //         if(!isPasswordCorrect){
         //             return Promise.reject('Incorrect password')
         //         }

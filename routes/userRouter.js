@@ -32,12 +32,6 @@ userRouter
 		}
 	})
 	.post("/register", requestValidator(userRegisterValidators), async (req, res, next) => {
-		const errors = validationResult(req);
-		if (!errors.isEmpty()) {
-			return res.status(400).send({
-				errors: errors.array().map((e) => e.msg),
-			});
-		}
 		try {
 			req.body.password = await hash(req.body.password);
 
@@ -50,33 +44,27 @@ userRouter
 		}
 	})
 	.post("/login", requestValidator(userLoginValidators), async (req, res, next) => {
-		const errors = validationResult(req);
-		if (!errors.isEmpty()) {
-			return res.status(400).send({
-				errors: errors.array().map((e) => e.msg),
-			});
-		}
+
 		try {
 			const user = await User.findOne({ email: req.body.email });
 			if (!user) {
-				return res.status(404).json({ errors: "User not found" })
+				return res.status(404).json({ errors: {email: "User not found"} })
 			}
 			const isValid = await compare(req.body.password, user.password);
 			if (!isValid) {
-				return res.status(401).json({ errors: "Incorrect password" })
+				return res.status(401).json({ errors: {password: "Incorrect password"} })
 			}
-
 
 			const token = jwt.sign({ id: user._id }, process.env.SECRET, {
 				expiresIn: "7 days",
 			});
 
 			res.cookie("token", token, { httpOnly: true })
-			
+
 			res.status(200).send({
 				message: `Welcome back ${user.firstName} ${user.lastName}`,
 				user,
-				token,
+				token
 			});
 		} catch (errors) {
 			console.log('errors.message :>> ', errors.message);
