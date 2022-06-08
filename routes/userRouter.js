@@ -1,6 +1,5 @@
 import express from "express";
 import User from "../models/User.js";
-import { validationResult } from "express-validator";
 import jwt from "jsonwebtoken";
 import checkLogin from "../middlewares/checkLogin.js";
 import userRegisterValidators from "../validators/userRegisterValidators.js";
@@ -24,7 +23,7 @@ userRouter
 		try {
 			const user = await User.findById(req.params.id);
 			if (!user) {
-				throw Error("User not found");
+				return next({ status: 404, errors: "User not found"})
 			}
 			res.send(user);
 		} catch (errors) {
@@ -40,7 +39,7 @@ userRouter
 				message: "User created successfully.",
 			});
 		} catch (errors) {
-			res.status(500).send({ errors });
+			next({ errors })
 		}
 	})
 	.post("/login", requestValidator(userLoginValidators), async (req, res, next) => {
@@ -48,11 +47,11 @@ userRouter
 		try {
 			const user = await User.findOne({ email: req.body.email });
 			if (!user) {
-				return res.status(404).json({ errors: {email: "User not found"} })
+				return next({ status: 404, errors: {email: "User not found"} })
 			}
 			const isValid = await compare(req.body.password, user.password);
 			if (!isValid) {
-				return res.status(401).json({ errors: {password: "Incorrect password"} })
+				return next({ status: 401, errors: {password: "Incorrect password"} })
 			}
 
 			const token = jwt.sign({ id: user._id }, process.env.SECRET, {
@@ -67,8 +66,7 @@ userRouter
 				token
 			});
 		} catch (errors) {
-			console.log('errors.message :>> ', errors.message);
-			res.status(500).send({ errors });
+			next({ errors })
 		}
 	})
 	.patch("/:id", checkLogin, async (req, res, next) => {
@@ -77,21 +75,21 @@ userRouter
 				new: true,
 			});
 			if (!user) {
-				throw Error("User not found");
+				return next({ status: 404, errors: "User not found"})
 			}
 			res.status(200).send({
 				message: "User updated successfully.",
 				user,
 			});
 		} catch (errors) {
-			res.status(500).send({ errors });
+			next({ errors })
 		}
 	})
 	.delete("/:id", checkLogin, async (req, res, next) => {
 		try {
 			const user = await User.findByIdAndDelete(req.params.id);
 			if (!user) {
-				throw Error("User not found");
+				return next({ status: 404, errors: "User not found"})
 			}
 			res.status(200).send({
 				message: "User deleted successfully.",

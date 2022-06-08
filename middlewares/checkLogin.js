@@ -12,7 +12,7 @@ async function checkLogin(req, res, next) {
         const checkToken = jwt.verify(req.cookies.token, process.env.SECRET)
         const user = await User.findById(checkToken.id)
         if(!user){
-            next({ status: 401, errors: "User does not exist"})
+            next({ status: 401, errors: "User please log in"})
             return
         }
         req.user = user
