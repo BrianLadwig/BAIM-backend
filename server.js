@@ -10,6 +10,7 @@ import gardenRouter from "./routes/gardenRouter.js"
 import recipeRouter from "./routes/recipeRouter.js"
 import eventRouter from "./routes/eventRouter.js"
 import globalErrorHandler from "./middlewares/globalErrorHandler.js";
+import requestLogger from "./middlewares/requestLogger.js";
 
 
 const corsOptions = {
@@ -24,6 +25,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
 
+app.use(requestLogger)
 app.use('/user', userRouter)
 app.use('/beauty', beautyRouter)
 app.use('/artsCraft', artsCraftRouter)
