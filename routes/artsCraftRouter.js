@@ -1,7 +1,7 @@
 import express from "express";
-import mongoose from "mongoose";
 import ArtsCraft from "../models/ArtsCraft.js"
 import User from "../models/User.js"
+import checkLogin from "../middlewares/checkLogin.js";
 import requestValidator from "../middlewares/requestValidator.js"
 import postValidator from "../validators/postValidators.js"
 import updatedPostValidator from "../validators/updatePostValidators.js"
@@ -10,15 +10,15 @@ import updatedPostValidator from "../validators/updatePostValidators.js"
 const artsCraftRouter = express.Router();
 
 artsCraftRouter
-    .get("/", async (req, res) => {
+    .get("/", async (req, res, next) => {
         try {
             const artsCrafts = await ArtsCraft.find()
             res.status(200).json(artsCrafts)
         } catch (error) {
-            res.status(404).json({ errors: [error.message] })
+            next({ status: 404, errors: error.message })
         }
     })
-    .post("/", requestValidator(postValidator), async (req, res) => {
+    .post("/", checkLogin, requestValidator(postValidator), async (req, res, next) => {
         try {
             const post = req.body;
             post.author = req.user._id // the id is in the cookie
@@ -30,18 +30,18 @@ artsCraftRouter
             await user.save()
             res.status(200).json(newPost)
         } catch (error) {
-            res.status(409).json({ errors: error.message})
+            next({ status: 409, errors: error.message })
         }
     })
-    .patch("/:id", requestValidator(updatedPostValidator), async (req, res) => {
+    .patch("/:id", checkLogin, requestValidator(updatedPostValidator), async (req, res, next) => {
         const { id:_id } = req.params
         const updatedPost = await ArtsCraft.findByIdAndUpdate(_id, req.body, { new: true })
         if(!updatedPost){
-            return res.status(404).json({ errors : "Post not found" })
+            return next({ status: 404, errors: "Post not found"})
         }
         res.json({message: 'Updated', updatedPost})
     })
-    .delete("/:id", async (req, res) => {
+    .delete("/:id", checkLogin, async (req, res, next) => {
         try {
             const { id:_id } = req.params
             const post = await ArtsCraft.findById(_id)
@@ -54,10 +54,10 @@ artsCraftRouter
             // await Post.findByIdAndDelete(_id)
             res.json({ message: "Deleted", deleted: post })
         } catch (error) {
-            res.status(404).json({ errors: error.message})
+            next({ status: 400, errors: error.message })
         }
     })
-    .patch("/:id/like",async (req, res) => {
+    .patch("/:id/like", checkLogin, async (req, res, next) => {
         try {
             const { id:_id } = req.params
             req.body.author = req.user._id
@@ -72,8 +72,8 @@ artsCraftRouter
             }
             const updatedPost = await ArtsCraft.findByIdAndUpdate(_id, post, { new: true })
             res.json({message: "toggle like"})
-        } catch (errors) {
-            res.status(404).json({ errors : errors.message })
+        } catch (error) {
+            next({ status: 400, errors: error.message })
         }
     })
 

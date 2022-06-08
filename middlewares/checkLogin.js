@@ -3,15 +3,16 @@ import User from '../models/User.js';
 
 // to check if the user have access === login
 async function checkLogin(req, res, next) {
+//    console.log('req.cookies :>> ', req.cookies);
     if(!req.cookies.token){    
         next({ status: 401, errors: "You need to log in first"})
     }
-    // console.log(req.cookies);
+   
     try {
         const checkToken = jwt.verify(req.cookies.token, process.env.SECRET)
         const user = await User.findById(checkToken.id)
         if(!user){
-            next({ status: 401, errors: "User does not exist"})
+            next({ status: 401, errors: "User please log in"})
             return
         }
         req.user = user

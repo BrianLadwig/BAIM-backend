@@ -27,10 +27,11 @@ const UserSchema = new Schema(
 		profileName: 	{ type: String, required, unique, trim },
 		profilePicture: { type: String, trim },
 
-		email: 			{ type: String, trim, unique, required },
+		email: 			{ type: String, required, unique, trim },
 		password: 		{ type: String, required },
 
 		userAddress: 	{ type: AddressesSchema, required },
+		// path: 			{ type: String, required}, do this in the frontend to save db
 
 		beauty: 		{ type: [Schema.Types.ObjectId], ref: "beauty" },
 		recipe: 		{ type: [Schema.Types.ObjectId], ref: "recipe" },

@@ -38,20 +38,21 @@ Content-Type: application/json
   "password": "Mypassword123!"
 }
 
-### UPDATE USER DATA ###
-PATCH {{url}}/user/62972f26679b794abd772f28
+### POST / USER LOGIN ###
+POST {{url}}/user/login
 Content-Type: application/json
 
 {
-  "profileName": "jade_s",
-  "password":"NewPassword123@",
-  "confirmPassword":"NewPassword123@",
-  "userAddress": {
-    "street": "",
-    "city": "new city",
-    "zip": "11223",
-    "country": "canada"
-  }
+  "email": "ashley@email.com",
+  "password": "aA123456!"
+}
+
+### UPDATE USER DATA ###
+PATCH {{url}}/user/6299d8caed0721807c064812
+Content-Type: application/json
+
+{
+  "profileName": "AshleyJiang"
 }
 
 
