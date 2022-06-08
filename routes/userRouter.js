@@ -14,7 +14,7 @@ userRouter
 		try {
 			const query = User.find(req.query, "-__v");
 			const users = await query.exec();
-			res.send(users);
+			res.status(200).send(users);
 		} catch (errors) {
 			next({ status: 404, errors });
 		}
@@ -25,7 +25,7 @@ userRouter
 			if (!user) {
 				return next({ status: 404, errors: "User not found"})
 			}
-			res.send(user);
+			res.status(200).send(user);
 		} catch (error) {
 			next({ status: 404, errors: error.message });
 		}
@@ -36,7 +36,7 @@ userRouter
 
 			const user = await User.create(req.body);
 			res.status(201).send({
-				message: "User created successfully.",
+				message: "User created successfully"
 			});
 		} catch (error) {
 			next({ status: 400, errors: error.message });
@@ -97,6 +97,18 @@ userRouter
 		} catch (error) {
 			next({ status: 400, errors: error.message });
 		}
-	});
+	})
+	.post("/logout", checkLogin, async (req, res, next) => {
+		try {
+	
+			// set to empty 
+			res.cookie("token", "", { httpOnly: true })
+			res.status(200).json({ message: "You have logged out" });
+			
+		} catch (error) {
+			next({ status: 400, errors: error.message });
+		}
+
+	})
 
 export default userRouter;

@@ -55,6 +55,9 @@ Content-Type: application/json
   "profileName": "AshleyJiang"
 }
 
-
 ### DELETE USER ###
 DELETE {{url}}/user/62972f26679b794abd772f28
+
+### USER LOGOUT ###
+POST {{url}}/user/logout
+Content-Type: application/json
