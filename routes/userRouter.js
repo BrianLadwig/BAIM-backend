@@ -26,8 +26,8 @@ userRouter
 				return next({ status: 404, errors: "User not found"})
 			}
 			res.send(user);
-		} catch (errors) {
-			next({ status: 404, errors });
+		} catch (error) {
+			next({ status: 404, errors: error.message });
 		}
 	})
 	.post("/register", requestValidator(userRegisterValidators), async (req, res, next) => {
@@ -38,8 +38,8 @@ userRouter
 			res.status(201).send({
 				message: "User created successfully.",
 			});
-		} catch (errors) {
-			next({ errors })
+		} catch (error) {
+			next({ status: 400, errors: error.message });
 		}
 	})
 	.post("/login", requestValidator(userLoginValidators), async (req, res, next) => {
@@ -65,8 +65,8 @@ userRouter
 				user,
 				token
 			});
-		} catch (errors) {
-			next({ errors })
+		} catch (error) {
+			next({ status: 400, errors: error.message });
 		}
 	})
 	.patch("/:id", checkLogin, async (req, res, next) => {
@@ -81,8 +81,8 @@ userRouter
 				message: "User updated successfully.",
 				user,
 			});
-		} catch (errors) {
-			next({ errors })
+		} catch (error) {
+			next({ status: 400, errors: error.message });
 		}
 	})
 	.delete("/:id", checkLogin, async (req, res, next) => {
@@ -94,8 +94,8 @@ userRouter
 			res.status(200).send({
 				message: "User deleted successfully.",
 			});
-		} catch (errors) {
-			next({ errors });
+		} catch (error) {
+			next({ status: 400, errors: error.message });
 		}
 	});
 
