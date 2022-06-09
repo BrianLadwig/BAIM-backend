@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import User from "./User.js";
+import Comment from "./Comment.js"
 
 const { Schema, model } = mongoose;
 const timestamps = true;
@@ -32,7 +33,7 @@ const recipeSchema = new Schema(
 
 recipeSchema.pre("remove", async function () {
   const id = this._id.toString();
-  console.log("Recipe is being removed " + id);
+  console.log("Post is being removed " + id);
 
   const author = await User.findById(this.author);
 
@@ -40,6 +41,7 @@ recipeSchema.pre("remove", async function () {
     author.recipe = author.recipe.filter((x) => x.toString() !== id);
     await author.save();
   }
+  await Comment.deleteMany({ recipe: this._id })
 });
 
 const Recipe = model("recipe", recipeSchema);

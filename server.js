@@ -9,6 +9,7 @@ import artsCraftRouter from "./routes/artsCraftRouter.js"
 import gardenRouter from "./routes/gardenRouter.js"
 import recipeRouter from "./routes/recipeRouter.js"
 import eventRouter from "./routes/eventRouter.js"
+import commentsRouter from "./routes/commentsRouter.js"
 import globalErrorHandler from "./middlewares/globalErrorHandler.js";
 import requestLogger from "./middlewares/requestLogger.js";
 
@@ -32,6 +33,7 @@ app.use('/artsCraft', artsCraftRouter)
 app.use('/garden', gardenRouter)
 app.use('/recipe', recipeRouter)
 app.use('/event', eventRouter)
+app.use('/comments', commentsRouter)
 app.use(globalErrorHandler)
 
 const port = process.env.PORT;

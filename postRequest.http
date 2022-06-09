@@ -12,7 +12,8 @@ POST {{url}}/beauty
 Content-Type: application/json
 
 {
-    "title": "beauty test with cookies"
+    "title": "beauty test with cookies",
+    "description": "I'm beautyful"
 }
 
 ### Update a Beauty Post
@@ -29,7 +30,7 @@ Content-Type: application/json
 
 
 ### Delete a Beauty Post
-DELETE  {{url}}/beauty/629748f22a0811687ef577b3
+DELETE  {{url}}/beauty/62a1b4c0901425608aa73f1c
 Content-Type: application/json
 
 ###################################################
@@ -60,7 +61,7 @@ PATCH  {{url}}/artsCraft/62989b31a74dc2b61a1a7749/like
 Content-Type: application/json
 
 ### Delete a ArtsCraft Post
-DELETE  {{url}}/artsCraft/6296853a15a814035d8f2717
+DELETE  {{url}}/artsCraft/62a1d8cfd1fd262a42ea8a5e
 Content-Type: application/json
 
 ###################################################

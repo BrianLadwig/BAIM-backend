@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import User from "./User.js";
+import Comment from "./Comment.js"
 
 const { Schema, model } = mongoose
 const required = true
@@ -32,6 +34,20 @@ const eventSchema = Schema({
     likes:        { type: [String], default: [] },
     going:        { type: [Object], default: [] }
 }, { timestamps: true })
+
+
+eventSchema.pre("remove", async function () {
+    const id = this._id.toString()
+    console.log("Post is being removed " + id);
+
+    const author = await User.findById(this.author)
+    if (author) {
+        author.event = author.event.filter( x => x.toString() !== id)
+        await author.save()
+    }
+
+    await Comment.deleteMany({ event: this._id })
+});
 
 const Event = model("Event", eventSchema)
 
