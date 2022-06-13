@@ -20,6 +20,7 @@ const recipeSchema = new Schema(
     title:       { type: String, required, trim },
     // prepTime: { type: String },
     // ingredients: { type: [ingredientsSchema] },
+    category:     { type: [Object], default: [] },
     description:  { type: String, required },
     video:        { type: String },
     image:        { type: String },

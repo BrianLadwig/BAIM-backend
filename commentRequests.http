@@ -12,8 +12,8 @@ Content-Type: application/json
 
 {
     "type":"beauty",
-    "beauty":"62a305e45acc5b98cc41d7bd",
-    "message":"I think so too"
+    "beauty":"62a72cf92d3c3ca162d2d647",
+    "message":"I like cookies after lunch"
 }
 
 
@@ -70,16 +70,19 @@ Content-Type: application/json
 
 ### Edit a comment
 
-PATCH {{url}}/comments/62a30788400df2b03a25d43b
+PATCH {{url}}/comments/62a72e369bc10ecf19fba052
 Content-Type: application/json
 
 {
-    "type":"event",
-    "event":"62a306015acc5b98cc41d7cc",
-    "message":"test1"
+    "message":"edit a comment"
 }
 
 
 ### Delete a comment
 
-DELETE {{url}}/comments/62a3071c400df2b03a25d429
+DELETE {{url}}/comments/62a72e369bc10ecf19fba052
+
+
+### Like a comment
+PATCH  {{url}}/comments/62a72e369bc10ecf19fba052/like
+Content-Type: application/json

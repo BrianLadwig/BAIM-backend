@@ -17,9 +17,9 @@ commentsRouter
     try {
       const comments = await Comment.find();
 
-      res.send(comments);
+      res.status(200).send(comments);
     } catch (error) {
-      next(error);
+      next({ status: 404, errors: error.message })
     }
   })
   .post(
@@ -39,7 +39,7 @@ commentsRouter
 
         const type = req.body.type;
         console.log("type:", type);
-
+        
         if (type === "beauty") {
           const beauty = await Beauty.findById(req.body.beauty);
 
@@ -51,7 +51,7 @@ commentsRouter
           beauty.comments.push(comment);
           await beauty.save();
 
-          res.send(comment);
+          res.status(201).send(comment);
         } else if (type === "recipe") {
           const recipe = await Recipe.findById(req.body.recipe);
 
@@ -63,7 +63,7 @@ commentsRouter
           recipe.comments.push(comment);
           await recipe.save();
 
-          res.send(comment);
+          res.status(201).send(comment);
         } else if (type === "artsCraft") {
           const artsCraft = await ArtsCraft.findById(req.body.artsCraft);
 
@@ -75,7 +75,7 @@ commentsRouter
           artsCraft.comments.push(comment);
           await artsCraft.save();
 
-          res.send(comment);
+          res.status(201).send(comment);
         } else if (type === "garden") {
           const garden = await Garden.findById(req.body.garden);
 
@@ -87,7 +87,7 @@ commentsRouter
           garden.comments.push(comment);
           await garden.save();
 
-          res.send(comment);
+          res.status(201).send(comment);
         } else if (type === "event") {
           const event = await Event.findById(req.body.event);
 
@@ -99,7 +99,7 @@ commentsRouter
           event.comments.push(comment);
           await event.save();
 
-          res.send(comment);
+          res.status(201).send(comment);
         }
       } catch (error) {
         next({ status: 404, errors: error.message });
