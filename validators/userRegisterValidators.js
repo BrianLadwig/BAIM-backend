@@ -54,10 +54,10 @@ const userRegisterValidators = [
 		.notEmpty()
 		.withMessage("Password should not be empty")
 		.isLength({ min: 8 })
-		.withMessage("Too short!, password must be at least 8 characters long")
+		.withMessage("Password must be at least 8 characters long")
 		//isStrongPassword will check if the password is strong enough and has at least one lowercase, one uppercase, one number and one special character and returns true or false
 		.isStrongPassword()
-		.withMessage("Too weak!, password must contain at least 1 uppercase letter and 1 special character")
+		.withMessage("Password must contain at least 1 uppercase letter and 1 special character")
 		.trim()
 		.escape(),
 	body("confirmPassword")
@@ -72,18 +72,26 @@ const userRegisterValidators = [
 		.withMessage("Passwords do not match"),
 	body("userAddress.street")
 		.optional({checkFalsy: true})
-		.notEmpty()
-		.withMessage("Street should not be empty"),
+		.isAlpha()
+		.withMessage("Street can only contain letters"),
 	body('userAddress.streetNumber')
 		.optional({checkFalsy: true})
 		.matches(/^[a-zA-Z0-9äöüÄÖÜß\ !@#*+\-;':"\ |,.\/?]*$/)
 		.withMessage("We only accept the following special characters including whitespace: !@#*()+\"-;':,.?"),
 	body("userAddress.city")
 		.notEmpty()
-		.withMessage("City should not be empty"),
+		.withMessage("City should not be empty")
+		.isAlpha()
+		.withMessage("City can only contain letters"),
+	body("userAddress.zip")
+		.optional({checkFalsy: true})
+		.isNumeric()
+		.withMessage("Zip code can only contain numbers"),
 	body("userAddress.country")
 		.notEmpty()
-		.withMessage("Country should not be empty"),
+		.withMessage("Country should not be empty")
+		.isAlpha()
+		.withMessage("Country can only contain letters"),
 
 	// body("agree")
 	// 	.isIn(["true"])

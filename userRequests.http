@@ -44,7 +44,7 @@ Content-Type: application/json
 
 {
   "email": "ashley@email.com",
-  "password": "aA123456!"
+  "password": "aA12345!"
 }
 
 ### UPDATE USER DATA ###

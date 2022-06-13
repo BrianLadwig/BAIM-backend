@@ -36,7 +36,7 @@ userRouter
 
 			const user = await User.create(req.body);
 			res.status(201).send({
-				message: "User created successfully"
+				message: "Registered successfully"
 			});
 		} catch (error) {
 			next({ status: 400, errors: error.message });

@@ -16,7 +16,7 @@ import { validationResult } from "express-validator";
 
         const organizedErrors = errors.array().map(error=>{
             console.log("requestValidator errors:", error)
-            return { [ error.param]: error.msg}
+            return {[error.param]: error.msg}
         })
 
         res.status(400).send({errors: organizedErrors})
