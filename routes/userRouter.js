@@ -57,6 +57,7 @@ userRouter
 			const token = jwt.sign({ id: user._id }, process.env.SECRET, {
 				expiresIn: "7 days",
 			});
+			console.log("test",token);
 
 			res.cookie("token", token, { httpOnly: true })
 

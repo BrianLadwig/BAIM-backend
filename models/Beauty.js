@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import Comment from "./Comment.js";
+import User from "./User.js";
 
 const { Schema, model } = mongoose
 const required = true
@@ -15,9 +17,22 @@ const beautySchema = Schema({
     image:        { type: String },
     link:         { type: String },
     tags:         { type: [String], default: [] },
-    comments:     { type: [Object], default: [] },
+    comments:     { type: [Schema.Types.ObjectId], ref: "comment", required },
     likes:        { type: [String], default: [] },
 }, { timestamps: true })
+
+beautySchema.pre("remove", async function () {
+    const id = this._id.toString()
+    console.log("Post is being removed " + id);
+
+    const author = await User.findById(this.author)
+    if (author) {
+        author.beauty = author.beauty.filter( x => x.toString() !== id)
+        await author.save()
+    }
+
+    await Comment.deleteMany({ beauty: this._id })
+});
 
 const Beauty = model("Beauty", beautySchema)
 
