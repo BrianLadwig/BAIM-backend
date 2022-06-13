@@ -1,0 +1,172 @@
+
+@url = http://localhost:7000
+
+######################################################
+# BEAUTY #############################################
+
+### Get all Beauty Posts
+GET {{url}}/beauty
+
+### Create a new Beauty Post
+POST {{url}}/beauty
+Content-Type: application/json
+
+{
+    "title": "beauty test with cookies"
+}
+
+### Update a Beauty Post
+PATCH  {{url}}/beauty/629748f22a0811687ef577b3
+Content-Type: application/json
+
+{
+    "description": "Cookies test and now I updated it"
+}
+
+### Like a Beauty Post
+PATCH  {{url}}/beauty/629748f22a0811687ef577b3/like
+Content-Type: application/json
+
+
+### Delete a Beauty Post
+DELETE  {{url}}/beauty/629748f22a0811687ef577b3
+Content-Type: application/json
+
+###################################################
+# ArtsCraft #############################################
+
+### Get all ArtsCraft Posts
+GET {{url}}/artsCraft
+
+### Create a new ArtsCraft Post
+POST {{url}}/artsCraft
+Content-Type: application/json
+
+{
+    "title": "artsCraft with cookie",
+    "description": "Just the test"
+}
+
+### Update a ArtsCraft Post
+PATCH  {{url}}/artsCraft/62989b31a74dc2b61a1a7748
+Content-Type: application/json
+
+{
+    "description": "updating test with cookie descp"
+}
+
+### Like a ArtsCraft Post
+PATCH  {{url}}/artsCraft/62989b31a74dc2b61a1a7749/like
+Content-Type: application/json
+
+### Delete a ArtsCraft Post
+DELETE  {{url}}/artsCraft/6296853a15a814035d8f2717
+Content-Type: application/json
+
+###################################################
+# GARDEN #############################################
+
+### Get all garden Posts
+GET {{url}}/garden
+
+### Create a new garden Post
+POST {{url}}/garden
+Content-Type: application/json
+
+{
+    "title": "garden post with cookie 3",
+    "description": "3 test"
+}
+
+### Update a garden Post
+PATCH  {{url}}/garden/6298890f0e5de9ac71213563
+Content-Type: application/json
+
+{
+    "title": "garden test with cookie",
+    "description": "Can this work with cookies?"
+}
+
+### Like a garden Post
+PATCH  {{url}}/garden/6298890f0e5de9ac71213563/like
+Content-Type: application/json
+
+
+### Delete a garden Post
+DELETE  {{url}}/garden/62988aa606a3135453b2fd4a
+Content-Type: application/json
+
+#####################################################
+# EVENT #############################################
+
+### Get all Events
+GET {{url}}/event
+
+### Create a new event
+POST {{url}}/event
+Content-Type: application/json
+
+{
+    "title": "event test with cookies2",
+    "description": "event test",
+    "startDate": "2022-06-10",
+    "startTime": "8:00am",
+    "endDate": "2022-06-11",
+    "endTime": "8:30am",
+    "address": { 
+        "street": "Sesame str",
+        "streetNumber": "8a",
+        "zip": 4317, 
+        "city": "Leipzig", 
+        "country": "Germany"
+    }
+}
+
+### Update an event
+PATCH  {{url}}/event/6298a5dcaf62f997d7be3e80
+Content-Type: application/json
+
+{
+    "title": "event test with COOOKIIIES"
+}
+
+### Like an event
+PATCH  {{url}}/event/6298a5dcaf62f997d7be3e80/like
+Content-Type: application/json
+
+
+### Delete an event
+DELETE  {{url}}/event/6298a2636bf335882883a224
+Content-Type: application/json
+
+######################################################
+# RECIPE #############################################
+
+### Get all recipe
+GET {{url}}/recipe
+
+### Create a recipe
+POST {{url}}/recipe
+Content-Type: application/json
+
+{
+    "title": "recipe test with cookies",
+    "description": "testing out the recipe"
+}
+
+### Update a recipe
+PATCH  {{url}}/recipe/62989d5ea09204b724f880b5
+Content-Type: application/json
+
+{
+    "description": "updated the recipe routes"
+}
+
+### Like a recipe
+PATCH  {{url}}/recipe/62989d5ea09204b724f880b5/like
+Content-Type: application/json
+
+
+### Delete a recipe
+DELETE  {{url}}/recipe/62989d5ea09204b724f880b5
+Content-Type: application/json

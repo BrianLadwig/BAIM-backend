@@ -25,7 +25,7 @@ const UserSchema = new Schema(
 		lastName: 		{ type: String, required, trim },
 
 		profileName: 	{ type: String, required, unique, trim },
-		profilePicture: { type: String, trim },
+		avatar: 		{ type: String, trim, default: `https://avatars.dicebear.com/api/croodles-neutral/${Math.floor(Math.random() * 999)}.svg` },
 
 		email: 			{ type: String, required, unique, trim },
 		password: 		{ type: String, required },
