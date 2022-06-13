@@ -12,7 +12,8 @@ POST {{url}}/beauty
 Content-Type: application/json
 
 {
-    "title": "beauty test with cookies"
+    "title": "beauty test with cookies",
+    "description": "Cookies test for the beauty post"
 }
 
 ### Update a Beauty Post

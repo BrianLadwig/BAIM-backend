@@ -28,6 +28,25 @@ Content-Type: application/json
   }
 }
 
+### POST/REGISTER NEW USER ###
+POST {{url}}/user/register
+Content-Type: application/json
+
+{
+  "firstName": "Ashley",
+  "lastName": "Jiang",
+  "profileName": "AshBash",
+  "email": "ashley@email.com",
+  "password": "aA12345!",
+  "confirmPassword": "aA12345!",
+  "userAddress": {
+    "street": "Main",
+    "city": "Leipzig",
+    "zip": "12345",
+    "country": "Germany"
+  }
+}
+
 
 ### POST / USER LOGIN ###
 POST {{url}}/user/login
@@ -48,15 +67,15 @@ Content-Type: application/json
 }
 
 ### UPDATE USER DATA ###
-PATCH {{url}}/user/6299d8caed0721807c064812
+PATCH {{url}}/user/62a6f394c8e66d8b453536b9
 Content-Type: application/json
 
 {
-  "profileName": "AshleyJiang"
+  "firstName": "Ivo"
 }
 
 ### DELETE USER ###
-DELETE {{url}}/user/62972f26679b794abd772f28
+DELETE {{url}}/user/62a1d6f40f54312a2f7acb7a
 
 ### USER LOGOUT ###
 POST {{url}}/user/logout

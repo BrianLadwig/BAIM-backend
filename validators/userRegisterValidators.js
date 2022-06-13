@@ -6,15 +6,19 @@ const userRegisterValidators = [
 	body("firstName")
 		.notEmpty()
 		.withMessage("First name should not be empty")
-		.matches(/^([a-zA-Z]{4,20})*$/)
-		.withMessage("First name should be between 4 and 20 characters")
+		.bail()
+		.matches(/^([a-zA-Z]{3,20})*$/)
+		.withMessage("First name should be between 3 and 20 characters")
+		.bail()
 		.trim()
 		.escape(),
 	body("lastName")
 		.notEmpty()
 		.withMessage("Last name should not be empty")
+		.bail()
 		.matches(/^([a-zA-Z]{4,20})*$/)
 		.withMessage("Last name should be between 4 and 20 characters")
+		.bail()
 		.trim()
 		.escape(),
 	body("profileName")
@@ -27,7 +31,7 @@ const userRegisterValidators = [
                 }
             })
         })
-		.matches(/^(?=.{4,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/).withMessage("Not a valid username").bail()
+		.matches(/^(?=.{3,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/).withMessage("Not a valid username").bail()
 		.escape(), //escape will remove all the special characters from the string and replace them with their escaped version (e.g. \n and \r).
 	// body("profilePicture")
 	// 	.isURL()
@@ -37,6 +41,7 @@ const userRegisterValidators = [
 	body("email")
 		.notEmpty()
 		.withMessage("Email should not be empty")
+		.bail()
 		.custom( value =>{
             return User.find({email: value}).then(user =>{
                 if(user.length !== 0){
@@ -46,23 +51,28 @@ const userRegisterValidators = [
         })
 		.isEmail()
 		.withMessage("Not a valid email address")
+		.bail()
 		.trim()
-		.escape()
+		.escape(),
 		//normalizeEmail will convert the email to lowercase and remove all the special characters from the string and replace them with their escaped version (e.g. \n and \r).
-		.normalizeEmail(),
+		// .normalizeEmail(),
 	body("password")
 		.notEmpty()
 		.withMessage("Password should not be empty")
+		.bail()
 		.isLength({ min: 8 })
 		.withMessage("Password must be at least 8 characters long")
+		.bail()
 		//isStrongPassword will check if the password is strong enough and has at least one lowercase, one uppercase, one number and one special character and returns true or false
 		.isStrongPassword()
 		.withMessage("Password must contain at least 1 uppercase letter and 1 special character")
+		.bail()
 		.trim()
 		.escape(),
 	body("confirmPassword")
 		.notEmpty()
 		.withMessage("Confirm Password should not be empty")
+		.bail()
 		.custom((value, { req }) => {
 			if (value !== req.body.password) {
 				throw new Error("Passwords do not match");
@@ -81,6 +91,7 @@ const userRegisterValidators = [
 	body("userAddress.city")
 		.notEmpty()
 		.withMessage("City should not be empty")
+		.bail()
 		.isAlpha()
 		.withMessage("City can only contain letters"),
 	body("userAddress.zip")
@@ -90,6 +101,7 @@ const userRegisterValidators = [
 	body("userAddress.country")
 		.notEmpty()
 		.withMessage("Country should not be empty")
+		.bail()
 		.isAlpha()
 		.withMessage("Country can only contain letters"),
 

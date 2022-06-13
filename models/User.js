@@ -38,7 +38,7 @@ const UserSchema = new Schema(
 		artsCraft: 		{ type: [Schema.Types.ObjectId], ref: "artsCraft" },
 		garden: 		{ type: [Schema.Types.ObjectId], ref: "garden" },
 		event: 			{ type: [Schema.Types.ObjectId], ref: "event"},
-		// comments:       { type: [Schema.Types.ObjectId], ref: "comment", required },
+		// comments:       { type: [Schema.Types.ObjectId], ref: "comment" },
 		// subs: { type: [Schema.Types.ObjectId], ref: "subs" },
 
 		// collection: { type: [Schema.Types.ObjectId], ref: "collection" },
