@@ -1,0 +1,85 @@
+@url = http://localhost:7000
+
+
+### Get all Comments
+GET {{url}}/comments
+
+
+### Create a new Comment for beauty
+
+POST {{url}}/comments
+Content-Type: application/json
+
+{
+    "type":"beauty",
+    "beauty":"62a305e45acc5b98cc41d7bd",
+    "message":"I think so too"
+}
+
+
+
+
+### Create a new Comment for recipe
+
+POST {{url}}/comments
+Content-Type: application/json
+
+{
+    "type":"recipe",
+    "recipe":"62a306075acc5b98cc41d7d1",
+    "message":"this is awesome!!!"
+}
+
+
+### Create a new Comment for artsCraft
+
+POST {{url}}/comments
+Content-Type: application/json
+
+{
+    "type":"artsCraft",
+    "artsCraft":"62a305e75acc5b98cc41d7c2",
+    "message":"this is awesome!!!"
+}
+
+
+
+### Create a new Comment for garden
+
+POST {{url}}/comments
+Content-Type: application/json
+
+{
+    "type":"garden",
+    "garden":"62a305f05acc5b98cc41d7c7",
+    "message":"this is awesome!!!"
+}
+
+
+### Create a new Comment for event
+
+POST {{url}}/comments
+Content-Type: application/json
+
+{
+    "type":"event",
+    "event":"62a306015acc5b98cc41d7cc",
+    "message":"this is awesome!!!"
+}
+
+
+### Edit a comment
+
+PATCH {{url}}/comments/62a30788400df2b03a25d43b
+Content-Type: application/json
+
+{
+    "type":"event",
+    "event":"62a306015acc5b98cc41d7cc",
+    "message":"test1"
+}
+
+
+### Delete a comment
+
+DELETE {{url}}/comments/62a3071c400df2b03a25d429

@@ -25,7 +25,7 @@ const UserSchema = new Schema(
 		lastName: 		{ type: String, required, trim },
 
 		profileName: 	{ type: String, required, unique, trim },
-		profilePicture: { type: String, trim },
+		avatar: 		{ type: String, trim, default: `https://avatars.dicebear.com/api/croodles-neutral/${Math.floor(Math.random() * 999)}.svg` },
 
 		email: 			{ type: String, required, unique, trim },
 		password: 		{ type: String, required },
@@ -37,13 +37,15 @@ const UserSchema = new Schema(
 		recipe: 		{ type: [Schema.Types.ObjectId], ref: "recipe" },
 		artsCraft: 		{ type: [Schema.Types.ObjectId], ref: "artsCraft" },
 		garden: 		{ type: [Schema.Types.ObjectId], ref: "garden" },
-		event: 			{ type: [Schema.Types.ObjectId], ref: "event"}
+		event: 			{ type: [Schema.Types.ObjectId], ref: "event"},
+		// comments:       { type: [Schema.Types.ObjectId], ref: "comment", required },
 		// subs: { type: [Schema.Types.ObjectId], ref: "subs" },
 
 		// collection: { type: [Schema.Types.ObjectId], ref: "collection" },
 
 		// followers: { type: [Schema.Types.ObjectId], ref: "followers" },
 		// dmMessages: { type: [Schema.Types.ObjectId], ref: "dmMessages" },
+		 // If we need the user/comment reference. Maybe 
 	},
 	{
 		timestamps: true,
