@@ -12,8 +12,8 @@ Content-Type: application/json
 
 {
     "type":"beauty",
-    "beauty":"62a1b4c0901425608aa73f1c",
-    "message":"this is super awesome!!!"
+    "beauty":"62a305e45acc5b98cc41d7bd",
+    "message":"I think so too"
 }
 
 
@@ -26,7 +26,7 @@ Content-Type: application/json
 
 {
     "type":"recipe",
-    "recipe":"62a1b50a901425608aa73f31",
+    "recipe":"62a306075acc5b98cc41d7d1",
     "message":"this is awesome!!!"
 }
 
@@ -38,7 +38,7 @@ Content-Type: application/json
 
 {
     "type":"artsCraft",
-    "artsCraft":"62a1d8cfd1fd262a42ea8a5e",
+    "artsCraft":"62a305e75acc5b98cc41d7c2",
     "message":"this is awesome!!!"
 }
 
@@ -51,7 +51,7 @@ Content-Type: application/json
 
 {
     "type":"garden",
-    "garden":"62a1b4f6901425608aa73f27",
+    "garden":"62a305f05acc5b98cc41d7c7",
     "message":"this is awesome!!!"
 }
 
@@ -63,21 +63,23 @@ Content-Type: application/json
 
 {
     "type":"event",
-    "event":"62a1b4ff901425608aa73f2c",
+    "event":"62a306015acc5b98cc41d7cc",
     "message":"this is awesome!!!"
 }
 
 
 ### Edit a comment
 
-PATCH {{url}}/comments/62a1b6cf901425608aa73f52
+PATCH {{url}}/comments/62a30788400df2b03a25d43b
 Content-Type: application/json
 
 {
-    "message":"this is super duper awesome!!!"
+    "type":"event",
+    "event":"62a306015acc5b98cc41d7cc",
+    "message":"test1"
 }
 
 
 ### Delete a comment
 
-DELETE {{url}}/comments/62a1d8fad1fd262a42ea8a65
+DELETE {{url}}/comments/62a3071c400df2b03a25d429

@@ -30,7 +30,7 @@ Content-Type: application/json
 
 
 ### Delete a Beauty Post
-DELETE  {{url}}/beauty/62a1b4c0901425608aa73f1c
+DELETE  {{url}}/beauty/62a305e45acc5b98cc41d7bd
 Content-Type: application/json
 
 ###################################################
