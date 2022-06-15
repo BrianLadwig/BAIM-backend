@@ -18,7 +18,7 @@ const beautySchema = Schema({
     image:        { type: String },
     link:         { type: String },
     tags:         { type: [String], default: [] },
-    comments:     { type: [Schema.Types.ObjectId], ref: "comment", required },
+    comments:     { type: [Object], default: [] },
     likes:        { type: [String], default: [] },
 }, { timestamps: true })
 
