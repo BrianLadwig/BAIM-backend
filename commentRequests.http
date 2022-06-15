@@ -16,9 +16,6 @@ Content-Type: application/json
     "message":"I like cookies after lunch"
 }
 
-
-
-
 ### Create a new Comment for recipe
 
 POST {{url}}/comments
@@ -26,8 +23,8 @@ Content-Type: application/json
 
 {
     "type":"recipe",
-    "recipe":"62a306075acc5b98cc41d7d1",
-    "message":"this is awesome!!!"
+    "recipe":"62a72e7382887ede1dd9a5b6",
+    "message":"this is awesome stuff!!!"
 }
 
 
