@@ -16,9 +16,6 @@ Content-Type: application/json
     "message":"What a great Idea!"
 }
 
-
-
-
 ### Create a new Comment for recipe
 
 POST {{url}}/comments
