@@ -53,8 +53,8 @@ POST {{url}}/user/login
 Content-Type: application/json
 
 {
-  "email": "js@gravatar.com",
-  "password": "Mypassword123!"
+  "email": "brladwig@gmail.com",
+  "password": "supPergutesgeheimespassword-123"
 }
 
 ### POST / USER LOGIN ###

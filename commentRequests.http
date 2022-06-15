@@ -12,8 +12,8 @@ Content-Type: application/json
 
 {
     "type":"beauty",
-    "beauty":"62a72cf92d3c3ca162d2d647",
-    "message":"I like cookies after lunch"
+    "beauty":"62a83ff477130b629b982cc3",
+    "message":"What a great Idea!"
 }
 
 
@@ -26,8 +26,8 @@ Content-Type: application/json
 
 {
     "type":"recipe",
-    "recipe":"62a306075acc5b98cc41d7d1",
-    "message":"this is awesome!!!"
+    "recipe":"62a83ac21fa5dfc2756100f1",
+    "message":"Did I get depression wehn I eat the cake?"
 }
 
 
@@ -38,7 +38,7 @@ Content-Type: application/json
 
 {
     "type":"artsCraft",
-    "artsCraft":"62a305e75acc5b98cc41d7c2",
+    "artsCraft":"62a855d4e0d94da7d4fbdd34",
     "message":"this is awesome!!!"
 }
 
@@ -63,8 +63,8 @@ Content-Type: application/json
 
 {
     "type":"event",
-    "event":"62a306015acc5b98cc41d7cc",
-    "message":"this is awesome!!!"
+    "event":"62a7421319bcc097c8eb4f21",
+    "message":"I was there last week, very good selection"
 }
 
 

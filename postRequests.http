@@ -11,10 +11,7 @@ GET {{url}}/beauty
 POST {{url}}/beauty
 Content-Type: application/json
 
-{
-    "title": "beauty test with cookies",
-    "description": "Cookies test for the beauty post"
-}
+< ./recipe.json
 
 ### Update a Beauty Post
 PATCH  {{url}}/beauty/629748f22a0811687ef577b3
@@ -43,10 +40,7 @@ GET {{url}}/artsCraft
 POST {{url}}/artsCraft
 Content-Type: application/json
 
-{
-    "title": "artsCraft with cookie",
-    "description": "Just the test"
-}
+< ./recipe.json
 
 ### Update a ArtsCraft Post
 PATCH  {{url}}/artsCraft/62989b31a74dc2b61a1a7748
@@ -74,10 +68,7 @@ GET {{url}}/garden
 POST {{url}}/garden
 Content-Type: application/json
 
-{
-    "title": "garden post with cookie 3",
-    "description": "3 test"
-}
+< ./recipe.json
 
 ### Update a garden Post
 PATCH  {{url}}/garden/6298890f0e5de9ac71213563
@@ -108,17 +99,18 @@ POST {{url}}/event
 Content-Type: application/json
 
 {
-    "title": "event test with cookies2",
-    "description": "event test",
-    "startDate": "2022-06-10",
-    "startTime": "8:00am",
-    "endDate": "2022-06-11",
-    "endTime": "8:30am",
+    "title": "wine tasting",
+    "description": "Just Fucking Good Red Wine 2019 from Neleman",
+    "image":"https://www.edelrausch.de/media/thumbnails/f7a/e395cd87ccd13470b33fbbc292623f7a/f45a0044/Just-Fucking-Good-Wine-Red_Neleman_Label.png",
+    "startDate": "2022-12-08",
+    "startTime": "7:00pm",
+    "endDate": "2022-12-08",
+    "endTime": "00:00am",
     "address": { 
-        "street": "Sesame str",
-        "streetNumber": "8a",
-        "zip": 4317, 
-        "city": "Leipzig", 
+        "street": "good neighborhood",
+        "streetNumber": "666",
+        "zip": 13117, 
+        "city": "Berlin", 
         "country": "Germany"
     }
 }
@@ -151,8 +143,8 @@ POST {{url}}/recipe
 Content-Type: application/json
 
 {
-    "title": "recipe test with cookies",
-    "description": "testing out the recipe"
+    "title": "Vegan Creamy Mushroom Ramen",
+    "description": "This incredibly simple Vegan Creamy Mushroom Ramen is a rich and flavorful 15 minute meal that only requires a handful of ingredients\n       0.5 Tbsp cooking oil\n      4 oz. baby bella mushrooms\n      1.5 cups vegetable broth\n        1 handful fresh spinach\n        1 package ramen noodles \n        0.5 cup coconut milk \n        1 green onion\n        1 Tbsp chili garlic sauce or sriracha\n        Slice the mushrooms. Add them to a small sauce pot with the cooking oil and saute over medium heat until the mushrooms are soft, dark, and all the moisture in the bottom of the pot has evaporated.\n      Add the vegetable broth, turn the heat up to medium-high, and bring the broth up to a boil. Once boiling, add the ramen noodles without the seasoning packet to the broth. Cook the noodles in the boiling broth for about 3 minutes, or until tender.\n      Turn the heat off, add a heaping handful of fresh spinach, and stir until the spinach is wilted about 30 seconds. Pour the coconut milk into the pot and stir to combine.\n      Serve the Vegan Creamy Coconut Ramen as-is, or with garnishes like green onion or chili garlic sauce."
 }
 
 ### Update a recipe
