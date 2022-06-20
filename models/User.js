@@ -33,6 +33,7 @@ const UserSchema = new Schema(
 		userAddress: 	{ type: AddressesSchema, required },
 		// path: 			{ type: String, required}, do this in the frontend to save db
 
+		type:			{type: String, trim, enum: ["user","gardner", "farmer","seller","blogger"]},
 		beauty: 		{ type: [Schema.Types.ObjectId], ref: "beauty" },
 		recipe: 		{ type: [Schema.Types.ObjectId], ref: "recipe" },
 		artsCraft: 		{ type: [Schema.Types.ObjectId], ref: "artsCraft" },

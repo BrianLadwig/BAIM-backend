@@ -24,7 +24,7 @@ const recipeSchema = new Schema(
     video:        { type: String },
     image:        { type: String },
     link:         { type: String },
-    category:     { type: [String], default: [],enum: ["breakfast", "meal", "snack", "drink","cake","other"] },
+    category:     { type: [String], default: [],enum: ["juices", "breakfast", "sandwishes", "maindish","soups","salads","entrances","deserts","other"] },
     tags:         { type: [String], default: [] },
     comments:     { type: [Object], default: [] },
     likes:        { type: [String], default: [] },
