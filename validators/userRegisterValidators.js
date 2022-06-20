@@ -81,9 +81,7 @@ const userRegisterValidators = [
 		})
 		.withMessage("Passwords do not match"),
 	body("userAddress.street")
-		.optional({checkFalsy: true})
-		.isAlpha()
-		.withMessage("Street can only contain letters"),
+		.optional({checkFalsy: true}),
 	body('userAddress.streetNumber')
 		.optional({checkFalsy: true})
 		.matches(/^[a-zA-Z0-9äöüÄÖÜß\ !@#*+\-;':"\ |,.\/?]*$/)
