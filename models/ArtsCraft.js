@@ -17,6 +17,7 @@ const artsCraftSchema = Schema(
     video: { type: String },
     image: { type: String },
     link: { type: String },
+    category:     { type: [String], default: [], enum: ["upcycling", "refashion", "deko", "anti aging","make up","other"] },
     tags: { type: [String], default: [] },
     comments: { type: [Object], default: [] },
     likes: { type: [String], default: [] },

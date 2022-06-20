@@ -28,6 +28,7 @@ const eventSchema = Schema({
     address:      { type: addressSchema, required },
     video:        { type: String },
     image:        { type: String },
+    category:     { type: [String], default: [],enum: ["markt", "tasting", "workshop", "soli","sit in","meet and greet","fair", "other" ] },
     link:         { type: String },
     tags:         { type: [String], default: [] },
     comments:     { type: [Object], default: [] },
