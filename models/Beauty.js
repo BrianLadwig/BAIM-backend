@@ -11,12 +11,12 @@ const required = true
 const beautySchema = Schema({
     author:       { type: Schema.Types.ObjectId, ref: "user", required },
     type:         { type: String, required, default: "beauty" },
-    category:     { type: [Object], default: [] },
     title:        { type: String, required },
     description:  { type: String, required },
     video:        { type: String },
     image:        { type: String },
     link:         { type: String },
+    category:     { type: [String], default: [], enum: ["skin", "hair", "face", "anti aging","make up","other"] },
     tags:         { type: [String], default: [] },
     comments:     { type: [Object], default: [] },
     likes:        { type: [String], default: [] },

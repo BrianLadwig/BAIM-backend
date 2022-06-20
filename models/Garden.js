@@ -16,6 +16,7 @@ const gardenSchema = Schema({
     video:        { type: String },
     image:        { type: String },
     link:         { type: String },
+    category:     { type: [String], default: [],enum: ["vegetable", "fruit", "grain", "herb","plant","tree","other" ] },
     tags:         { type: [String], default: [] },
     comments:     { type: [Object], default: [] },
     likes:        { type: [String], default: [] },
