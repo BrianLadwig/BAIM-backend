@@ -17,23 +17,25 @@ const addressSchema = new Schema({
 }, { _id: false })
 
 const eventSchema = Schema({
-    author:       { type: Schema.Types.ObjectId, ref: "user", required },
-    type:         { type: String, required, default: "event" },
-    title:        { type: String, required },
-    description:  { type: String, required },
-    startDate:    { type: Date,   required }, // "yyyy-mm-dd"
-    startTime:    { type: String, required },
-    endDate:      { type: Date,   required },
-    endTime:      { type: String, required },
-    address:      { type: addressSchema, required },
-    video:        { type: String },
-    image:        { type: String },
-    category:     { type: [String], default: [],enum: ["market", "tasting", "workshop", "charity","sit-in","meet-and-greet","fair", "other" ] },
-    link:         { type: String },
-    tags:         { type: [String], default: [] },
-    comments:     { type: [Object], default: [] },
-    likes:        { type: [String], default: [] },
-    going:        { type: [Object], default: [] }
+    author:             { type: Schema.Types.ObjectId, ref: "user", required },
+    authorAvatar:       { type: String},
+    authorProfileName:  { type: String},   
+    type:               { type: String, required, default: "event" },
+    title:              { type: String, required },
+    description:        { type: String, required },
+    startDate:          { type: Date,   required }, // "yyyy-mm-dd"
+    startTime:          { type: String, required },
+    endDate:            { type: Date,   required },
+    endTime:            { type: String, required },
+    address:            { type: addressSchema, required },
+    video:              { type: String },
+    image:              { type: String },
+    category:           { type: [String], default: [],enum: ["market", "tasting", "workshop", "charity","sit-in","meet-and-greet","fair", "other" ] },
+    link:               { type: String },
+    tags:               { type: [String], default: [] },
+    comments:           { type: [Object], default: [] },
+    likes:              { type: [String], default: [] },
+    going:              { type: [Object], default: [] }
 }, { timestamps: true })
 
 

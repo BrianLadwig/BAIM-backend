@@ -16,6 +16,8 @@ const trim = true;
 const commentSchema = Schema(
   {
     author: { type: Schema.Types.ObjectId, ref: "user", required },
+    authorAvatar:     { type: String},
+    authorProfileName:{ type: String}, 
     type: {
       type: String,
       enum: ["beauty", "recipe", "artsCraft", "garden", "event"],

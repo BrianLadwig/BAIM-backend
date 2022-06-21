@@ -9,17 +9,19 @@ const required = true
 // const lowercase = true
 
 const gardenSchema = Schema({
-    author:       { type: Schema.Types.ObjectId, ref: "user", required },
-    type:         { type: String, required, default: "garden" },
-    title:        { type: String, required },
-    description:  { type: String, required },
-    video:        { type: String },
-    image:        { type: String },
-    link:         { type: String },
-    category:     { type: [String], default: [],enum: ["vegetable", "fruit", "grain", "herb","plants", "flower", "indoor-plant", "outdoor-plant", "plant", "tree", "other"] },
-    tags:         { type: [String], default: [] },
-    comments:     { type: [Object], default: [] },
-    likes:        { type: [String], default: [] },
+    author:           { type: Schema.Types.ObjectId, ref: "user", required },
+    authorAvatar:     { type: String},
+    authorProfileName:{ type: String}, 
+    type:             { type: String, required, default: "garden" },
+    title:            { type: String, required },
+    description:      { type: String, required },
+    video:            { type: String },
+    image:            { type: String },
+    link:             { type: String },
+    category:         { type: [String], default: [],enum: ["vegetable", "fruit", "grain", "herb","plants", "flower", "indoor-plant", "outdoor-plant", "plant", "tree", "other"] },
+    tags:             { type: [String], default: [] },
+    comments:         { type: [Object], default: [] },
+    likes:            { type: [String], default: [] },
 }, { timestamps: true })
 
 gardenSchema.pre("remove", async function () {

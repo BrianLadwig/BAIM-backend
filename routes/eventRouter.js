@@ -17,6 +17,8 @@ eventRouter
     .post("/", checkLogin, async (req, res, next) => {
         try {
             const post = req.body;
+            post.authorAvatar = req.user.avatar
+            post.authorProfileName = req.user.profileName
             post.author = req.user._id // the id is in the cookie
             const newPost = new Event(post)
             const user = await User.findById(req.body.author)

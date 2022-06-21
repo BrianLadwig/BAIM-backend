@@ -15,19 +15,21 @@ const trim = true;
 
 const recipeSchema = new Schema(
   {
-    author:      { type: Schema.Types.ObjectId, ref: "user", required },
-    type:        { type:String, required, default:"recipe"},
-    title:       { type: String, required, trim },
+    author:           { type: Schema.Types.ObjectId, ref: "user", required },
+    authorAvatar:     { type: String},
+    authorProfileName:{ type: String}, 
+    type:             { type: String, required, default:"recipe"},
+    title:            { type: String, required, trim },
     // prepTime: { type: String },
     // ingredients: { type: [ingredientsSchema] },
-    description:  { type: String, required },
-    video:        { type: String },
-    image:        { type: String },
-    link:         { type: String },
-    category:     { type: [String], default: [],enum: ["juice","smoothie", "breakfast", "sandwiches", "main-dish", "soup", "salad", "appetizer", "dessert", "other"] },
-    tags:         { type: [String], default: [] },
-    comments:     { type: [Object], default: [] },
-    likes:        { type: [String], default: [] },
+    description:      { type: String, required },
+    video:            { type: String },
+    image:            { type: String },
+    link:             { type: String },
+    category:         { type: [String], default: [],enum: ["juice","smoothie", "breakfast", "sandwiches", "main-dish", "soup", "salad", "appetizer", "dessert", "other"] },
+    tags:             { type: [String], default: [] },
+    comments:         { type: [Object], default: [] },
+    likes:            { type: [String], default: [] },
   },
   { timestamps }
 );

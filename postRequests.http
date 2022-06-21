@@ -151,8 +151,8 @@ POST {{url}}/recipe
 Content-Type: application/json
 
 {
-    "title": "recipe test with cookies",
-    "description": "testing out the recipe"
+    "title": "testing Cookies",
+    "description": "testing if the avatar is there"
 }
 
 ### Update a recipe

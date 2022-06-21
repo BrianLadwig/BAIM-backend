@@ -10,6 +10,10 @@ import updatedPostValidator from "../validators/updatePostValidators.js"
 
 const recipeRouter = express.Router();
 
+// const query = Recipe.find()
+// query.populate("author", "profilePicture")
+// const recipes = await query.exec()
+
 recipeRouter
         .get("/", async (req, res, next) => {
           try {
@@ -22,6 +26,8 @@ recipeRouter
         .post("/", checkLogin, requestValidator(postValidator), async (req, res, next) => {
             try {
                 const post = req.body;
+                post.authorAvatar = req.user.avatar
+                post.authorProfileName = req.user.profileName
                 post.author = req.user._id // the id is in the cookie
                 const newPost = new Recipe(post)
                 const user = await User.findById(req.body.author)
