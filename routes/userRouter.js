@@ -60,6 +60,8 @@ userRouter
 			console.log("test",token);
 
 			res.cookie("token", token, { httpOnly: true })
+			res.cookie("avatar", req.body.profilePicture )
+			res.cookie("profileName", req.body.profileName )
 
 			res.status(200).send({
 				message: `Welcome back ${user.firstName} ${user.lastName}`,
