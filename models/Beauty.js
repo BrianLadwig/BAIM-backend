@@ -16,7 +16,7 @@ const beautySchema = Schema({
     video:        { type: String },
     image:        { type: String },
     link:         { type: String },
-    category:     { type: [String], default: [], enum: ["skin", "hair", "face", "anti-aging","makeup","other"] },
+    category:     { type: [String], default: [], enum: ["higen","skin", "hair", "face", "anti-aging","makeup","other"] },
     tags:         { type: [String], default: [] },
     comments:     { type: [Object], default: [] },
     likes:        { type: [String], default: [] },
