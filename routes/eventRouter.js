@@ -2,6 +2,9 @@ import express from "express";
 import Event from "../models/Event.js"
 import User from "../models/User.js"
 import checkLogin from "../middlewares/checkLogin.js";
+import requestValidator from "../middlewares/requestValidator.js";
+import eventValidator from "../validators/eventValidator.js";
+import eventUpdateValidator from "../validators/eventUpdateValidator.js";
 
 const eventRouter = express.Router();
 
@@ -14,7 +17,7 @@ eventRouter
             next({ status: 404, errors: error.message })
         }
     })
-    .post("/", checkLogin, async (req, res, next) => {
+    .post("/", checkLogin, requestValidator(eventValidator), async (req, res, next) => {
         try {
             const post = req.body;
             post.authorAvatar = req.user.avatar
@@ -31,7 +34,7 @@ eventRouter
             next({ status: 409, errors: error.message })
         }
     })
-    .patch("/:id", checkLogin, async (req, res, next) => {
+    .patch("/:id", checkLogin, requestValidator(eventUpdateValidator), async (req, res, next) => {
         const { id:_id } = req.params
         const updatedPost = await Event.findByIdAndUpdate(_id, req.body, { new: true })
         if(!updatedPost){

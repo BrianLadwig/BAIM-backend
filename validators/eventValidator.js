@@ -6,20 +6,33 @@ const eventValidator=[
 
         body('title')
             .notEmpty()
-            .withMessage("title should not be empty")
+            .withMessage("Title should not be empty")
             .trim()
             .isLength({min: 4 , max: 150})
-            .withMessage('your title should not be bigger then 150 characters long')
+            .withMessage('Your title should not be longer then 150 characters')
             .matches(/^[a-zA-Z0-9äöüÄÖÜß\ !@#*+\-;':"\ |,.\/?]*$/)
-            .withMessage("we only accept he following characters including whitespace: !@#*()+\"-;':,.?"),
+            .withMessage("We only accept the following characters: !@#*()+\"-;':,.?"),
 
         body('description')
             .notEmpty()
-            .withMessage("description should not be empty")
+            .withMessage("Description should not be empty")
             .isLength({max:5000})
-            .withMessage('no more then 5000 characters including whitespace')
+            .withMessage('Maximum of 5000 characters')
             .matches(/^[a-zA-Z0-9äöüÄÖÜß\!@#*+\-;':"\ |,.\/?]*$/)
-            .withMessage("We only accept the following special characters including whitespace: !@#*()+\"-;':,.?"),
+            .withMessage("We only accept the following special characters: !@#*()+\"-;':,.?"),
+
+        body('startDate')
+            .notEmpty()
+            .withMessage("Event should have a start date"),
+        body('startTime')
+            .notEmpty()
+            .withMessage("Event should have a start time"),
+        body('endDate')
+            .notEmpty()
+            .withMessage("Event should have a end date"),
+        body('endTime')
+            .notEmpty()
+            .withMessage("Event should have a end time"),
 
         body('video')
             .trim()
@@ -38,28 +51,42 @@ const eventValidator=[
         
         body('address')
             .isObject()
-            .withMessage('address is required '),
+            .withMessage('Address is required'),
 
-        body('address.*.street')
+        body('address.street')
+            .notEmpty()
+            .withMessage("Street should not be empty")
+            .bail()
             .isAlphanumeric()
-            .withMessage("We only accept the following special characters including whitespace: !@#*()+\"-;':,.?"),
+            .withMessage("We only accept the following special characters: !@#*()+\"-;':,.?"),
 
-        body('address.*.streetNumber')
+        body('address.streetNumber')
+            .notEmpty()
+            .withMessage("Street number should not be empty")
+            .bail()
             .matches(/^[a-zA-Z0-9äöüÄÖÜß\ !@#*+\-;':"\ |,.\/?]*$/)
-            .withMessage("We only accept the following special characters including whitespace: !@#*()+\"-;':,.?"),
+            .withMessage("We only accept the following special characters: !@#*()+\"-;':,.?"),
             
-        body('address.*.zip')
+        body('address.zip')
+            .notEmpty()
+            .withMessage("Zip code should not be empty")
+            .bail()
             .matches(/^[0-9]*$/)
             .withMessage('Only numbers are allowed'),
 
-        body('address.*.city')
+        body('address.city')
+            .notEmpty()
+            .withMessage("City should not be empty")
+            .bail()
             .matches(/^[a-zA-Z\s]*$/)
-            .withMessage('only alphabetic characters and white space'),
+            .withMessage('Must be a valid city'),
 
-        body('address.*.country')
+        body('address.country')
+            .notEmpty()
+            .withMessage("Country should not be empty")
+            .bail()
             .matches(/^[a-zA-Z\s]*$/)
-            .withMessage('only alphabetic characters and white space'),
-
+            .withMessage('Must be a valid country'),
 
         body('tags')
             .isArray()
@@ -68,17 +95,10 @@ const eventValidator=[
                 const array = value
                 const err= array.find(element => !element.match(/^[a-zA-Z0-9äöüÄÖÜß\ !@#*+\-;':"\ |,.\/?]*$/))
                 if(err){
-                    return Promise.reject("We only accept the following special characters including whitespace: !@#*()+\"-;':,.?") 
+                    return Promise.reject("We only accept the following special characters: !@#*()+\"-;':,.?") 
                 }
                 return Promise.resolve()
             }),
-            
-        body('author')
-            .trim()
-            .notEmpty()
-            .withMessage('Author is required')
-
-
 ]
 
 

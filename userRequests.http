@@ -63,7 +63,7 @@ Content-Type: application/json
 
 {
   "email": "ashley@email.com",
-  "password": "aA12345!"
+  "password": "supPergutesgeheimespassword-123"
 }
 
 ### UPDATE USER DATA ###

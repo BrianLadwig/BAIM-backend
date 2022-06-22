@@ -8,80 +8,88 @@ const eventUpdateValidator=[
             .optional({checkFalsy: true})
             .trim()
             .isLength({min: 4 , max: 150})
-            .withMessage('your title should not be bigger then 150 characters long')
+            .withMessage('Your title should not be longer then 150 characters')
             .matches(/^[a-zA-Z0-9äöüÄÖÜß\ !@#*+\-;':"\ |,.\/?]*$/)
-            .withMessage("we only accept he following characters including whitespace: !@#*()+\"-;':,.?"),
+            .withMessage("We only accept the following characters: !@#*()+\"-;':,.?"),
 
         body('description')
             .optional({checkFalsy: true})
             .isLength({max:5000})
-            .withMessage('no more then 5000 characters including whitespace')
+            .withMessage('Maximum of 5000 characters')
             .matches(/^[a-zA-Z0-9äöüÄÖÜß\!@#*+\-;':"\ |,.\/?]*$/)
-            .withMessage("We only accept the following special characters including whitespace: !@#*()+\"-;':,.?"),
+            .withMessage("We only accept the following special characters: !@#*()+\"-;':,.?"),
+
+        body('startDate')
+            .optional({checkFalsy: true})
+            .notEmpty()
+            .withMessage("Event should have a start date"),
+        body('startTime')
+            .optional({checkFalsy: true})
+            .notEmpty()
+            .withMessage("Event should have a start time"),
+        body('endDate')
+            .optional({checkFalsy: true})
+            .notEmpty()
+            .withMessage("Event should have a end date"),
+        body('endTime')
+            .optional({checkFalsy: true})
+            .notEmpty()
+            .withMessage("Event should have a end time"),
 
         body('video')
-            .optional({checkFalsy: true})
             .trim()
+            .optional({checkFalsy: true})
             .isURL({protocols:['http','https']}),
 
         body('image')
-            .optional({checkFalsy: true})
             .trim()
+            .optional({checkFalsy: true})
             .isURL({protocols:['http','https']}),
 
         body('link')
-            .optional({checkFalsy: true})
             .trim()
+            .optional({checkFalsy: true})
             .isURL({protocols:['http','https']}),
         
         body('address')
-            .optional({checkFalsy: true})
-            .isArray()
-            .withMessage('address is required '),
+            .optional({checkFalsy: true}),
 
-        body('address.*.street')
+        body('address.street')
+            .optional({checkFalsy: true})
+            .isAlphanumeric()
+            .withMessage("We only accept the following special characters: !@#*()+\"-;':,.?"),
+
+        body('address.streetNumber')
             .optional({checkFalsy: true})
             .matches(/^[a-zA-Z0-9äöüÄÖÜß\ !@#*+\-;':"\ |,.\/?]*$/)
-            .withMessage("We only accept the following special characters including whitespace: !@#*()+\"-;':,.?"),
-
-        body('address.*.streetNumber')
-            .matches(/^[a-zA-Z0-9äöüÄÖÜß\ !@#*+\-;':"\ |,.\/?]*$/)
-            .withMessage("We only accept the following special characters including whitespace: !@#*()+\"-;':,.?"),
+            .withMessage("We only accept the following special characters: !@#*()+\"-;':,.?"),
             
-        body('address.*.zip')
+        body('address.zip')
             .optional({checkFalsy: true})
             .matches(/^[0-9]*$/)
             .withMessage('Only numbers are allowed'),
 
-        body('address.*.city')
+        body('address.city')
             .optional({checkFalsy: true})
             .matches(/^[a-zA-Z\s]*$/)
-            .withMessage('only alphabetic characters and white space'),
+            .withMessage('Must be a valid city'),
 
-        body('address.*.country')
+        body('address.country')
             .optional({checkFalsy: true})
             .matches(/^[a-zA-Z\s]*$/)
-            .withMessage('only alphabetic characters and white space'),
-
+            .withMessage('Must be a valid country'),
 
         body('tags')
-            .optional({checkFalsy: true})
             .isArray()
+            .optional({checkFalsy: true})
             .custom(value=>{ 
                 const array = value
                 const err= array.find(element => !element.match(/^[a-zA-Z0-9äöüÄÖÜß\ !@#*+\-;':"\ |,.\/?]*$/))
                 if(err){
-                    return Promise.reject("We only accept the following special characters including whitespace: !@#*()+\"-;':,.?") 
+                    return Promise.reject("We only accept the following special characters: !@#*()+\"-;':,.?") 
                 }
                 return Promise.resolve()
             }),
-            
-        body('author')
-            .optional({checkFalsy: true})
-            .trim()
-            .notEmpty()
-            .withMessage('Author is required')
-
 
 ]
 
