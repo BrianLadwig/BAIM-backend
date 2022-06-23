@@ -23,10 +23,8 @@ const eventSchema = Schema({
     type:               { type: String, required, default: "event" },
     title:              { type: String, required },
     description:        { type: String, required },
-    startDate:          { type: Date,   required }, // "yyyy-mm-dd"
-    startTime:          { type: String, required },
-    endDate:            { type: Date,   required },
-    endTime:            { type: String, required },
+    start:              { type: Date,   required }, // "Wed Jun 29 2022 16:59:00 GMT+0200 (Central European Summer Time)"
+    end:                { type: Date,   required },
     address:            { type: addressSchema, required },
     video:              { type: String },
     image:              { type: String },

@@ -19,22 +19,14 @@ const eventUpdateValidator=[
             .matches(/^[a-zA-Z0-9äöüÄÖÜß\!@#*+\-;':"\ |,.\/?]*$/)
             .withMessage("We only accept the following special characters: !@#*()+\"-;':,.?"),
 
-        body('startDate')
+        body('start')
             .optional({checkFalsy: true})
             .notEmpty()
-            .withMessage("Event should have a start date"),
-        body('startTime')
+            .withMessage("Event should have a start date and time"),
+        body('end')
             .optional({checkFalsy: true})
             .notEmpty()
-            .withMessage("Event should have a start time"),
-        body('endDate')
-            .optional({checkFalsy: true})
-            .notEmpty()
-            .withMessage("Event should have a end date"),
-        body('endTime')
-            .optional({checkFalsy: true})
-            .notEmpty()
-            .withMessage("Event should have a end time"),
+            .withMessage("Event should have a end date and time"),
 
         body('video')
             .trim()
