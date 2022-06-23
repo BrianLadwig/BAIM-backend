@@ -26,7 +26,7 @@ const eventUpdateValidator=[
         body('end')
             .optional({checkFalsy: true})
             .notEmpty()
-            .withMessage("Event should have a end date and time"),
+            .withMessage("Event should have an end date and time"),
 
         body('video')
             .trim()

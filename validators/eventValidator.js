@@ -26,7 +26,7 @@ const eventValidator=[
             .withMessage("Event should have a start date and time"),
         body('end')
             .notEmpty()
-            .withMessage("Event should have a end date and time"),
+            .withMessage("Event should have an end date and time"),
 
         body('video')
             .trim()
