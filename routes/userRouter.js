@@ -57,11 +57,11 @@ userRouter
 			const token = jwt.sign({ id: user._id }, process.env.SECRET, {
 				expiresIn: "7 days",
 			});
-			console.log("test",token);
-
+			// console.log("test",token);
+			// console.log('user :>> ', user);
 			res.cookie("token", token, { httpOnly: true })
-			res.cookie("avatar", req.body.profilePicture )
-			res.cookie("profileName", req.body.profileName )
+			res.cookie("avatar", user.avatar )
+			res.cookie("profileName", user.profileName )
 
 			res.status(200).send({
 				message: `Welcome back ${user.firstName} ${user.lastName}`,

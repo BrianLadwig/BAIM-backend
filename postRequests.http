@@ -112,11 +112,11 @@ Content-Type: application/json
     "description": "event test",
     "startDate": "2022-06-10",
     "startTime": "8:00am",
-    "endDate": "2022-06-11",
+    "endDate": "",
     "endTime": "8:30am",
     "address": { 
-        "street": "Sesame str",
-        "streetNumber": "8a",
+        "street": "Pumpkin",
+        "streetNumber": "2a",
         "zip": 4317, 
         "city": "Leipzig", 
         "country": "Germany"
@@ -124,11 +124,11 @@ Content-Type: application/json
 }
 
 ### Update an event
-PATCH  {{url}}/event/6298a5dcaf62f997d7be3e80
+PATCH  {{url}}/event/62b1ac38bdc67faca3f2d310
 Content-Type: application/json
 
 {
-    "title": "event test with COOOKIIIES"
+    "startDate": "2022-08-01"
 }
 
 ### Like an event
