@@ -3,6 +3,8 @@
 ### GET ALL USERS ###
 GET {{url}}/user
 
+### GET SEARCH RESULT ###
+GET {{url}}/user/search/N
 
 ### GET USER BY ID ###
 GET {{url}}/user/62972f26679b794abd772f28

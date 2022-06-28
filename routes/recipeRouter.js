@@ -23,6 +23,61 @@ recipeRouter
               next({ status: 404, errors: error.message })
           }
         })
+        .get("/authorProfileName/:option", async (req, res, next) => {
+            try {
+                const option = req.params.option;
+                const searchResult = await Recipe.find({
+                    authorProfileName:   { $regex: ".*" + option + ".*" },
+                })
+                res.status(200).send(searchResult);
+            } catch (errors) {
+                next({ status: 404, errors });
+            }
+        })
+        .get("/title/:option", async (req, res, next) => {
+            try {
+                const option = req.params.option;
+                const searchResult = await Recipe.find({
+                    title:   { $regex: ".*" + option + ".*" },
+                })
+                res.status(200).send(searchResult);
+            } catch (errors) {
+                next({ status: 404, errors });
+            }
+        })
+        .get("/description/:option", async (req, res, next) => {
+            try {
+                const option = req.params.option;
+                const searchResult = await Recipe.find({
+                    description:   { $regex: ".*" + option + ".*" },
+                })
+                res.status(200).send(searchResult);
+            } catch (errors) {
+                next({ status: 404, errors });
+            }
+        })
+        .get("/category/:option", async (req, res, next) => {
+            try {
+                const option = req.params.option;
+                const searchResult = await Recipe.find({
+                    category:   { $regex: ".*" + option + ".*" },
+                })
+                res.status(200).send(searchResult);
+            } catch (errors) {
+                next({ status: 404, errors });
+            }
+        })
+        .get("/tags/:option", async (req, res, next) => {
+            try {
+                const option = req.params.option;
+                const searchResult = await Recipe.find({
+                    tags:   { $regex: ".*" + option + ".*" },
+                })
+                res.status(200).send(searchResult);
+            } catch (errors) {
+                next({ status: 404, errors });
+            }
+        })
         .post("/", checkLogin, requestValidator(postValidator), async (req, res, next) => {
             try {
                 const post = req.body;
