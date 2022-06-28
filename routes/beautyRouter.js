@@ -17,6 +17,61 @@ beautyRouter
             next({ status: 404, errors: error.message })
         }
     })
+    .get("/authorProfileName/:option", async (req, res, next) => {
+		try {
+			const option = req.params.option;
+			const searchResult = await Beauty.find({
+				authorProfileName:   { $regex: ".*" + option + ".*" },
+			})
+			res.status(200).send(searchResult);
+		} catch (errors) {
+			next({ status: 404, errors });
+		}
+	})
+    .get("/title/:option", async (req, res, next) => {
+		try {
+			const option = req.params.option;
+			const searchResult = await Beauty.find({
+				title:   { $regex: ".*" + option + ".*" },
+			})
+			res.status(200).send(searchResult);
+		} catch (errors) {
+			next({ status: 404, errors });
+		}
+	})
+    .get("/description/:option", async (req, res, next) => {
+		try {
+			const option = req.params.option;
+			const searchResult = await Beauty.find({
+				description:   { $regex: ".*" + option + ".*" },
+			})
+			res.status(200).send(searchResult);
+		} catch (errors) {
+			next({ status: 404, errors });
+		}
+	})
+    .get("/category/:option", async (req, res, next) => {
+		try {
+			const option = req.params.option;
+			const searchResult = await Beauty.find({
+				category:   { $regex: ".*" + option + ".*" },
+			})
+			res.status(200).send(searchResult);
+		} catch (errors) {
+			next({ status: 404, errors });
+		}
+	})
+    .get("/tags/:option", async (req, res, next) => {
+		try {
+			const option = req.params.option;
+			const searchResult = await Beauty.find({
+				tags:   { $regex: ".*" + option + ".*" },
+			})
+			res.status(200).send(searchResult);
+		} catch (errors) {
+			next({ status: 404, errors });
+		}
+	})
     .post("/", checkLogin, requestValidator(postValidator), async (req, res, next) => {
         try {
             const post = req.body;

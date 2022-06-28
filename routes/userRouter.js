@@ -19,6 +19,17 @@ userRouter
 			next({ status: 404, errors });
 		}
 	})
+	.get("/search/:option", async (req, res, next) => {
+		try {
+			const option = req.params.option;
+			const searchResult = await User.find({
+				profileName:   { $regex: ".*" + option + ".*" },
+			})
+			res.status(200).send(searchResult);
+		} catch (errors) {
+			next({ status: 404, errors });
+		}
+	})
 	.get("/:id", async (req, res, next) => {
 		try {
 			const user = await User.findById(req.params.id);

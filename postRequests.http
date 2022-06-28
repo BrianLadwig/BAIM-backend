@@ -7,6 +7,15 @@
 ### Get all Beauty Posts
 GET {{url}}/beauty
 
+### GET SEARCH RESULT ###
+GET {{url}}/beauty/title/natural
+
+### GET SEARCH RESULT ###
+GET {{url}}/beauty/category/hi
+
+### GET SEARCH RESULT ###
+GET {{url}}/beauty/description/soap
+
 ### Create a new Beauty Post
 POST {{url}}/beauty
 Content-Type: application/json
