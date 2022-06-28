@@ -116,9 +116,9 @@ userRouter
 		try {
 	
 			// set to empty 
-			res.cookie("token", "", { httpOnly: true })
-			res.cookie("avatar", "" )
-			res.cookie("profileName", "" )
+			res.clearCookie("token");
+			res.clearCookie("avatar");
+			res.clearCookie("profileName");
 			res.status(200).json({ message: "You have logged out" });
 			
 		} catch (error) {
