@@ -27,14 +27,6 @@ eventRouter
         }
         res.status(200).json(result)
     })
-    .get("/:id", checkLogin, async (req, res, next) => {
-        const { id:_id } = req.params
-        const result = await Event.findById(_id)
-        if(!result){
-            return next({ status: 404, errors: "Post not found" })
-        }
-        res.status(200).json(result)
-    })
     .get("/authorProfileName/:option", async (req, res, next) => {
 		try {
 			const option = req.params.option;
@@ -90,6 +82,14 @@ eventRouter
 			next({ status: 404, errors });
 		}
 	})
+    .get("/:id", checkLogin, async (req, res, next) => {
+        const { id:_id } = req.params
+        const result = await Event.findById(_id)
+        if(!result){
+            return next({ status: 404, errors: "Post not found" })
+        }
+        res.status(200).json(result)
+    })
     .post("/", checkLogin, requestValidator(eventValidator), async (req, res, next) => {
         try {
             const post = req.body;

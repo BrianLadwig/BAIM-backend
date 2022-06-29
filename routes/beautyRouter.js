@@ -83,6 +83,14 @@ beautyRouter
 			next({ status: 404, errors });
 		}
 	})
+    .get("/:id", checkLogin, async (req, res, next) => {
+        const { id:_id } = req.params
+        const result = await Beauty.findById(_id)
+        if(!result){
+            return next({ status: 404, errors: "Post not found" })
+        }
+        res.status(200).json(result)
+    })
     .post("/", checkLogin, requestValidator(postValidator), async (req, res, next) => {
         try {
             const post = req.body;
@@ -99,16 +107,6 @@ beautyRouter
         } catch (error) {
             next({ status: 409, errors: error.message })
         }
-    })
-    .get("/:id", checkLogin, async (req, res, next) => {
-        console.log('456');
-
-        const { id:_id } = req.params
-        const result = await Beauty.findById(_id)
-        if(!result){
-            return next({ status: 404, errors: "Post not found" })
-        }
-        res.status(200).json(result)
     })
     .patch("/:id", checkLogin, requestValidator(updatedPostValidator), async (req, res, next) => {
         const { id:_id } = req.params
@@ -148,7 +146,7 @@ beautyRouter
                 post.likes = post.likes.filter(id => id !== String(req.body.author))
             }
             const updatedPost = await Beauty.findByIdAndUpdate(_id, post, { new: true })
-            res.addTrailersstatus(200).json({message: "toggle like"})
+            res.status(200).json({message: "toggle like"})
         } catch (error) {
             next({ status: 400, errors: error.message })
         }

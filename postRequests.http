@@ -20,7 +20,7 @@ GET {{url}}/beauty/title/natural
 GET {{url}}/beauty/category/hi
 
 ### GET SEARCH RESULT ###
-GET {{url}}/beauty/description/soap
+GET {{url}}/beauty/tags/deo
 
 ### Create a new Beauty Post
 POST {{url}}/beauty
