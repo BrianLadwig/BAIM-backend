@@ -115,10 +115,10 @@ userRouter
 	.post("/logout", checkLogin, async (req, res, next) => {
 		try {
 	
-			// set to empty 
-			res.cookie("token", "", { httpOnly: true })
-			res.cookie("avatar", "" )
-			res.cookie("profileName", "" )
+			res.clearCookie()
+			// res.cookie("token", "", { httpOnly: true })
+			// res.cookie("avatar", "" )
+			// res.cookie("profileName", "" )
 			res.status(200).json({ message: "You have logged out" });
 			
 		} catch (error) {

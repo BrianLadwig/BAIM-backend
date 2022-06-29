@@ -39,10 +39,10 @@ const UserSchema = new Schema(
 		artsCraft: 		{ type: [Schema.Types.ObjectId], ref: "artsCraft" },
 		garden: 		{ type: [Schema.Types.ObjectId], ref: "garden" },
 		event: 			{ type: [Schema.Types.ObjectId], ref: "event"},
+		// collection: { type: [Schema.Types.ObjectId], ref: "collection" },
 		// comments:       { type: [Schema.Types.ObjectId], ref: "comment" },
 		// subs: { type: [Schema.Types.ObjectId], ref: "subs" },
 
-		// collection: { type: [Schema.Types.ObjectId], ref: "collection" },
 
 		// followers: { type: [Schema.Types.ObjectId], ref: "followers" },
 		// dmMessages: { type: [Schema.Types.ObjectId], ref: "dmMessages" },

@@ -18,6 +18,24 @@ gardenRouter
             next({ status: 404, errors: error.message })
         }
     })
+    .get("/author/:profileName", checkLogin, async (req, res, next) => {
+        const author = req.params.profileName
+        const result = await Garden.find({
+            authorProfileName: author,
+        })
+        if(!result){
+            return next({ status: 404, errors: "Post not found" })
+        }
+        res.status(200).json(result)
+    })
+    .get("/:id", checkLogin, async (req, res, next) => {
+        const { id:_id } = req.params
+        const result = await Garden.findById(_id)
+        if(!result){
+            return next({ status: 404, errors: "Post not found" })
+        }
+        res.status(200).json(result)
+    })
     .get("/authorProfileName/:option", async (req, res, next) => {
 		try {
 			const option = req.params.option;
@@ -96,7 +114,7 @@ gardenRouter
         if(!updatedPost){
             return next({ status: 404, errors: "Post not found" })
         }
-        res.json({message: 'Updated', updatedPost})
+        res.status(200).json({message: 'Updated', updatedPost})
     })
     .delete("/:id", checkLogin, async (req, res, next) => {
         try {
@@ -109,7 +127,7 @@ gardenRouter
             await user.save()
             await post.remove()
             // await Post.findByIdAndDelete(_id)
-            res.json({ message: "Deleted", deleted: post })
+            res.status(200).json({ message: "Deleted", deleted: post })
         } catch (error) {
             next({ status: 400, errors: error.message })
         }
@@ -128,7 +146,7 @@ gardenRouter
                 post.likes = post.likes.filter(id => id !== String(req.body.author))
             }
             const updatedPost = await Garden.findByIdAndUpdate(_id, post, { new: true })
-            res.json({message: "toggle like"})
+            res.status(200).json({message: "toggle like"})
         } catch (error) {
             next({ status: 400, errors: error.message })
         }
