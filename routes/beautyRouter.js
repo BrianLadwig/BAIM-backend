@@ -18,7 +18,6 @@ beautyRouter
         }
     })
     .get("/author/:profileName", checkLogin, async (req, res, next) => {
-        console.log('123');
         const author = req.params.profileName
         const result = await Beauty.find({
             authorProfileName: author,
