@@ -100,7 +100,6 @@ userRouter
       const user = await User.findById(req.params.id);
 
       if (user) {
-		  
         user.pin.push(req.body);
         res.status(200).send({
           message: "Added Post to User Collection",
@@ -146,6 +145,37 @@ userRouter
       res.clearCookie("avatar");
       res.clearCookie("profileName");
       res.status(200).json({ message: "You have logged out" });
+    } catch (error) {
+      next({ status: 400, errors: error.message });
+    }
+  })
+  .patch("/:id/following", checkLogin, async (req, res, next) => {
+    try {
+      const { id: _id } = req.params; // the user you want to follow
+      const loggedInUser = await User.findById(req.user._id);
+      const followedUser = await User.findById(_id);
+
+      const isFollowed = loggedInUser.following.find(
+        id => id.toString() === _id.toString()
+      );
+
+      if (!isFollowed) {
+        loggedInUser.following.push(followedUser);
+        followedUser.followers.push(loggedInUser);
+      } else {
+        loggedInUser.following = loggedInUser.following.filter(
+          id => id.toString() !== _id.toString()
+        );
+
+        followedUser.followers = followedUser.followers.filter(
+          id => id.toString() !== req.user._id.toString()
+          
+        );
+      }
+
+      await loggedInUser.save();
+      await followedUser.save();
+      res.json({ message: "toggle follow" });
     } catch (error) {
       next({ status: 400, errors: error.message });
     }

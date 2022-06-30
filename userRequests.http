@@ -64,7 +64,7 @@ POST {{url}}/user/login
 Content-Type: application/json
 
 {
-  "email": "serra@gmail.com",
+  "email": "muqbel@gmail.com",
   "password": "supPergutesgeheimespassword-123"
 }
 
@@ -81,4 +81,11 @@ DELETE {{url}}/user/62a1d6f40f54312a2f7acb7a
 
 ### USER LOGOUT ###
 POST {{url}}/user/logout
+Content-Type: application/json
+
+
+
+### FOLLLOW A USER ###
+
+PATCH {{url}}/user/62bd9138b844891ac5bc25cc/following
 Content-Type: application/json
