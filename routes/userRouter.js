@@ -41,8 +41,7 @@ userRouter
       next({ status: 404, errors: error.message });
     }
   })
-  .post(
-    "/register",
+  .post("/register",
     requestValidator(userRegisterValidators),
     async (req, res, next) => {
       try {
@@ -57,8 +56,7 @@ userRouter
       }
     }
   )
-  .post(
-    "/login",
+  .post("/login",
     requestValidator(userLoginValidators),
     async (req, res, next) => {
       try {
@@ -109,6 +107,17 @@ userRouter
       next({ status: 400, errors: error.message });
     }
   })
+  .post("/logout", checkLogin, async (req, res, next) => {
+	try {
+	  // set to empty
+	  res.clearCookie("token");
+	  res.clearCookie("avatar");
+	  res.clearCookie("profileName");
+	  res.status(200).json({ message: "You have logged out" });
+	} catch (error) {
+	  next({ status: 400, errors: error.message });
+	}
+  })
   .patch("/:id", checkLogin, async (req, res, next) => {
     try {
       const user = await User.findByIdAndUpdate(req.params.id, req.body, {
@@ -134,17 +143,6 @@ userRouter
       res.status(200).send({
         message: "User deleted successfully.",
       });
-    } catch (error) {
-      next({ status: 400, errors: error.message });
-    }
-  })
-  .post("/logout", checkLogin, async (req, res, next) => {
-    try {
-      // set to empty
-      res.clearCookie("token");
-      res.clearCookie("avatar");
-      res.clearCookie("profileName");
-      res.status(200).json({ message: "You have logged out" });
     } catch (error) {
       next({ status: 400, errors: error.message });
     }

@@ -40,7 +40,7 @@ Content-Type: application/json
 }
 
 ### Like a Beauty Post
-PATCH  {{url}}/beauty/62a83ff477130b629b982cc3/like
+PATCH  {{url}}/beauty/62b1ac4cbdc67faca3f2d31f/like
 Content-Type: application/json
 
 

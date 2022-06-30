@@ -87,5 +87,5 @@ Content-Type: application/json
 
 ### FOLLLOW A USER ###
 
-PATCH {{url}}/user/62bd9138b844891ac5bc25cc/following
+PATCH {{url}}/user/62b1ab5ebdc67faca3f2d2e8/following
 Content-Type: application/json
