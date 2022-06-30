@@ -31,7 +31,6 @@ const UserSchema = new Schema(
 		password: 		{ type: String, required },
 
 		userAddress: 	{ type: AddressesSchema, required },
-		// path: 			{ type: String, required}, do this in the frontend to save db
 
 		interests:		{type:  [String], trim, enum: [ "arts-and-craft", "beauty", "event", "garden", "recipe"]},
 		beauty: 		{ type: [Schema.Types.ObjectId], ref: "beauty" },
@@ -39,14 +38,11 @@ const UserSchema = new Schema(
 		artsCraft: 		{ type: [Schema.Types.ObjectId], ref: "artsCraft" },
 		garden: 		{ type: [Schema.Types.ObjectId], ref: "garden" },
 		event: 			{ type: [Schema.Types.ObjectId], ref: "event"},
-		// collection: { type: [Schema.Types.ObjectId], ref: "collection" },
-		// comments:       { type: [Schema.Types.ObjectId], ref: "comment" },
-		// subs: { type: [Schema.Types.ObjectId], ref: "subs" },
-
-
-		// followers: { type: [Schema.Types.ObjectId], ref: "followers" },
-		// dmMessages: { type: [Schema.Types.ObjectId], ref: "dmMessages" },
-		 // If we need the user/comment reference. Maybe 
+		pin:            { type: [Schema.Types.ObjectId]},
+		followers:      { type: [Schema.Types.ObjectId], ref: "followers" },
+		following: 		{ type: [Schema.Types.ObjectId], ref: "following" },
+		// If we need dmMessages: { type: [Schema.Types.ObjectId], ref: "dmMessages" },
+		// If we need the user/comment reference. Maybe 
 	},
 	{
 		timestamps: true,

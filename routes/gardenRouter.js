@@ -1,15 +1,16 @@
 import express from "express";
 // import mongoose from "mongoose";
-import Garden from "../models/Garden.js"
-import User from "../models/User.js"
+import Garden from "../models/Garden.js";
+import User from "../models/User.js";
 import checkLogin from "../middlewares/checkLogin.js";
-import requestValidator from "../middlewares/requestValidator.js"
-import postValidator from "../validators/postValidators.js"
-import updatedPostValidator from "../validators/updatePostValidators.js"
+import requestValidator from "../middlewares/requestValidator.js";
+import postValidator from "../validators/postValidators.js";
+import updatedPostValidator from "../validators/updatePostValidators.js";
 
 const gardenRouter = express.Router();
 
 gardenRouter
+
     .get("/", async (req, res, next) => {
         try {
             const gardenPosts = await Garden.find()
@@ -133,23 +134,35 @@ gardenRouter
         }
     })
     .patch("/:id/like", checkLogin, async (req, res, next) => {
-        try {
-            const { id:_id } = req.params
-            req.body.author = req.user._id
-            const post = await Garden.findById(_id)
-            const index = post.likes.findIndex(id => id === String(req.body.author))
-            if(index === -1) {
-                // like
-                post.likes.push(req.body.author)
-            } else {
-                // dislike
-                post.likes = post.likes.filter(id => id !== String(req.body.author))
-            }
-            const updatedPost = await Garden.findByIdAndUpdate(_id, post, { new: true })
-            res.status(200).json({message: "toggle like"})
-        } catch (error) {
-            next({ status: 400, errors: error.message })
-        }
-    })
+          try {
+      const { id: _id } = req.params;
+      req.body.author = req.user._id;
+      const post = await Garden.findById(_id);
+      const index = post.likes.findIndex(
+        (id) => id === String(req.body.author)
+      );
+      const user = await User.findById(req.user._id);
+      
+      if (index === -1) {
+        // like
+        post.likes.push(req.body.author);
+        user.pin.push(post);
+      } else {
+        // dislike
+        post.likes = post.likes.filter((id) => id !== String(req.body.author));
+        user.pin = user.pin.filter(id => id.toString() !== _id.toString())
+      }
+      await user.save();
+      await Garden.findByIdAndUpdate(_id, post, {
+        new: true,
+      });
+      res.status(200).json({ message: "toggle like" });
+    } catch (error) {
+      next({ status: 400, errors: error.message });
+    }
+});
+    
 
-export default gardenRouter
+  
+
+export default gardenRouter;
