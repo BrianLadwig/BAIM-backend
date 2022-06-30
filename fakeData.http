@@ -1,0 +1,307 @@
+@url = http://localhost:7000
+
+
+
+
+
+
+
+
+### recipe 1
+POST {{url}}/recipe
+Content-Type: application/json
+
+{
+    "title": "Vegan Creamy Mushroom Ramen",
+    "image":"https://www.budgetbytes.com/wp-content/uploads/2019/09/Vegan-Creamy-Mushroom-Ramen-V2.jpg",
+    "category":["main-dish"],
+    "tags":["vegan","mushrooms","ramen"],
+    "description": "This incredibly simple Vegan Creamy Mushroom Ramen is a rich and flavorful 15 minute meal that only requires a handful of ingredients\n       0.5 Tbsp cooking oil\n      4 oz. baby bella mushrooms\n      1.5 cups vegetable broth\n        1 handful fresh spinach\n        1 package ramen noodles \n        0.5 cup coconut milk \n        1 green onion\n        1 Tbsp chili garlic sauce or sriracha\n        Slice the mushrooms. Add them to a small sauce pot with the cooking oil and saute over medium heat until the mushrooms are soft, dark, and all the moisture in the bottom of the pot has evaporated.\n      Add the vegetable broth, turn the heat up to medium-high, and bring the broth up to a boil. Once boiling, add the ramen noodles without the seasoning packet to the broth. Cook the noodles in the boiling broth for about 3 minutes, or until tender.\n      Turn the heat off, add a heaping handful of fresh spinach, and stir until the spinach is wilted about 30 seconds. Pour the coconut milk into the pot and stir to combine.\n      Serve the Vegan Creamy Coconut Ramen as-is, or with garnishes like green onion or chili garlic sauce."
+}
+
+### recipe 2
+POST {{url}}/recipe
+Content-Type: application/json
+
+{
+    "title": "Vegan Chocolate Depression Cake",
+    "image":"https://www.budgetbytes.com/wp-content/uploads/2020/04/Chocolate-Depression-Cake-slice-side.jpg",
+    "category":["dessert"],
+    "tags":["vegan","cake","brownie","chocolateCake"],
+    "description": "This unique Chocolate Cake recipe, popularized during the great depression, is rich and chocolatey without the using any eggs, butter, or milk!\n       1.5 cups all-purpose flour\n      1 cup baby  granulated sugar\n      1/2 tsp salt\n        1 tsp baking soda\n        1 cup water\n        1/3 cup cooking oil \n        1 Tbsp vinegar\n       1 tsp vanilla extract \n  1 tsp vanilla extract\n 1.5 cups powdered sugar\n 1/4 cup cocoa powder\n 3 Tbsp water \n  1 tsp vanilla extract\n    Preheat the oven to 350ºF. In a large bowl, stir together the flour, sugar, salt, baking soda, and cocoa powder until well combined.\n      Add 1 cup water to a liquid measuring cup, then add the vanilla extract and vinegar to the water. \n      Add the oil to the bowl of dry ingredients, followed by the water mixture. Stir until the chocolate cake batter is mostly smooth. Make sure no dry flour remains on the bottom of the bowl.\n      Pour the cake batter into an 8x8\" or 9x9\" baking dish. Transfer the baking dish to the oven and bake the cake for 35 minutes.\n If using the chocolate icing, let the cake cool for at least an hour after baking before adding the icing.\n Wait until the cake is cool, then prepare the icing. Add the powdered sugar, cocoa powder, and vanilla extract to a bowl. Begin adding water, 1 tablespoon at a time, until it forms a thick but pourable icing (about 3 Tbsp total). If you let the icing sit, it may begin to dry, but you can add a splash more water to make it moist again.\n Pour the icing over the cooled cake and spread until the cake is evenly covered. Slice the cake into 9 pieces and serve. "
+}
+
+### recipe 3
+POST {{url}}/recipe
+Content-Type: application/json
+
+{
+    "title": "Cherry Almond Smoothie",
+    "image":"https://www.budgetbytes.com/wp-content/uploads/2021/04/Cherry-Almond-Smoothie-H1.jpg",
+    "category":["smoothie"],
+    "tags":["smoothie","cauliflower","banana","cherries"],
+    "description": "This rich and creamy smoothie has a natural and subtle sweetness, a creamy texture, and tons of protein and plant fiber to keep you full.\n  1/2 cup frozen riced cauliflower\n 1/2 frozen banana\n 1/2 cup frozen sweet cherries\n 1 Tbsp almond butter\n 1/8 tsp cinnamon\n       1 cup almond milk\n \n Add all of the ingredients to a blender and blend until smooth. Adjust the liquid as needed to make it blend smoothly. Serve immediately."
+}
+
+### recipe 4
+POST {{url}}/recipe
+Content-Type: application/json
+
+{
+    "title": "Toasted Coconut Oat Bran",
+    "image":"https://www.budgetbytes.com/wp-content/uploads/2021/04/Cherry-Almond-Smoothie-H1.jpg",
+    "category":["breakfast"],
+    "tags":["bran","coconut"],
+    "description": "Coconut milk is the secret ingredient to making this Toasted Coconut Oat Bran the warmest and creamiest bowl you've had for breakfast. \n  1/4 cup unsweetened shredded coconut\n 1 14oz. can light coconut milk\n 1.5 cups water\n 1 cup oat bran\n 1/4 tsp salt\n  \n  1. Add the shredded coconut to a dry skillet. Stir and cook over medium-low heat until the coconut is golden brown. Remove it from the warm skillet immediately to stop the cooking, and set it aside. \n 2. Add the can of coconut milk, 1.5 cups of water, oat bran, and 1/4 tsp salt to a sauce pot. Cook over medium heat, stirring frequently, until thickened. \n 3. Divide the cooked oat bran between four bowls and top with the toasted coconut. Add the sweetener of your choice, if desired (brown sugar, honey, maple syrup, and jam are all nice), or enjoy as is."
+}
+
+
+### event 1
+POST {{url}}/event
+Content-Type: application/json
+
+{
+    "title": "weekly market",
+    "image":"https://wmnde.de/wp-content/uploads/wochenmarkt-obst-gemuese.jpg",
+    "category":["market"],
+    "tags":["regional","bio","vegetables","fruits","fresh"],
+    "description": "Regional vegetables and fruites",
+    "startDate": "2022-08-10",
+    "startTime": "8:00am",
+    "endDate": "2022-08-10",
+    "endTime": "15:00am",
+    "address": { 
+        "street": "Market-Str.",
+        "streetNumber": "8a",
+        "zip": 4317, 
+        "city": "Berlin", 
+        "country": "Germany"
+    }
+}
+### event 2
+POST {{url}}/event
+Content-Type: application/json
+
+{
+    "title": "wine tasting",
+    "image":"https://www.neleman.de/media/image/77/6c/00/Productpage_0020_2-IMG_8649-Natalie-Bass.jpg",
+    "category":["tasting"],
+    "tags":["red Wine","just fucking good","vegan"],
+    "description": "Just Fucking Good Red Wine 2019 from Neleman",
+    "image":"https://www.edelrausch.de/media/thumbnails/f7a/e395cd87ccd13470b33fbbc292623f7a/f45a0044/Just-Fucking-Good-Wine-Red_Neleman_Label.png"
+    "startDate": "2022-12-08",
+    "startTime": "7:00pm",
+    "endDate": "2022-12-08",
+    "endTime": "00:00am",
+    "address": { 
+        "street": "good neighborhood",
+        "streetNumber": "666",
+        "zip": 13117, 
+        "city": "Berlin", 
+        "country": "Germany"
+    }
+}
+
+### event 3
+POST {{url}}/event
+Content-Type: application/json
+
+{
+    "title": "Vegan summer festival",
+    "image":"https://veganes-sommerfest-berlin.de/wp-content/uploads/2018/06/Alex_VVS-e1529059603319-800x400-934x400.jpg",
+    "category":["fair"],
+    "tags":["vegan","summer","festival"],
+    "description": "everything regarding vegan: food, organisations, presentations and more",
+    "startDate": "2022-01-08",
+    "startTime": "7:00pm",
+    "endDate": "2022-01-08",
+    "endTime": "00:00am",
+    "address": { 
+        "street": "alexander Platz",
+        "streetNumber": "46",
+        "zip": 16146, 
+        "city": "Berlin", 
+        "country": "Germany"
+    }
+}
+
+
+### event 4
+POST {{url}}/event
+Content-Type: application/json
+
+{
+    "title": "Japanese cooking workshop",
+    "image":"https://blog.japanwondertravel.com/wp-content/uploads/2021/05/4629296_m.jpg",
+    "category":["workshop"],
+    "tags":["japanese","cooking"],
+    "description": "Do you allways wanted to cook japanese food know is your chance!",
+    "startDate": "2022-01-08",
+    "startTime": "7:00pm",
+    "endDate": "2022-01-08",
+    "endTime": "00:00am",
+    "address": { 
+        "street": "zenstr.",
+        "streetNumber": "6",
+        "zip": 14469, 
+        "city": "Berlin", 
+        "country": "Germany"
+    }
+}
+
+
+###   beauty1
+POST {{url}}/beauty
+Content-Type: application/json
+
+{
+    "title": "Natural Homemade Deodorant ",
+    "image":"https://www.thehealthymaven.com/wp-content/uploads/2015/07/DIY-Natural-Deodorant.jpg",
+    "category":["higen"],
+    "tags":["deo","deodorant"],
+    "description": "In a double boiler, add coconut oil, shea butter and beeswax. Bring to a boil on medium heat and stir until beeswax and shea butter are in liquid form.\nRemove from heat, then add baking soda, bentonite clay, arrowroot powder, and essential oils. Mix well.\nPour liquid mixture into a silicone muffin mold or a 5 oz. container, such an empty deodorant container.\nLet cool down to solidify for about 2-3 hours. The beeswax will help to keep it in solid form to use as a traditional deodorant.\nIf using a silicone mold, pop out the DIY natural deodorant solids and store in a reusable container or bag to use at home or on the go."
+}
+
+
+###   beauty2
+POST {{url}}/beauty
+Content-Type: application/json
+
+{
+    "title": "2-Ingredient DIY Baby Shampoo",
+    "image":"https://dontmesswithmama.com/wp-content/uploads/2015/07/baby-shampoo-final.jpg",
+    "category":["higen"],
+    "tags":["shampo","baby"],
+    "description": "\n    Materials\n    \n        1 cup Dr. Bronner's soap\n        1 cup coconut oil\n        1 cup water\n        Lavender essential oil\n    \n    Instructions\n\n            Mix everything together and put into a plastic container (no glass in the tub!).\n            Shake it up.\n            Done!\n            We re-used an old Burt's Bee's Baby Shampoo container."
+}
+
+
+###   beauty3
+POST {{url}}/beauty
+Content-Type: application/json
+
+{
+    "title": "DIY Firming Eye Cream",
+    "image":"https://diycarinchen.de/wp-content/uploads/2020/10/DIY-Deocreme-schnell-und-einfach-selber-machen-10.jpg",
+    "category":["higen"],
+    "tags":["shampo","baby"],
+    "description": "Ingredients:\n Rosehip Seed Oil\n   Green Tea\n   Carrot Seed essential oil\n   Lavender essential oil\n   Sweet almond oil\n   \n   Making your own DIY Eye Cream is not only rewarding, it's effective. I've chosen some potent anti aging ingredients that are going to help tighten the delicate skin around the eyes, reduce the appearance of dark circles and puffiness and repair and rejuvenate skin cells. In this post, I will teach you how to make a fluffy, creamy eye cream that you'll love to add to your beauty routine!\n   \n   There are so many good reason you should make a DIY Eye Cream. One, you could not go to a department store or spa and get this amazing of an eye treatment.  It's that good. Two, making lotion is so rewarding and fun. Three, there are so many crazy wrong ingredients in over the counter anti aging products but this one is safe, clean and effective.\n   \n   I've made this DIY several times because it is one of my favorite recipes to make. I've formulated it full of the best anti aging, natural ingredients to firm, smooth and nourish the delicate skin around your eyes!"
+}
+
+
+###   beauty4
+POST {{url}}/beauty
+Content-Type: application/json
+
+{
+    "title": "Lip Line Eraser Serum Roll On",
+    "image":"https://jenniraincloud.com/wp-content/uploads/2019/09/Lip-Liner-Roll-On-2.jpg",
+    "category":["makeup"],
+    "tags":["lips","serum"],
+    "description": "Ingredients:\n 25 drops Pomegranate Oil\n   6 drops Hilurlip\n   15 drops Non GMO Vitamin E\n   2 drops Frankincense Essential Oil\n    3 drops Lavender Essential Oil\n    1 drop Carrot Seed Essential Oil\n    Top off Rosehip Seed Oil\n    \n     Add all ingredients to a 10 ml roll on bottle with a funnel.  Shake to mix."
+}
+
+
+###   artsCraft 1
+POST {{url}}/artsCraft
+Content-Type: application/json
+
+{
+    "title": "Upcycled Summer Lanterns",
+    "category":["upcycling","decor"],
+    "tags":["summer","lanterns"],
+    "image": "https://s34506.pcdn.co/wp-content/uploads/2019/05/eggcartonlantern.done12.690.jpg",
+    "description": "Empty Nellie's Free Range egg cartons\n    Scissors\n    Paint\n    Paintbrush\n    String\n    Pom pom trim (or other decorative trim)\n    Clear tape\n    Hot glue gun\n    \nStep 1:\nBegin by cutting the flat lid segment off of the egg carton and recycle or save for another craft. Leave the remaining two segments attached at the hinge and apply acrylic paint onto the inside of the carton. Make sure to use an acrylic paint that adheres to plastic and let dry completely, applying as many coats as needed until covered.\n\nRepeat this on as many egg cartons as needed. For a four-sided lantern, you'll need two hinged pieces. For the larger five-sided lantern shown, we added one extra panel.\n\nYou can also choose to customize the size of the lantern by trimming egg compartments off before painting. Mix and match sizes of lanterns as desired.\n\nStep 2:\nOnce the paint is completely dry, lay out the segments side by side on your work surface. Use clear tape (packing tape works well here) to attach the neighboring cartons together to form an almost invisible hinge that can only be seen on the inside of the lantern. Use scissors to snip the tape as needed and press onto the egg carton to make sure the hinge is securely attached.\n\nOnce all the cartons are attached side by side, connect the two ends together, forming a tube. Again apply the tape to form the last hinge on the inside of the lantern.\n\nStep 3:\nCut two pieces of string of equal length, about 10 inches long. Tape one end of the first string into the inside of the top edge of the lantern, right in the hinge. Tape the other end of that same string into the hinge directly opposite the first. Repeat this with the second piece of string, taping to the opposite hinges, so that the lantern now has two loops along the top that cross. Cut a third piece of string (as long as needed to hang your lantern) and tie a loop in one end around where the other two strings cross. This will allow the lantern to hang completely evenly without fussy tying and retying of knots.\n\nStep 4\nFinally, with your hot glue gun on the low-heat setting, apply a line of glue along the bottom edge of the lantern. Press the trim into the glue to secure, covering the entire bottom edge. Add additional trim or tassels if desired.\n    "
+}
+
+###   artsCraft 2
+POST {{url}}/artsCraft
+Content-Type: application/json
+
+{
+    "title": "T-shirt to teddy bear refashion",
+    "category":["upcycling","refashion","textile"],
+    "tags":["teddy bear"],
+    "image": "https://images.immediate.co.uk/production/volatile/sites/32/2019/09/how-to-make-a-teddy-bear-097a0d6.jpg?quality=90&webp=true&resize=900,600",
+    "description": "You will need\n    T-shirt\n    Felt scraps\n    Toy stuffing or wadding\n    Basic sewing kit\n    Templates: Download our issue 11 sewing pattern sheet to find the template for this project\n    \n    Step one: Turn the T-shirt inside out, then pin on your bear template. Cut 5mm (1/4in) outside the pattern for a seam allowance, through the front and back. Pin together.\n\n    Step two: Sew along the outside edge of your bear, using a zigzag stitch and leaving a 4cm (15/8in) gap on one leg for turning. Stitch around the bear again, using a straight stitch this time for added strength.\n\n    Step three: Turn the bear right side out and stuff quite firmly. Turn the excess fabric at the turning gap to the inside and slip stitch the opening closed.\n\n    Step four: Cut a 4x6cm (15/8x23/8in) scrap of felt. Pinch this in the middle and fold a T-shirt scrap around the centre to make a bow, and sew. Stitch the bow onto your bear.\n\n    Step five: Following the template for positioning, sew on a felt nose. For the eyes and mouth, make one long stitch for each and work loops over to make them curved."
+}
+
+
+###   artsCraft 3
+POST {{url}}/artsCraft
+Content-Type: application/json
+
+{
+    "title": "Makeup Remover Pads",
+    "image":"https://mindfulofthehome.com/wp-content/uploads/2019/09/diy-zero-waste-makeup-remover-pads-713x476.jpg",
+    "category":["zero-waste"],
+    "tags":["Makeup","Pads"],
+    "description": "What You'll Need:\n \n    Soft cotton fabric\n    100% cotton thread\n    Glass jar with a lip that measure 3″ + diameter\n    Rotary Cutter or scissors\n       Pins\n    Cutting mat\n    Sewing Machine with an overlock stitch\n    Iron\n \n Cleaning wipes that come in plastic containers may contain harmful chemicals and the wipes themselves can’t be composted due to the chemicals in the cleaning product. \n \n By making your own zero-waste disinfectant wipes out of old rags, you can simply wash the rags and reuse.    "
+}
+
+
+###   artsCraft 4
+POST {{url}}/artsCraft
+Content-Type: application/json
+
+{
+    "title": "Reusable crochet bag pattern",
+    "image":"https://images.immediate.co.uk/production/volatile/sites/32/2020/04/Reusable-crochet-bag-pattern-final-9bea418.png?webp=true&quality=90&resize=600%2C400",
+    "category":["zero-waste", "upcycling"],
+    "tags":["bag","reusable", "upcycling","zero-waste"],
+    "description": "You will need:\n    • 2 x 100g balls of white cotton yarn (Patons DK mercerised cotton)\n    • 4mm crochet hook\n    • Scrap, coloured yarn to use as markers\n    • Scissors\n    • Tapestry needle to weave ends\n    1. Attach yarn to hook with a half hitch.\n    Round 1: ch 3, sl st into 1st ch, ring formed.\n    Round 2: ch2 (acts as 1st tr) tr 8 into centre of ring, sl st to top of 1st 2ch to join, pull tail to tighten ring (9sts in round).\n    2.Round 3: ch2, tr into base st of ch, [2 tr into next st] rep 7 times, sl st to top of 1st 2ch to join (18sts in round).\n    Round 4: ch2, tr into base st of ch, 1tr into next st, [2 tr into next st, 1 tr into next st] rep 7 times, sl st to top of 1st 2ch to join (27sts in round).\n    3.Round 5: ch2, tr into base st of ch, 1tr into each of next 2sts [2 tr into next st, 1 tr into each of next 2sts] rep 7 times, sl st to top of 1st 2ch to join (36sts in round).\n    Keep increasing evenly by 9 sts each round until you complete round 13 (108sts total).\n    4.Round 14: work one round even (108sts)\n    Round 15: ch 3, sk 1, tr [ch1, sk 1, tr] repeat until end of round, sl st to 2nd ch of 1st 3ch to join.\n    Round 16: rep round 15 twenty times. Start the strap: ch 3, sk 1, tr [ch1, sk 1, tr] rep 12 times, turn.\n    Repeat last row once.\n    5.Begin strap decrease like this: ch 3, sk 1, tr [ch1, sk 1, tr] rep 12 times, turn. Ch 3, sk 1, tr [ch1, sk 1, tr] rep 11 times, turn. Ch 3, sk 1, tr [ch1, sk 1, tr] repeat 10 times, turn. Repeat in this fashion until the [] pattern repeats 4 times. Work 40 rows even.\n    6.Increase the strap like this: Ch 3, tr into base of 3ch, [ch1 sk1 tr] rep 5 times. Ch 3, tr into base of 3ch, [ch1 sk1 tr] re 6 times. Ch 3, tr into base of 3ch, [ch1 sk1 tr] rep 7 times. Continue in this fashion until [] pattern repeats 12 times. [ch 3 sk 1 tr] rep 13 times.\n    7.Count 13 squares around from either side of bag/strap transition row. Place markers. There should be 14 squares between the markers. This is where you are going to connect the strap.\n    8. Connect strap like this: Ch 1, sl st to st next to marker, [sl st into the space next to it, sl st into top of tr column next to it, ch1, sl st into top of tr column opposite] repeat 13 times.\n    9. Ch 1, working along the strap, dc 2 into each square, when you reach the bag top edge, work 1dc into 1st square, [work 2dc into next square, 1 dc into next square] rep 5 times, sl st to 1st dc in round, work another 2 complete rounds even. Rep on other side.\n    10. Voila! Take your beautiful new crochet reusable bag to your local farmer’s market and fill it to the brim with an abundance of fresh, seasonal produce.\n    To go with your new crochet reusable bag why not make our crochet makeup remover pads or use our reusable dishcloth knitting pattern? You can find all these crafts and more in our sustainable crafts round-up. Connect with us on Instagram, Twitter, Pinterest and Facebook."
+}
+
+
+
+###   garden 1
+POST {{url}}/garden
+Content-Type: application/json
+
+{   "title": "How to Grow Potatoes",    
+    "image": "https://www.gardendesign.com/pictures/images/320x240Exact/site_3/garden-design_6657.jpg",
+    "category":["vegetable"],
+    "tags":["potatos"],    "description": "Potatoes are generous plants. They are easy to grow and produce abundant harvests. Give them the following and they will accept almost any planting situation:\n\n    Full sun\n    Loose, fertile soil\n    1\" of water per week\n\nYou can grow potatoes in containers, pots, or a special \"grow bag\". But in my experience, containers like these require constant attention to watering, and yield smaller harvests than growing in a raised bed. I achieve an enormous harvest—enough to feed two for nearly a year—by planting potatoes in two 4'-x-8' raised beds. The tubers are wildly productive in the well-draining, rock-free soil the beds provide, and the vines require deep watering only once each week.\n\nOf all the root vegetables I grow, it is the potatoes that give me the biggest thrill at harvest time. I love to stick my hands in the soil and retrieve the buried bounty, with a yield of eight to ten potatoes for every one that I plant.\n\nHowever you decide to grow your potatoes, the planting directions are the same.\n\n\nStep 1: Choose Seed Potatoes\n\nStart with organic, certified disease-free seed potatoes obtained from a catalog or farm store. (Grocery store potatoes that have been treated with a sprout-retardant are not suitable for planting.) If you buy from a farm store, as I do, try to select tubers which have already sprouted. Otherwise, pre-sprout them by simply laying them out on your kitchen counter. Pre-sprouted potatoes can be harvested a few weeks earlier than their non-sprouted kin.\n\n\nStep 2: Separate the Eyes\n\nOnly small, golf ball-sized potatoes should be planted whole.\n\nCut large tubers into pieces. I cut mine so that each segment has two or three \"eyes\" (the little bumps from which sprouts emerge, as shown in the photo). The reason for cutting the potatoes is because the many eyes on a large potato will create a crowded, multi-stemmed plant, with each stem competing for food and moisture, and in the end, bearing only small potatoes.\n\n\nStep 3: Cure the Cut Pieces\n\nNext, \"cure\" the cut pieces. Either set them out in the sun, or place them on a table or counter in a warm (about 70°F), moderately lit room for three to five days. This step permits the cuts to become calloused. Calloused seed potatoes will help prevent rot.\n\n\nStep 4: How & When to Plant Potatoes\n\nPlant seed potato segments cut-side down (eyes up) in a 6-inch-deep hole or trench. Space each segment 12-inches apart on all sides.\n\nBetween each segment, sprinkle 2 tablespoons of a low-nitrogen, high-phosphorous fertilizer. Then cover both potatoes and fertilizer with 2-inches of soil, and water the soil well.\nWhen do you plant potatoes?\n\nThis will vary depending on where you live. Gardeners in warm climates often plant around Valentine's Day, while those in cooler areas may get them into the ground near Easter, or early spring. A good rule of thumb is to aim for 3-4 weeks prior to your last frost date.\n\n\nStep 5: Hill Around the Stems\n\nBecause new potatoes form on lateral stems, or /\"stolons\" above the seed potato, it's necessary to \"hill\" the vines. When the green sprouts achieve 8 inches in height, bury all but their top 4 inches with soil, chopped straw, or shredded leaves. Hill again when potato plants grow another 8 inches. The more you hill, the more prolific your harvest is likely to be. I usually hill mine to a height of 18 inches. Stop hilling when the vines flower.\n\nPotato tubers, like vampires, need to live in darkness. In fact, they will turn green if exposed to light. And a green potato can cause sickness if consumed. Therefore it is absolutely essential to keep the tubers covered with soil or mulch.\n\n\nStep 6: How & When to Harvest Potatoes\n\nTwo weeks after the vines have flowered, you can, if you wish, reach into the soil or mulch and retrieve a few baby potatoes. Otherwise, wait until the vines die back. Dead vines signal that the tubers have reached maturity. Now reach into the soil with your hands and pull the tubers up.\n\nHow long do potatoes take to grow? Small new potatoes can be ready as early as ten weeks. However, full sized potatoes take about 80-100 days to reach maturity.\n\n\nStep 7: Store Your Potatoes\n\nSince my potatoes are grown for storage, I leave them in the ground until cool weather arrives. Why? Because potatoes will only store well if they are placed somewhere cold, but not freezing. The closet in my mudroom doesn't cool off until the outside temperatures plunges to 45° at night. So harvest time for me is usually a sunny day in late October.\n\nAfter digging the tubers, I let them sit on top of the raised beds for a few hours to dry, as illustrated. This brief drying-period toughens their skin, and prepares them for storage. Then I gently brush off any loose soil from the tubers, and place them in double thicknesses of paper bags.\n"}
+
+
+
+
+###   garden 2
+POST {{url}}/garden
+Content-Type: application/json
+
+{
+    "title": "How to grow parsley",
+    "image":"",
+    "category":["herb"],
+    "tags":["parsley"],
+    "image": "https://images.immediate.co.uk/production/volatile/sites/10/2018/02/b8ae7840-df95-4fc3-97a3-58ddca80a570-a05b6a4.jpg?webp=true&quality=90&resize=940%2C626",
+    "description": "Grow curled and flat-leaf parsley in moist but well-drained soil in sun to partial shade. Harvest the leaves as and when you need to. Sow seed every few weeks for a successional harvest. Parsley is biennial and treated as an annual, so you'll need to sow fresh seed every year.\n\nMore on growing parsley:\n\n    Thyme, parsley and chive herb pot\n    Eight shade-loving herbs to grow\n    Seven projects for a winter greenhouse\n\nFind out how to grow parsley in our Grow Guide.\n\nHow to sow parsley seeds\n\nSow parsley seeds directly into well-prepared soil, in rows 1cm deep and 30cm apart. Lightly cover the seeds and water in well. When seedlings are large enough, thin them to 15cm apart.\n\nAlternatively, if you have less space available, fill a pot with seed compost and sow seeds thinly, covering with a light layer of compost and watering in. Make sure the compost does not dry out. Seeds can take six weeks to germinate and should be thinned out and potted on when big enough. When moving to a larger pot, use a mix of garden and soil-based compost, to prevent the young plants from drying out.\n\nSow batches of seeds a few weeks apart so you have a continuous supply of parsley.\n\nWatch this clip from Gardeners' World to find out what conditions parsley needs, how far apart to space the plants, and how to harvest the leaves:\n\nHow to care for parsley\n\nParsley needs plenty of water, particularly during dry weather, and benefits from the occasional feed of general seaweed fertiliser to boost leafy growth. Cut back any yellowing foliage.\n\nA biennial plant, flowers will be produced in the second year, if plants are not regularly cut back. If you want to save seed, allow some plants to flower.\n\nHow to harvest parsley\n\nParsley leaves can be dried and stored, but the flavour is less intense. With parsley plants so easy to grow and maintain, it makes sense to use a fresh supply. In terms of flavour, it's better to chop parsley finely in a food processor and freeze if you do want to store for later use. You can pot up plants at the end of the season and bring them indoors for leaves throughout winter.\n\nCooking with parsley\n\nParsley can be added to a wide range of recipes from soups and stews to omelettes and Middle Eastern salads like tabbouleh. It's best finely chopped and both leaves and stems can be used.\n\nGrowing parsley: problem solving\n\nParsley is in the carrot family and therefore can be prone to some of the pests that affect carrots such as carrot fly. So take similar precautions, such as companion planting with garlic or onions. Also protect parsley seedlings from slugs and snails.\n\nParsley varieties to grow\n\n    Petroselinum crispum 'Aphrodite' - has good-flavoured dark green leaves with a tight curl, often used as a garnish\n    Petroselinum crispum 'French' - with flat, deep-green leaves, it has a stronger parsley flavour than the curled varieties and is preferred for cooking\n    Petroselinum crispum 'Titan' - a flat-leaved or French variety, with small, deep-green leaves and a strong, sweet parsley flavour\n    Petroselinum crispum 'Envy' - has dark green tightly curled leaves and is also very ornamental\n    Petroselinum crispum 'Gigante Napoletano' - as the name suggests, the leaves are large, and also very aromatic\n\n"
+}
+
+
+
+###   garden 3
+POST {{url}}/garden
+Content-Type: application/json
+
+{
+    "title": "How to Plant, Grow, and Care for Sunflowers",
+    "image":"https://www.almanac.com/sites/default/files/styles/max_1300x1300/public/image_nodes/sunflower-1627193_1920.jpg?itok=cfGQcDrW",
+    "category":["flower"],
+    "tags":["sunflower"],
+    "description": "When to Plant Sunflowers\nIt's best to sow sunflower seeds directly into the garden (or outdoor containers) after the danger of spring frost has passed anytime after soils have warmed to at least 50°F (10°C).\nIn most regions, this will fall between April and mid-July. In the south, this will probably occur in mid-March or early April. \n\nSunflowers dislike having their roots disturbed, which is why we recommend direct-sowing instead of transplanting.\n\nChoosing & Preparing a Planting Site\n\nFind a sunny spot! Sunflowers grow best in locations with direct sunlight (6 to 8 hours per day); they require long, hot summers to flower well.\nChoose a location with well-draining soil. It shouldn't pool water after it rains.\nSunflowers aren't picky but the soil can't be too compact. They have long tap roots that need to stretch out; in preparing a bed, dig down 2 feet in depth and about 3 feet across.\nThey're not too fussy when it comes to soil pH either. Sunflowers thrive in slightly acidic to somewhat alkaline soil (pH 6.0 to 7.5).\nSunflowers are heavy feeders, so the soil needs to be nutrient-rich with organic matter or composted (aged) manure. Or, work in a slow release granular fertilizer 8 inches deep into your soil.\nIf possible, plant sunflowers in a spot that is sheltered from strong winds, perhaps along a fence or near a building. Larger varieties may become top-heavy and a strong wind can be devastating.\nBefore planting, decide whether or not you want to grow a fun sunflower tower.\n\nPlanting Sunflower Seeds\nSunflowers should be planted 1 to 1-1/2 inches deep and about 6 inches apart after the soil has thoroughly warmed. If you wish, you can plant multiple seeds and thin them to the strongest contenders when the plants are six inches tall. \nGive plants plenty of room, especially for low-growing varieties that will branch out. Make rows about 30 inches apart. (For very small varieties, plant closer together.)\nA light application of fertilizer mixed in at planting time will encourage strong root growth to protect them from blowing over in the wind.\nExperiment with plantings staggered over 5 to 6 weeks to keep enjoying continuous blooms.\nIf you see birds scratching around for the seeds, spread netting over the planted area until seeds germinate. See more ways to keep birds away from your garden.\n\nCaring for Sunflowers\n\nWhile the plant is small, water around the root zone, about 3 to 4 inches from the plant. To protect the plant, it may help to put snail or slug bait around the stem.\nOnce the plant is established, water deeply though infrequently to encourage deep rooting. Unless the weather is exceptionally wet or dry, water once a week with several gallons of water.\nFeed plants only sparingly; overfertilization can cause stems to break in the fall. You can add diluted fertilizer into the water, though avoid getting the fertilizer near the plant's base; it may help to build a moat in a circle around the plant about 18 inches out.\nTall species and cultivars require support. Bamboo stakes are a good choice for any plant that has a strong, single stem and needs support for a short period of time."
+}
+
+
+###   garden 4
+POST {{url}}/garden
+Content-Type: application/json
+
+{
+    "title": "How to grow an avocado from seed",
+    "image":"https://d3lp4xedbqa8a5.cloudfront.net/s3/digital-cougar-assets/homes/2020/03/25/1585106684594_trees-farm-sky-roper-acsfeb2018-20180201175906.jpg?width=640&height=&mode=crop&anchor=topcenter&quality=75",
+    "category":["plants"],
+    "tags":["avocado"],
+    "description": "1. Remove and clean pit\nYou'll need to start by removing the pit from the avocado carefully (without cutting it), and then washing it clean of all the avocado fruit (often it helps to soak the pit in some water for a few minutes and then scrub all the remaining fruit off). Be careful not to remove the brown skin on the pit - that's the seed cover.\n\n2. Locate which end is up and which end is down\nSome avocado pits are slightly oblong, whereas others are shaped almost like perfect spheres – but all avocado pits have a 'bottom' (from where the roots will grow), and a 'top' (from which the sprout will grow). The slightly pointier end is the top, and the flat end is the bottom.\nIn order to get your pit to sprout, you will need to place the bottom root end in water, so it's very important to figure out which end is the 'top' and which is the 'bottom' before you go piercing it with toothpicks.\n\n3. Pierce with three toothpicks\nTake three toothpicks and stick them at a slight downward angle into the avocado seed, spaced evenly around the circumference of the avocado. These toothpicks are your avocado scaffolding, which will allow you to rest the bottom half of the avocado in water, so therefore the toothpicks need to be wedged in there firmly.\nI recommend sticking them in at a slight angle (pointing down), so that more of your avocado base rests in the water when you set this over a glass. If you're struggling to balance your avocado seed there are now a number of growing kits on the market, as well as stylish glass and jar toppers which cradle the seed and make this process easier.\n\n4. Place seed half-submerged in a glass of water\nAnd set on a quiet windowsill with sunlight. It's helpful to use a clear glass so you can easily see when roots start to grow, and also when the water needs to be changed. Many guides recommend to change the water every day, but I found, through trial and error, that it is better to change the water every five days to a week or so.\nYou do want to make sure you change the water regularly, to prevent mould, bacteria and fungus growth, which can doom your little avocado sprout.\n\n5. WAIT FOR YOUR AVOCADO SEED TO SPROUT\nMany guides say sprouting can take anywhere from two to four weeks, but in my experience, it usually takes at least eight weeks to get a sprout, so be patient. Here is the process you will witness:\n\nThe top of the avocado pit will dry out and form a crack, and the outer brown seed skin will slough off.\nThe crack will extend all the way to the bottom of the avocado pit, and through the crack at the bottom, a tiny taproot will begin to emerge.\nThe taproot will grow longer and longer (and may branch), and eventually a small sprout will peek through the top of the avocado pit.\nDo not allow your taproot to dry out unsubmerged EVER – doing so will be the death of your plant.\n\n6. Pot in soil when tree is about 15cm tall\nWhen the stem is about 15cm long, cut it back to about 8cm, this will encourage new growth. When it hits 15cm again, pot it up in a rich humus soil in a 25cm diameter pot, leaving the top half of the seed exposed.\nPlace on a sunny windowsill. Avocados love sun – the more sun the better.\n\nWater and watch it grow\nGive it frequent waterings with an occasional deep soak. The soil should always be moist, but not saturated.\nYellowing leaves are a sign of over-watering; let the plant dry out for a few days.\n\n8. Pinch out top leaves to encourage bushiness\nWhen the stem reaches 12 inches tall, pinch out the top two sets of leaves. This will encourage the plant to grow side shoots and more leaves, making it bushy.\nEach time the plant grows another 6 inches pinch out the 2 newest sets of\nleaves on top."
+}

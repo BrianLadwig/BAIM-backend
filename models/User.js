@@ -42,9 +42,10 @@ const UserSchema = new Schema(
 		// comments:       { type: [Schema.Types.ObjectId], ref: "comment" },
 		// subs: { type: [Schema.Types.ObjectId], ref: "subs" },
 
-		// collection: { type: [Schema.Types.ObjectId], ref: "collection" },
+		pin:            { type: [Schema.Types.ObjectId]},
 
-		// followers: { type: [Schema.Types.ObjectId], ref: "followers" },
+		followers:      { type: [Schema.Types.ObjectId], ref: "followers" },
+		following: 		{ type: [Schema.Types.ObjectId], ref: "following" },
 		// dmMessages: { type: [Schema.Types.ObjectId], ref: "dmMessages" },
 		 // If we need the user/comment reference. Maybe 
 	},

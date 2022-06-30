@@ -7,7 +7,7 @@ GET {{url}}/user
 GET {{url}}/user/search/N
 
 ### GET USER BY ID ###
-GET {{url}}/user/62972f26679b794abd772f28
+GET {{url}}/user/62a6f394c8e66d8b453536b9
 
 
 ### POST/REGISTER NEW USER ###
@@ -64,7 +64,7 @@ POST {{url}}/user/login
 Content-Type: application/json
 
 {
-  "email": "ashley@email.com",
+  "email": "muqbel@gmail.com",
   "password": "supPergutesgeheimespassword-123"
 }
 
@@ -81,4 +81,11 @@ DELETE {{url}}/user/62a1d6f40f54312a2f7acb7a
 
 ### USER LOGOUT ###
 POST {{url}}/user/logout
+Content-Type: application/json
+
+
+
+### FOLLLOW A USER ###
+
+PATCH {{url}}/user/62bd9138b844891ac5bc25cc/following
 Content-Type: application/json
