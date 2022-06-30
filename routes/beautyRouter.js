@@ -17,6 +17,17 @@ beautyRouter
             next({ status: 404, errors: error.message })
         }
     })
+    .get("/author/:profileName", checkLogin, async (req, res, next) => {
+        console.log('123');
+        const author = req.params.profileName
+        const result = await Beauty.find({
+            authorProfileName: author,
+        })
+        if(!result){
+            return next({ status: 404, errors: "Post not found" })
+        }
+        res.status(200).json(result)
+    })
     .get("/authorProfileName/:option", async (req, res, next) => {
 		try {
 			const option = req.params.option;
@@ -72,6 +83,14 @@ beautyRouter
 			next({ status: 404, errors });
 		}
 	})
+    .get("/:id", checkLogin, async (req, res, next) => {
+        const { id:_id } = req.params
+        const result = await Beauty.findById(_id)
+        if(!result){
+            return next({ status: 404, errors: "Post not found" })
+        }
+        res.status(200).json(result)
+    })
     .post("/", checkLogin, requestValidator(postValidator), async (req, res, next) => {
         try {
             const post = req.body;
@@ -95,7 +114,7 @@ beautyRouter
         if(!updatedPost){
             return next({ status: 404, errors: "Post not found" })
         }
-        res.json({message: 'Updated', updatedPost})
+        res.status(200).json({message: 'Updated', updatedPost})
     })
     .delete("/:id", checkLogin, async (req, res, next) => {
         try {
@@ -108,7 +127,7 @@ beautyRouter
             await user.save()
             await post.remove()
             // await Post.findByIdAndDelete(_id)
-            res.json({ message: "Deleted", deleted: post })
+            res.status(200).json({ message: "Deleted", deleted: post })
         } catch (error) {
             next({ status: 400, errors: error.message })
         }
@@ -129,9 +148,11 @@ beautyRouter
                 post.likes = post.likes.filter(id => id !== String(req.body.author))
                 user.pin = user.pin.filter(id => id.toString() !== _id.toString())
             }
+            const updatedPost = await Beauty.findByIdAndUpdate(_id, post, { new: true })
+            res.status(200).json({message: "toggle like"})
             await user.save();
             await Beauty.findByIdAndUpdate(_id, post, { new: true })
-            res.json({message: "toggle like"})
+            res.status(200).json({message: "toggle like"})
         } catch (error) {
             next({ status: 400, errors: error.message })
         }

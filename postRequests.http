@@ -7,6 +7,12 @@
 ### Get all Beauty Posts
 GET {{url}}/beauty
 
+### GET authors Beauty ###
+GET {{url}}/beauty/author/NriabZZ
+
+### GET individual Beauty ###
+GET {{url}}/beauty/62b1ac4cbdc67faca3f2d31f
+
 ### GET SEARCH RESULT ###
 GET {{url}}/beauty/title/natural
 
