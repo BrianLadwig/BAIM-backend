@@ -3,7 +3,7 @@ import User from '../models/User.js';
 
 // to check if the user have access === login
 async function checkLogin(req, res, next) {
-   console.log('req.cookies :>> ', req.cookies);
+//    console.log('req.cookies :>> ', req.cookies);
     if(!req.cookies.token){    
         next({ status: 401, errors: "You need to log in first"})
         return
