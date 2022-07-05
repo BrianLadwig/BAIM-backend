@@ -30,9 +30,9 @@ userRouter
       next({ status: 404, errors });
     }
   })
-  .get("/:id", async (req, res, next) => {
+  .get("/:profileName", async (req, res, next) => {
     try {
-      const user = await User.findById(req.params.id);
+      const user = await User.findOne({profileName: req.params.profileName });
       if (!user) {
         return next({ status: 404, errors: "User not found" });
       }
@@ -182,3 +182,16 @@ userRouter
   });
 
 export default userRouter;
+
+// Getting user by id
+// .get("/:id", async (req, res, next) => {
+//   try {
+//     const user = await User.findById(req.params.id);
+//     if (!user) {
+//       return next({ status: 404, errors: "User not found" });
+//     }
+//     res.status(200).send(user);
+//   } catch (error) {
+//     next({ status: 404, errors: error.message });
+//   }
+// })
