@@ -7,47 +7,88 @@ const trim = true;
 const unique = true;
 
 const AddressesSchema = new Schema(
-	{
-		street:  	  { type: String, trim },
-		streetNumber: { type: String, trim },
-		city: 	 	  { type: String, required, trim },
-		zip: 	 	  { type: String, trim },
-		country: 	  { type: String, required, trim },
-	},
-	{
-		_id: false,
-	}
+  {
+    street: { type: String, trim },
+    streetNumber: { type: String, trim },
+    city: { type: String, required, trim },
+    zip: { type: String, trim },
+    country: { type: String, required, trim },
+  },
+  {
+    _id: false,
+  }
 );
 
 const UserSchema = new Schema(
-	{
-		firstName:  	{ type: String, required, trim },
-		lastName: 		{ type: String, required, trim },
+  {
+    firstName: { type: String, required, trim },
+    lastName:  { type: String, required, trim },
 
-		profileName: 	{ type: String, required, unique, trim },
-		avatar: 		{ type: String, trim, default: `https://avatars.dicebear.com/api/croodles-neutral/${Math.floor(Math.random() * 999)}.svg` },
+    profileName: { type: String, required, unique, trim },
+    avatar: {
+      type: String,
+      trim,
+      default: `https://avatars.dicebear.com/api/croodles-neutral/${Math.floor(
+        Math.random() * 999
+      )}.svg`,
+    },
 
-		email: 			{ type: String, required, unique, trim },
-		password: 		{ type: String, required },
+    email:    { type: String, required, unique, trim },
+    password: { type: String, required },
 
-		userAddress: 	{ type: AddressesSchema, required },
+    userAddress: { type: AddressesSchema, required },
 
-		interests:		{type:  [String], trim, enum: [ "arts-and-craft", "beauty", "event", "garden", "recipe"]},
-		beauty: 		{ type: [Schema.Types.ObjectId], ref: "beauty" },
-		recipe: 		{ type: [Schema.Types.ObjectId], ref: "recipe" },
-		artsCraft: 		{ type: [Schema.Types.ObjectId], ref: "artsCraft" },
-		garden: 		{ type: [Schema.Types.ObjectId], ref: "garden" },
-		event: 			{ type: [Schema.Types.ObjectId], ref: "event"},
-		pin:            { type: [Schema.Types.ObjectId]},
-		followers:      { type: [Schema.Types.ObjectId], ref: "followers" },
-		following: 		{ type: [Schema.Types.ObjectId], ref: "following" },
-		// If we need dmMessages: { type: [Schema.Types.ObjectId], ref: "dmMessages" },
-		// If we need the user/comment reference. Maybe 
-	},
-	{
-		timestamps: true,
-	}
+    interests: {
+      type: [String],
+      trim,
+      enum: ["arts-and-craft", "beauty", "event", "garden", "recipe"],
+    },
+    beauty:    { type: [Schema.Types.ObjectId], ref: "beauty" },
+    recipe:    { type: [Schema.Types.ObjectId], ref: "recipe" },
+    artsCraft: { type: [Schema.Types.ObjectId], ref: "artsCraft" },
+    garden:    { type: [Schema.Types.ObjectId], ref: "garden" },
+    event:     { type: [Schema.Types.ObjectId], ref: "event" },
+    pin:       { type: [Schema.Types.ObjectId] },
+    followers: { type: [Schema.Types.ObjectId], ref: "followers" },
+    following: { type: [Schema.Types.ObjectId], ref: "following" },
+    // If we need dmMessages: { type: [Schema.Types.ObjectId], ref: "dmMessages" },
+    // If we need the user/comment reference. Maybe
+  },
+  {
+    timestamps: true,
+  }
 );
+
+UserSchema.pre("remove", async function () {
+
+  console.log("remove");
+
+  for ( let i = 0; i < this.following.length; i++) {
+
+    let followedUser = await User.findById(this.following[i]);
+
+	if(followedUser){
+		 followedUser.followers = followedUser.followers.filter(
+      (x) => x.toString() !== this._id.toString()
+    );
+    await followedUser.save();
+	}
+  }
+
+
+
+  for ( let i = 0; i < this.followers.length; i++) {
+
+    let followingUser = await User.findById(this.followers[i]);
+
+	if(followingUser){
+		followingUser.following = followingUser.following.filter(
+      (x) => x.toString() !== this._id.toString()
+    );
+    await followingUser.save();
+	}  
+  }
+});
 
 const User = model("user", UserSchema);
 
