@@ -47,7 +47,8 @@ Content-Type: application/json
     "city": "Berlin",
     "zip": "17167",
     "country": "germany"
-  }
+  },
+  "status":"this is a test"
 }
 
 
@@ -56,25 +57,16 @@ POST {{url}}/user/login
 Content-Type: application/json
 
 {
-  "email": "js@gravatar.com",
-  "password": "Mypassword123!"
-}
-
-### POST / USER LOGIN ###
-POST {{url}}/user/login
-Content-Type: application/json
-
-{
-  "email": "Serra@gmail.com",
+  "email": "br.ladwig@gmail.com",
   "password": "supPergutesgeheimespassword-123"
 }
 
 ### UPDATE USER DATA ###
-PATCH {{url}}/user/62a6f394c8e66d8b453536b9
+PATCH {{url}}/user/62c4087042e07ccbf87d674a
 Content-Type: application/json
 
 {
-  "firstName": "Ivo"
+  "status": "I like bananas"
 }
 
 ### DELETE USER ###

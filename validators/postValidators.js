@@ -14,13 +14,13 @@ const BDRG = [
         .matches(/^[a-zA-Z0-9äöüÄÖÜß\ !@#*+\-;':"\ |,.\/?]*$/)
         .withMessage("we only accept he following characters including whitespace: !@#*()+\"-;':,.?"),
 
-    // body('description')
-    //     .notEmpty()
-    //     .withMessage("description should not be empty")
-    //     .isLength({max:5000})
-    //     .withMessage('no more then 5000 characters including whitespace')
-    //     .matches(/^[a-zA-Z0-9äöüÄÖÜß\!@#*+\-;':"\ |,.\/?]*$/)
-    //     .withMessage("We only accept the following special characters including whitespace: !@#*()+\"-;':,.?"),
+    body('description')
+        .notEmpty()
+        .withMessage("description should not be empty")
+        .isLength({max:5000})
+        .withMessage('no more then 5000 characters including whitespace')
+        .matches(/^[a-zA-Z0-9äöüÄÖÜß\!@#*+\-;':"\ |,.\/?]*$/)
+        .withMessage("We only accept the following special characters including whitespace: !@#*()+\"-;':,.?"),
 
     body('video')
         .trim()

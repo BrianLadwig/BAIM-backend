@@ -102,7 +102,11 @@ const userRegisterValidators = [
 		.bail()
 		.isAlpha()
 		.withMessage("Country can only contain letters"),
-
+	body("status")
+	.isLength({max:5000})
+	.withMessage('no more then 5000 characters including whitespace')
+	.matches(/^[a-zA-Z0-9äöüÄÖÜß\!@#*+\-;':"\ |,.\/?]*$/)
+	.withMessage("We only accept the following special characters including whitespace: !@#*()+\"-;':,.?"),
 	// body("agree")
 	// 	.isIn(["true"])
 	// 	.withMessage("You must agree to the terms and conditions")
