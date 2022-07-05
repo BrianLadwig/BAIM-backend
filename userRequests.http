@@ -20,8 +20,8 @@ Content-Type: application/json
   "profileName": "jade_smith",
   "profilePicture": "https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50",
   "email": "js@gravatar.com",
-  "password": "Mypassword123!",
-  "confirmPassword": "Mypassword123!",
+  "password": "supPergutesgeheimespassword-123",
+  "confirmPassword": "supPergutesgeheimespassword-123",
   "userAddress": {
     "street": "123 Main St",
     "city": "city",
@@ -35,17 +35,18 @@ POST {{url}}/user/register
 Content-Type: application/json
 
 {
-  "firstName": "Ashley",
-  "lastName": "Jiang",
-  "profileName": "AshBash",
-  "email": "ashley@email.com",
-  "password": "aA12345!",
-  "confirmPassword": "aA12345!",
+     "firstName": "Murad",
+  "lastName": "Muqbel",
+  "profileName": "Murad",
+  "profilePicture": "",
+  "email": "Muqbel@gmail.com",
+  "password": "supPergutesgeheimespassword-123",
+  "confirmPassword": "supPergutesgeheimespassword-123",
   "userAddress": {
-    "street": "Main",
-    "city": "Leipzig",
-    "zip": "12345",
-    "country": "Germany"
+    "street": "wintergarten-allee.",
+    "city": "Berlin",
+    "zip": "17167",
+    "country": "germany"
   }
 }
 
@@ -64,7 +65,7 @@ POST {{url}}/user/login
 Content-Type: application/json
 
 {
-  "email": "muqbel@gmail.com",
+  "email": "Serra@gmail.com",
   "password": "supPergutesgeheimespassword-123"
 }
 
@@ -77,7 +78,7 @@ Content-Type: application/json
 }
 
 ### DELETE USER ###
-DELETE {{url}}/user/62a1d6f40f54312a2f7acb7a
+DELETE {{url}}/user/62c424871bb5f1bbd8b9236b
 
 ### USER LOGOUT ###
 POST {{url}}/user/logout
@@ -87,5 +88,5 @@ Content-Type: application/json
 
 ### FOLLLOW A USER ###
 
-PATCH {{url}}/user/62b1ab5ebdc67faca3f2d2e8/following
+PATCH {{url}}/user/62c424871bb5f1bbd8b9236b/following
 Content-Type: application/json
