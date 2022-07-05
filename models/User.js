@@ -37,6 +37,7 @@ const UserSchema = new Schema(
     password: { type: String, required },
 
     userAddress: { type: AddressesSchema, required },
+	  status: 	 { type: String, trim},
 
     interests: {
       type: [String],
