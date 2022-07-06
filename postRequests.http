@@ -72,7 +72,7 @@ Content-Type: application/json
 }
 
 ### Like a ArtsCraft Post
-PATCH  {{url}}/artsCraft/62a855d4e0d94da7d4fbdd34/like
+PATCH  {{url}}/artsCraft/62b1ac70bdc67faca3f2d333/like
 Content-Type: application/json
 
 ### Delete a ArtsCraft Post
@@ -104,7 +104,7 @@ Content-Type: application/json
 }
 
 ### Like a garden Post
-PATCH  {{url}}/garden/62a8720f03fc4847e5235408/like
+PATCH  {{url}}/garden/62b1ac7ebdc67faca3f2d347/like
 Content-Type: application/json
 
 
@@ -179,7 +179,7 @@ Content-Type: application/json
 }
 
 ### Like a recipe
-PATCH  {{url}}/recipe/62989d5ea09204b724f880b5/like
+PATCH  {{url}}/recipe/62b1abf6bdc67faca3f2d2fb/like
 Content-Type: application/json
 
 
