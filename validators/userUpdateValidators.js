@@ -2,27 +2,23 @@ import { body } from "express-validator";
 import User from "../models/User.js";
 
 // Custom error messages enable easier translation in the frontend
-const userRegisterValidators = [
+const userUpdateValidators = [
 	body("firstName")
-		.notEmpty()
-		.withMessage("First name should not be empty")
-		.bail()
+		.optional({checkFalsy: true})
 		.matches(/^([a-zA-Z]{3,20})*$/)
 		.withMessage("First name should be between 3 and 20 characters")
 		.bail()
 		.trim()
 		.escape(),
 	body("lastName")
-		.notEmpty()
-		.withMessage("Last name should not be empty")
-		.bail()
+		.optional({checkFalsy: true})
 		.matches(/^([a-zA-Z]{4,20})*$/)
 		.withMessage("Last name should be between 4 and 20 characters")
 		.bail()
 		.trim()
 		.escape(),
 	body("profileName")
-		.notEmpty().withMessage("Profile name should not be empty").bail()
+		.optional({checkFalsy: true})
 		.trim() //trim removes whitespace from the beginning and end of the string
 		.custom( value =>{
             return User.find({profileName: value}).then(user =>{
@@ -39,9 +35,7 @@ const userRegisterValidators = [
 	// 	.trim()
 	// 	.escape(),
 	body("email")
-		.notEmpty()
-		.withMessage("Email should not be empty")
-		.bail()
+		.optional({checkFalsy: true})
 		.custom( value =>{
             return User.find({email: value}).then(user =>{
                 if(user.length !== 0){
@@ -57,9 +51,7 @@ const userRegisterValidators = [
 		//normalizeEmail will convert the email to lowercase and remove all the special characters from the string and replace them with their escaped version (e.g. \n and \r).
 		// .normalizeEmail(),
 	body("password")
-		.notEmpty()
-		.withMessage("Password should not be empty")
-		.bail()
+		.optional({checkFalsy: true})
 		.isLength({ min: 8 })
 		.withMessage("Password must be at least 8 characters long")
 		.bail()
@@ -70,9 +62,7 @@ const userRegisterValidators = [
 		.trim()
 		.escape(),
 	body("confirmPassword")
-		.notEmpty()
-		.withMessage("Confirm Password should not be empty")
-		.bail()
+		.optional({checkFalsy: true})
 		.custom((value, { req }) => {
 			if (value !== req.body.password) {
 				throw new Error("Passwords do not match");
@@ -97,12 +87,11 @@ const userRegisterValidators = [
 		.isNumeric()
 		.withMessage("Zip code can only contain numbers"),
 	body("userAddress.country")
-		.notEmpty()
-		.withMessage("Country should not be empty")
-		.bail()
+		.optional({checkFalsy: true})
 		.isAlpha()
 		.withMessage("Country can only contain letters"),
 	body("status")
+		.optional({checkFalsy: true})
 		.isLength({max:5000})
 		.withMessage('no more then 5000 characters including whitespace')
 		.matches(/^[a-zA-Z0-9äöüÄÖÜß\!@#*+\-;':"\ |,.\/?]*$/)
@@ -114,7 +103,7 @@ const userRegisterValidators = [
 	// 	.escape(),
 ];
 
-export default userRegisterValidators;
+export default userUpdateValidators;
 
 		//(?=.{4,20}$) username is 4-20 characters's long
 		//(?![_.]) username does not start with _ or .
