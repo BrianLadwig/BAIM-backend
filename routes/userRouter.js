@@ -131,7 +131,7 @@ userRouter
 	  next({ status: 400, errors: error.message });
 	}
   })
-  .patch("/:id", checkLogin, async (req, res, next) => {
+  .patch("/:id", checkLogin, requestValidator(userUpdateValidators), async (req, res, next) => {
     try {
 
       if(req.body.password){
@@ -169,7 +169,7 @@ userRouter
       next({ status: 400, errors: error.message });
     }
   })
-  .patch("/:id/following", checkLogin, requestValidator(userUpdateValidators), async (req, res, next) => {
+  .patch("/:id/following", checkLogin, async (req, res, next) => {
     try {
       const { id: _id } = req.params; // the user you want to follow
       const loggedInUser = await User.findById(req.user._id);
