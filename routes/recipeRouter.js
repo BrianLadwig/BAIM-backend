@@ -147,7 +147,7 @@ recipeRouter
                 if(index === -1) {
                     // like
                     post.likes.push(req.body.author)
-                    user.pin.push(post);
+                    user.pin.push({postId:post._id, postType: post.type});
                 } else {
                     // dislike
                     post.likes = post.likes.filter(id => id !== String(req.body.author))

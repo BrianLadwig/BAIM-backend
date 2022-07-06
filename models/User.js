@@ -19,6 +19,11 @@ const AddressesSchema = new Schema(
   }
 );
 
+const PinSchema = new Schema({
+  postId:   { type: Schema.Types.ObjectId, required },
+  postType: { type: String, required   }
+},{ _id: false,})
+
 const UserSchema = new Schema(
   {
     firstName: { type: String, required, trim },
@@ -49,7 +54,7 @@ const UserSchema = new Schema(
     artsCraft: { type: [Schema.Types.ObjectId], ref: "artsCraft" },
     garden:    { type: [Schema.Types.ObjectId], ref: "garden" },
     event:     { type: [Schema.Types.ObjectId], ref: "event" },
-    pin:       { type: [Schema.Types.ObjectId] },
+    pin:       { type: [PinSchema], default:[] },
     followers: { type: [Schema.Types.ObjectId], ref: "followers" },
     following: { type: [Schema.Types.ObjectId], ref: "following" },
     // If we need dmMessages: { type: [Schema.Types.ObjectId], ref: "dmMessages" },
