@@ -77,9 +77,7 @@ const userUpdateValidators = [
 		.matches(/^[a-zA-Z0-9äöüÄÖÜß\ !@#*+\-;':"\ |,.\/?]*$/)
 		.withMessage("We only accept the following special characters including whitespace: !@#*()+\"-;':,.?"),
 	body("userAddress.city")
-		.notEmpty()
-		.withMessage("City should not be empty")
-		.bail()
+		.optional({checkFalsy: true})
 		.isAlpha()
 		.withMessage("City can only contain letters"),
 	body("userAddress.zip")
