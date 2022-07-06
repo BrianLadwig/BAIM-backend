@@ -35,20 +35,20 @@ POST {{url}}/user/register
 Content-Type: application/json
 
 {
-     "firstName": "Murad",
-  "lastName": "Muqbel",
-  "profileName": "Murad",
+     "firstName": "Peter",
+  "lastName": "Testman",
+  "profileName": "TestiPet",
   "profilePicture": "",
-  "email": "Muqbel@gmail.com",
+  "email": "testman@gmail.com",
   "password": "supPergutesgeheimespassword-123",
   "confirmPassword": "supPergutesgeheimespassword-123",
   "userAddress": {
-    "street": "wintergarten-allee.",
-    "city": "Berlin",
-    "zip": "17167",
+    "street": "test-allee.",
+    "city": "Testhausen",
+    "zip": "28133",
     "country": "germany"
   },
-  "status":"this is a test"
+  "status":"Token test"
 }
 
 

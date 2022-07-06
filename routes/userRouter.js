@@ -48,8 +48,20 @@ userRouter
         req.body.password = await hash(req.body.password);
 
         const user = await User.create(req.body);
+
+        const token = jwt.sign({ id: user._id }, process.env.SECRET, {
+          expiresIn: "7 days",
+        });
+         console.log("test",token);
+         console.log('user :>> ', user);
+        res.cookie("token", token, { httpOnly: true });
+        res.cookie("avatar", user.avatar);
+        res.cookie("profileName", user.profileName);
+
         res.status(201).send({
           message: "Registered successfully",
+          user,
+          token,
         });
       } catch (error) {
         next({ status: 400, errors: error.message });
