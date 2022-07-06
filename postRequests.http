@@ -90,8 +90,8 @@ POST {{url}}/garden
 Content-Type: application/json
 
 {
-    "title": "garden post with cookie 3",
-    "description": "3 test"
+    "title": "test register token 2",
+    "description": "2 test"
 }
 
 ### Update a garden Post
@@ -123,12 +123,12 @@ POST {{url}}/event
 Content-Type: application/json
 
 {
-    "title": "event test with cookies2",
+    "title": "event test with register token",
     "description": "event test",
-    "startDate": "2022-06-10",
+    "start": "2022-06-10",
     "startTime": "8:00am",
-    "endDate": "",
-    "endTime": "8:30am",
+    "endDate": "9:00am",
+    "end": "8:30am",
     "address": { 
         "street": "Pumpkin",
         "streetNumber": "2a",
