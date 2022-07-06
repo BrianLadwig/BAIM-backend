@@ -57,16 +57,17 @@ POST {{url}}/user/login
 Content-Type: application/json
 
 {
-  "email": "br.ladwig@gmail.com",
-  "password": "supPergutesgeheimespassword-123"
+  "email": "testman@gmail.com",
+  "password": "supPergutesgeheimespassword-321"
 }
 
 ### UPDATE USER DATA ###
-PATCH {{url}}/user/62c4087042e07ccbf87d674a
+PATCH {{url}}/user/62c55076acc55d4c35d84627
 Content-Type: application/json
 
 {
-  "status": "I like bananas"
+  "password":"supPergutesgeheimespassword-321",
+  "status": "new password test"
 }
 
 ### DELETE USER ###

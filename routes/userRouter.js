@@ -132,6 +132,13 @@ userRouter
   })
   .patch("/:id", checkLogin, async (req, res, next) => {
     try {
+
+      if(req.body.password){
+
+        req.body.password = await hash(req.body.password);
+        
+      }
+
       const user = await User.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
       });
