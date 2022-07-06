@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 import checkLogin from "../middlewares/checkLogin.js";
 import userRegisterValidators from "../validators/userRegisterValidators.js";
 import userLoginValidators from "../validators/userLoginValidators.js";
+import userUpdateValidators from "../validators/userUpdateValidators.js";
 import requestValidator from "../middlewares/requestValidator.js";
 import { hash, compare } from "../lib/crypto.js";
 
@@ -168,7 +169,7 @@ userRouter
       next({ status: 400, errors: error.message });
     }
   })
-  .patch("/:id/following", checkLogin, async (req, res, next) => {
+  .patch("/:id/following", checkLogin, requestValidator(userUpdateValidators), async (req, res, next) => {
     try {
       const { id: _id } = req.params; // the user you want to follow
       const loggedInUser = await User.findById(req.user._id);
