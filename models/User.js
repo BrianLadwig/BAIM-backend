@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+
 const { Schema, model } = mongoose;
 
 const required = true;
@@ -49,14 +50,15 @@ const UserSchema = new Schema(
       trim,
       enum: ["arts-and-craft", "beauty", "event", "garden", "recipe"],
     },
-    beauty:    { type: [Schema.Types.ObjectId], ref: "beauty" },
-    recipe:    { type: [Schema.Types.ObjectId], ref: "recipe" },
-    artsCraft: { type: [Schema.Types.ObjectId], ref: "artsCraft" },
-    garden:    { type: [Schema.Types.ObjectId], ref: "garden" },
-    event:     { type: [Schema.Types.ObjectId], ref: "event" },
-    pin:       { type: [PinSchema], default:[] },
-    followers: { type: [Schema.Types.ObjectId], ref: "followers" },
-    following: { type: [Schema.Types.ObjectId], ref: "following" },
+    beauty:     { type: [Schema.Types.ObjectId], ref: "beauty" },
+    recipe:     { type: [Schema.Types.ObjectId], ref: "recipe" },
+    artsCraft:  { type: [Schema.Types.ObjectId], ref: "artsCraft" },
+    garden:     { type: [Schema.Types.ObjectId], ref: "garden" },
+    event:      { type: [Schema.Types.ObjectId], ref: "event" },
+    pin:        { type: [PinSchema], default:[] },
+    followers:  { type: [Schema.Types.ObjectId], ref: "followers" },
+    following:  { type: [Schema.Types.ObjectId], ref: "following" },
+    confirmed:  { type: Boolean, required, default: false }
     // If we need dmMessages: { type: [Schema.Types.ObjectId], ref: "dmMessages" },
     // If we need the user/comment reference. Maybe
   },

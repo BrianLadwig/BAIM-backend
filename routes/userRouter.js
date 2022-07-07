@@ -7,6 +7,22 @@ import userLoginValidators from "../validators/userLoginValidators.js";
 import userUpdateValidators from "../validators/userUpdateValidators.js";
 import requestValidator from "../middlewares/requestValidator.js";
 import { hash, compare } from "../lib/crypto.js";
+import nodemailer from "nodemailer"
+import crypto from "crypto"
+
+
+const transporter = nodemailer.createTransport({
+  service : "gmail",
+  auth : {
+    user : "baimrocks04@gmail.com",
+    pass : "2022baim"
+  },
+  tls : {
+    rejectUnauthorized : false
+  }
+})
+
+
 
 const userRouter = express.Router();
 
@@ -55,14 +71,24 @@ userRouter
         });
          console.log("test",token);
          console.log('user :>> ', user);
-        res.cookie("token", token, { httpOnly: true });
-        res.cookie("avatar", user.avatar);
-        res.cookie("profileName", user.profileName);
+         res.cookie("token", token, { httpOnly: true });
+         res.cookie("avatar", user.avatar);
+         res.cookie("profileName", user.profileName);
 
-        res.status(201).send({
-          message: "Registered successfully",
-          user,
-          token,
+        //  send verification mail to user
+
+        const mailOptions = {
+          from: ' "Verify your email" <baimrocks04@gmail.com> ',
+          to: user.email,
+          subject: "placeholder"
+        }
+
+
+
+         res.status(201).send({
+           message: "Registered successfully",
+           user,
+           token,
         });
       } catch (error) {
         next({ status: 400, errors: error.message });
