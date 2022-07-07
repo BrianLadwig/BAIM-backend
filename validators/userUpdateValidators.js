@@ -36,13 +36,6 @@ const userUpdateValidators = [
 	// 	.escape(),
 	body("email")
 		.optional({checkFalsy: true})
-		.custom( value =>{
-            return User.find({email: value}).then(user =>{
-                if(user.length !== 0){
-                    return Promise.reject('Email already exists!')
-                }
-            })
-        })
 		.isEmail()
 		.withMessage("Not a valid email address")
 		.bail()

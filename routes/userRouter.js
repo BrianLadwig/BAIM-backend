@@ -157,6 +157,21 @@ userRouter
 	  next({ status: 400, errors: error.message });
 	}
   })
+  .delete("/:id", checkLogin, async (req, res, next) => {
+    try {
+      const user = await User.findById(req.params.id)
+      await user.remove()
+      // const user = await User.findByIdAndDelete(req.params.id);
+      if (!user) {
+        return next({ status: 404, errors: "User not found" });
+      }
+      res.status(200).send({
+        message: "User deleted successfully.",
+      });
+    } catch (error) {
+      next({ status: 400, errors: error.message });
+    }
+  })
   .patch("/:id", checkLogin, requestValidator(userUpdateValidators), async (req, res, next) => {
     try {
 
@@ -180,22 +195,7 @@ userRouter
       next({ status: 400, errors: error.message });
     }
   })
-  .delete("/:id", checkLogin, async (req, res, next) => {
-    try {
-      const user = await User.findById(req.params.id)
-      await user.remove()
-      // const user = await User.findByIdAndDelete(req.params.id);
-      if (!user) {
-        return next({ status: 404, errors: "User not found" });
-      }
-      res.status(200).send({
-        message: "User deleted successfully.",
-      });
-    } catch (error) {
-      next({ status: 400, errors: error.message });
-    }
-  })
-  .patch("/:id/following", checkLogin, async (req, res, next) => {
+  .patch("/following/:id", checkLogin, async (req, res, next) => {
     try {
       const { id: _id } = req.params; // the user you want to follow
       const loggedInUser = await User.findById(req.user._id);

@@ -147,7 +147,11 @@ Content-Type: application/json
 }
 
 ### Like an event
-PATCH  {{url}}/event/62a7421319bcc097c8eb4f21/like
+PATCH  {{url}}/event/62b1ac38bdc67faca3f2d310/like
+Content-Type: application/json
+
+### attend to an event
+PATCH  {{url}}/event/62b1ac38bdc67faca3f2d310/attend
 Content-Type: application/json
 
 

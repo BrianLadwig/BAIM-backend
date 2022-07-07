@@ -33,7 +33,7 @@ const eventSchema = Schema({
     tags:               { type: [String], default: [] },
     comments:           { type: [Object], default: [] },
     likes:              { type: [String], default: [] },
-    going:              { type: [Object], default: [] }
+    attendingUsers:     { type: [Schema.Types.ObjectId], ref: "user" }
 }, { timestamps: true })
 
 
