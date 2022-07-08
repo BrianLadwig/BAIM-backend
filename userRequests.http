@@ -39,7 +39,7 @@ Content-Type: application/json
   "lastName": "Testman",
   "profileName": "TestiPet",
   "profilePicture": "",
-  "email": "testman@gmail.com",
+  "email": "blxnoise@gmail.com",
   "password": "supPergutesgeheimespassword-123",
   "confirmPassword": "supPergutesgeheimespassword-123",
   "userAddress": {

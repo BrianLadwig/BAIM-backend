@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import crypto from "crypto"
 
 
 const { Schema, model } = mongoose;
@@ -59,6 +60,7 @@ const UserSchema = new Schema(
     followers:      { type: [Schema.Types.ObjectId], ref: "followers" },
     following:      { type: [Schema.Types.ObjectId], ref: "following" },
     eventAttending: { type: [Schema.Types.ObjectId], ref: "attend" },
+    emailToken:     { type: String, default: crypto.randomBytes(64).toString('hex') },
     confirmed:      { type: Boolean, required, default: false }
     // If we need dmMessages: { type: [Schema.Types.ObjectId], ref: "dmMessages" },
     // If we need the user/comment reference. Maybe

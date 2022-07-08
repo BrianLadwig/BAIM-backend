@@ -7,22 +7,38 @@ import userLoginValidators from "../validators/userLoginValidators.js";
 import userUpdateValidators from "../validators/userUpdateValidators.js";
 import requestValidator from "../middlewares/requestValidator.js";
 import { hash, compare } from "../lib/crypto.js";
-import nodemailer from "nodemailer"
-import crypto from "crypto"
+import nodemailer from "nodemailer";
 
+// const transporter = nodemailer.createTransport({
+//   service : "gmail",
+//   auth : {
+//     user : "baimrocks04@gmail.com",
+//     pass : process.env.MAILPASSWORD
+//   },
+//   tls : {
+//     rejectUnauthorized : false
+//   }
+// })
 
-const transporter = nodemailer.createTransport({
-  service : "gmail",
-  auth : {
-    user : "baimrocks04@gmail.com",
-    pass : "2022baim"
-  },
-  tls : {
-    rejectUnauthorized : false
-  }
-})
+// async..await is not allowed in global scope, must use a wrapper
+async function main() {
+  // Generate test SMTP service account from ethereal.email
+  // Only needed if you don't have a real mail account for testing
+  let testAccount = await nodemailer.createTestAccount();
 
+  // create reusable transporter object using the default SMTP transport
+  let transporter = nodemailer.createTransport({
+    host: "smtp.ethereal.email",
+    port: 587,
+    secure: false, // true for 465, false for other ports
+    auth: {
+      user: testAccount.user, // generated ethereal user
+      pass: testAccount.pass, // generated ethereal password
+    },
+  })
 
+  return transporter
+}
 
 const userRouter = express.Router();
 
@@ -49,7 +65,7 @@ userRouter
   })
   .get("/:profileName", async (req, res, next) => {
     try {
-      const user = await User.findOne({profileName: req.params.profileName });
+      const user = await User.findOne({ profileName: req.params.profileName });
       if (!user) {
         return next({ status: 404, errors: "User not found" });
       }
@@ -58,7 +74,8 @@ userRouter
       next({ status: 404, errors: error.message });
     }
   })
-  .post("/register",
+  .post(
+    "/register",
     requestValidator(userRegisterValidators),
     async (req, res, next) => {
       try {
@@ -69,33 +86,66 @@ userRouter
         const token = jwt.sign({ id: user._id }, process.env.SECRET, {
           expiresIn: "7 days",
         });
-         console.log("test",token);
-         console.log('user :>> ', user);
-         res.cookie("token", token, { httpOnly: true });
-         res.cookie("avatar", user.avatar);
-         res.cookie("profileName", user.profileName);
+        //  console.log("test",token);
+        //  console.log('user :>> ', user);
+        res.cookie("token", token, { httpOnly: true });
+        res.cookie("avatar", user.avatar);
+        res.cookie("profileName", user.profileName);
+
+        //  ethernel nodmailer transporter
 
         //  send verification mail to user
+
+        const transporter = await main()
 
         const mailOptions = {
           from: ' "Verify your email" <baimrocks04@gmail.com> ',
           to: user.email,
-          subject: "placeholder"
-        }
+          subject: "codewithsid -verify your email",
+          html: `<h2> ${user.firstName}! Thanks for registering on our site </h2>
+                  <h4> Please verify your mail to continue...</h4>
+                  <a href="http://${req.headers.host}/user/verify-email?token=${user.emailToken}">Verify Your Email`,
+        };
 
+        // sendin mail
 
+        transporter.sendMail(mailOptions, function (error, info) {
+          if (error) {
+            console.log(error);
+          } else {
+            console.log("Verification email is send to your Email account");
+          }
+        });
 
-         res.status(201).send({
-           message: "Registered successfully",
-           user,
-           token,
+        res.status(201).send({
+          message: "Registered successfully",
+          user,
+          token,
         });
       } catch (error) {
         next({ status: 400, errors: error.message });
       }
     }
   )
-  .post("/login",
+  .get("/verify-email", async (req, res) => {
+    try {
+      const token = req.query.token;
+      const user = await User.findOne({ emailToken: token });
+      if (user) {
+        user.emailToken = null;
+        user.confirmed = true;
+        await User.save();
+        res.redirect("/user/login");
+      } else {
+        res.redirect("/user/regiter");
+        console.log("email is not verified");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  })
+  .post(
+    "/login",
     requestValidator(userLoginValidators),
     async (req, res, next) => {
       try {
@@ -147,20 +197,20 @@ userRouter
     }
   })
   .post("/logout", checkLogin, async (req, res, next) => {
-	try {
-	  // set to empty
-	  res.clearCookie("token");
-	  res.clearCookie("avatar");
-	  res.clearCookie("profileName");
-	  res.status(200).json({ message: "You have logged out" });
-	} catch (error) {
-	  next({ status: 400, errors: error.message });
-	}
+    try {
+      // set to empty
+      res.clearCookie("token");
+      res.clearCookie("avatar");
+      res.clearCookie("profileName");
+      res.status(200).json({ message: "You have logged out" });
+    } catch (error) {
+      next({ status: 400, errors: error.message });
+    }
   })
   .delete("/:id", checkLogin, async (req, res, next) => {
     try {
-      const user = await User.findById(req.params.id)
-      await user.remove()
+      const user = await User.findById(req.params.id);
+      await user.remove();
       // const user = await User.findByIdAndDelete(req.params.id);
       if (!user) {
         return next({ status: 404, errors: "User not found" });
@@ -172,29 +222,31 @@ userRouter
       next({ status: 400, errors: error.message });
     }
   })
-  .patch("/:id", checkLogin, requestValidator(userUpdateValidators), async (req, res, next) => {
-    try {
+  .patch(
+    "/:id",
+    checkLogin,
+    requestValidator(userUpdateValidators),
+    async (req, res, next) => {
+      try {
+        if (req.body.password) {
+          req.body.password = await hash(req.body.password);
+        }
 
-      if(req.body.password){
-
-        req.body.password = await hash(req.body.password);
-        
+        const user = await User.findByIdAndUpdate(req.params.id, req.body, {
+          new: true,
+        });
+        if (!user) {
+          return next({ status: 404, errors: "User not found" });
+        }
+        res.status(200).send({
+          message: "User updated successfully.",
+          user,
+        });
+      } catch (error) {
+        next({ status: 400, errors: error.message });
       }
-
-      const user = await User.findByIdAndUpdate(req.params.id, req.body, {
-        new: true,
-      });
-      if (!user) {
-        return next({ status: 404, errors: "User not found" });
-      }
-      res.status(200).send({
-        message: "User updated successfully.",
-        user,
-      });
-    } catch (error) {
-      next({ status: 400, errors: error.message });
     }
-  })
+  )
   .patch("/following/:id", checkLogin, async (req, res, next) => {
     try {
       const { id: _id } = req.params; // the user you want to follow
@@ -202,7 +254,7 @@ userRouter
       const followedUser = await User.findById(_id);
 
       const isFollowed = loggedInUser.following.find(
-        id => id.toString() === _id.toString()
+        (id) => id.toString() === _id.toString()
       );
 
       if (!isFollowed) {
@@ -210,12 +262,11 @@ userRouter
         followedUser.followers.push(loggedInUser);
       } else {
         loggedInUser.following = loggedInUser.following.filter(
-          id => id.toString() !== _id.toString()
+          (id) => id.toString() !== _id.toString()
         );
 
         followedUser.followers = followedUser.followers.filter(
-          id => id.toString() !== req.user._id.toString()
-          
+          (id) => id.toString() !== req.user._id.toString()
         );
       }
 
