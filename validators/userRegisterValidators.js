@@ -99,9 +99,9 @@ const userRegisterValidators = [
 	body("userAddress.country")
 		.notEmpty()
 		.withMessage("Country should not be empty")
-		.bail()
-		.isAlpha()
-		.withMessage("Country can only contain letters"),
+		.bail(),
+		// .isAlpha()
+		// .withMessage("Country can only contain letters"),
 	body("status")
 		.isLength({max:5000})
 		.withMessage('no more then 5000 characters including whitespace')
