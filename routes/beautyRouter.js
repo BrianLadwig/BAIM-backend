@@ -107,31 +107,7 @@ beautyRouter
             next({ status: 409, errors: error.message })
         }
     })
-    .patch("/:id", checkLogin, requestValidator(updatedPostValidator), async (req, res, next) => {
-        const { id:_id } = req.params
-        const updatedPost = await Beauty.findByIdAndUpdate(_id, req.body, { new: true })
-        if(!updatedPost){
-            return next({ status: 404, errors: "Post not found" })
-        }
-        res.status(200).json({message: 'Updated', updatedPost})
-    })
-    .delete("/:id", checkLogin, async (req, res, next) => {
-        try {
-            const { id:_id } = req.params
-            const post = await Beauty.findById(_id)
-            post.author = req.user._id //adding the userId from cookies
-            const user = await User.findById(post.author)
-            const postIndex = user.beauty.indexOf(_id)
-            user.beauty.splice(postIndex, 1)
-            await user.save()
-            await post.remove()
-            // await Post.findByIdAndDelete(_id)
-            res.status(200).json({ message: "Deleted", deleted: post })
-        } catch (error) {
-            next({ status: 400, errors: error.message })
-        }
-    })
-    .patch("/:id/like", checkLogin, async (req, res, next) => {
+    .patch("/pin/:id", checkLogin, async (req, res, next) => {
         try {
             const { id:_id } = req.params
             req.body.author = req.user._id
@@ -152,6 +128,30 @@ beautyRouter
             await user.save();
             await Beauty.findByIdAndUpdate(_id, post, { new: true })
             res.status(200).json({message: "toggle like"})
+        } catch (error) {
+            next({ status: 400, errors: error.message })
+        }
+    })
+    .patch("/:id", checkLogin, requestValidator(updatedPostValidator), async (req, res, next) => {
+        const { id:_id } = req.params
+        const updatedPost = await Beauty.findByIdAndUpdate(_id, req.body, { new: true })
+        if(!updatedPost){
+            return next({ status: 404, errors: "Post not found" })
+        }
+        res.status(200).json({message: 'Updated', updatedPost})
+    })
+    .delete("/:id", checkLogin, async (req, res, next) => {
+        try {
+            const { id:_id } = req.params
+            const post = await Beauty.findById(_id)
+            post.author = req.user._id //adding the userId from cookies
+            const user = await User.findById(post.author)
+            const postIndex = user.beauty.indexOf(_id)
+            user.beauty.splice(postIndex, 1)
+            await user.save()
+            await post.remove()
+            // await Post.findByIdAndDelete(_id)
+            res.status(200).json({ message: "Deleted", deleted: post })
         } catch (error) {
             next({ status: 400, errors: error.message })
         }

@@ -112,6 +112,32 @@ eventRouter
       }
     }
   )
+  .patch("/pin/:id", checkLogin, async (req, res, next) => {
+    try {
+      const { id: _id } = req.params;
+      req.body.author = req.user._id;
+      const post = await Event.findById(_id);
+      const index = post.likes.findIndex(
+        (id) => id === String(req.body.author)
+      );
+      const user = await User.findById(req.user._id);
+      if (index === -1) {
+        // like
+        post.likes.push(req.body.author);
+        user.pin.push({ postId: post._id, postType: post.type });
+      } else {
+        // dislike
+        post.likes = post.likes.filter((id) => id !== String(req.body.author));
+        user.pin = user.pin.filter((id) => id.toString() !== _id.toString());
+      }
+
+      await user.save();
+      await Event.findByIdAndUpdate(_id, post, { new: true });
+      res.status(200).json({ message: "toggle like" });
+    } catch (error) {
+      next({ status: 400, errors: error.message });
+    }
+  })
   .patch(
     "/:id",
     checkLogin,
@@ -139,32 +165,6 @@ eventRouter
       await post.remove();
       // await Post.findByIdAndDelete(_id)
       res.status(200).json({ message: "Deleted", deleted: post });
-    } catch (error) {
-      next({ status: 400, errors: error.message });
-    }
-  })
-  .patch("/:id/like", checkLogin, async (req, res, next) => {
-    try {
-      const { id: _id } = req.params;
-      req.body.author = req.user._id;
-      const post = await Event.findById(_id);
-      const index = post.likes.findIndex(
-        (id) => id === String(req.body.author)
-      );
-      const user = await User.findById(req.user._id);
-      if (index === -1) {
-        // like
-        post.likes.push(req.body.author);
-        user.pin.push({ postId: post._id, postType: post.type });
-      } else {
-        // dislike
-        post.likes = post.likes.filter((id) => id !== String(req.body.author));
-        user.pin = user.pin.filter((id) => id.toString() !== _id.toString());
-      }
-
-      await user.save();
-      await Event.findByIdAndUpdate(_id, post, { new: true });
-      res.status(200).json({ message: "toggle like" });
     } catch (error) {
       next({ status: 400, errors: error.message });
     }
