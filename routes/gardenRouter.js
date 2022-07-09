@@ -109,6 +109,34 @@ gardenRouter
             next({ status: 409, errors: error.message })
         }
     })
+    .patch("/pin/:id", checkLogin, async (req, res, next) => {
+        try {
+            const { id: _id } = req.params;
+            req.body.author = req.user._id;
+            const post = await Garden.findById(_id);
+            const index = post.likes.findIndex(
+            (id) => id === String(req.body.author)
+            );
+            const user = await User.findById(req.user._id);
+            
+            if (index === -1) {
+            // like
+            post.likes.push(req.body.author);
+            user.pin.push({postId:post._id, postType: post.type});
+            } else {
+            // dislike
+            post.likes = post.likes.filter((id) => id !== String(req.body.author));
+            user.pin = user.pin.filter(id => id.toString() !== _id.toString())
+            }
+            await user.save();
+            await Garden.findByIdAndUpdate(_id, post, {
+            new: true,
+            });
+            res.status(200).json({ message: "toggle like" });
+        } catch (error) {
+            next({ status: 400, errors: error.message });
+        }
+    })
     .patch("/:id", checkLogin, requestValidator(updatedPostValidator), async (req, res, next) => {
         const { id:_id } = req.params
         const updatedPost = await Garden.findByIdAndUpdate(_id, req.body, { new: true })
@@ -133,34 +161,7 @@ gardenRouter
             next({ status: 400, errors: error.message })
         }
     })
-    .patch("/:id/like", checkLogin, async (req, res, next) => {
-          try {
-      const { id: _id } = req.params;
-      req.body.author = req.user._id;
-      const post = await Garden.findById(_id);
-      const index = post.likes.findIndex(
-        (id) => id === String(req.body.author)
-      );
-      const user = await User.findById(req.user._id);
-      
-      if (index === -1) {
-        // like
-        post.likes.push(req.body.author);
-        user.pin.push({postId:post._id, postType: post.type});
-      } else {
-        // dislike
-        post.likes = post.likes.filter((id) => id !== String(req.body.author));
-        user.pin = user.pin.filter(id => id.toString() !== _id.toString())
-      }
-      await user.save();
-      await Garden.findByIdAndUpdate(_id, post, {
-        new: true,
-      });
-      res.status(200).json({ message: "toggle like" });
-    } catch (error) {
-      next({ status: 400, errors: error.message });
-    }
-});
+
     
 
   
