@@ -53,9 +53,9 @@ userRouter
         const token = jwt.sign({ id: user._id }, process.env.SECRET, {
           expiresIn: "7 days",
         });
-         console.log("test",token);
-         console.log('user :>> ', user);
+
         res.cookie("token", token, { httpOnly: true });
+        res.cookie("id", user._id);
         res.cookie("avatar", user.avatar);
         res.cookie("profileName", user.profileName);
 
@@ -91,8 +91,10 @@ userRouter
         // console.log("test",token);
         // console.log('user :>> ', user);
         res.cookie("token", token, { httpOnly: true });
+        res.cookie("id", user._id);
         res.cookie("avatar", user.avatar);
         res.cookie("profileName", user.profileName);
+
 
         res.status(200).send({
           message: `Welcome back ${user.firstName} ${user.lastName}`,
@@ -124,7 +126,8 @@ userRouter
 	try {
 	  // set to empty
 	  res.clearCookie("token");
-	  res.clearCookie("avatar");
+	  res.clearCookie("id");
+    res.clearCookie("avatar");
 	  res.clearCookie("profileName");
 	  res.status(200).json({ message: "You have logged out" });
 	} catch (error) {

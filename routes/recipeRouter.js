@@ -120,14 +120,15 @@ recipeRouter
                 const post = await Recipe.findById(_id)
                 const index = post.likes.findIndex(id => id === String(req.body.author))
                 const user = await User.findById(req.user._id);
-                if(index === -1) {
+                if(!post.likes.find(id => id.toString() === user._id.toString())) {
                     // like
                     post.likes.push(req.body.author)
                     user.pin.push({postId:post._id, postType: post.type});
                 } else {
                     // dislike
-                    post.likes = post.likes.filter(id => id !== String(req.body.author))
-                    user.pin = user.pin.filter(id => id.toString() !== _id.toString())
+                    post.likes = post.likes.filter(id => String(id) !== String(req.body.author))
+                    user.pin = user.pin.filter(obj => obj.postId.toString() !== _id.toString())
+                    // user.pin = user.pin.filter(id => id.toString() !== _id.toString())
                 }
                 await user.save();
                 await Recipe.findByIdAndUpdate(_id, post, { new: true })

@@ -219,13 +219,13 @@ commentsRouter
       const index = comment.likes.findIndex(
         (id) => id === String(req.body.author)
       );
-      if (index === -1) {
+      if (!comment.likes.find(data => data.toString() === req.body.author)) {
         // like
         comment.likes.push(req.body.author);
       } else {
         // dislike
         comment.likes = comment.likes.filter(
-          (id) => id !== String(req.body.author)
+          (id) => String(id) !== String(req.body.author)
         );
       }
       const updatedcomment = await Comment.findByIdAndUpdate(_id, comment, {

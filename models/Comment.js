@@ -28,7 +28,7 @@ const commentSchema = Schema(
     garden:     { type: Schema.Types.ObjectId, ref: "garden" },
     event:      { type: Schema.Types.ObjectId, ref: "event" },
     message:    { type: String, required, trim },
-    likes:      { type: [String], default: [] }
+    likes:      { type: [Schema.Types.ObjectId], default: [], ref: "user" }
   },
   { timestamps }
 );
