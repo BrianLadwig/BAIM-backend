@@ -21,7 +21,7 @@ const gardenSchema = Schema({
     category:         { type: [String], default: [],enum: ["vegetable", "fruit", "grain", "herb","plants", "flower", "indoor-plant", "outdoor-plant", "plant", "tree", "other"] },
     tags:             { type: [String], default: [] },
     comments:         { type: [Object], default: [] },
-    likes:            { type: [String], default: [] },
+    likes:            { type: [Schema.Types.ObjectId], default: [], ref: "user"  },
 }, { timestamps: true })
 
 gardenSchema.pre("remove", async function () {

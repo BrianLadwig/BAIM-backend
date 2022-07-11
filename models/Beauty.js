@@ -21,7 +21,7 @@ const beautySchema = Schema({
     category:         { type: [String], default: [], enum: ["hygiene","skin", "hair", "face", "anti-aging","makeup","other"] },
     tags:             { type: [String], default: [] },
     comments:         { type: [Object], default: [] },
-    likes:            { type: [String], default: [] },
+    likes:            { type: [Schema.Types.ObjectId], default: [], ref: "user" },
 }, { timestamps: true })
 
 beautySchema.pre("remove", async function () {

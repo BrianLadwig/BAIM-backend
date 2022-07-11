@@ -29,7 +29,7 @@ const recipeSchema = new Schema(
     category:         { type: [String], default: [],enum: ["juice","smoothie", "breakfast", "sandwiches", "main-dish", "soup", "salad", "appetizer", "dessert", "other"] },
     tags:             { type: [String], default: [] },
     comments:         { type: [Object], default: [] },
-    likes:            { type: [String], default: [] },
+    likes:            { type: [Schema.Types.ObjectId], default: [], ref: "user" },
   },
   { timestamps }
 );
