@@ -78,9 +78,9 @@ const eventValidator=[
         body('address.country')
             .notEmpty()
             .withMessage("Country should not be empty")
-            .bail()
-            .matches(/^[a-zA-Z\s]*$/)
-            .withMessage('Must be a valid country'),
+            .bail(),
+            // .matches(/^[a-zA-Z\s]*$/)
+            // .withMessage('Must be a valid country'),
 
         body('tags')
             .isArray()
