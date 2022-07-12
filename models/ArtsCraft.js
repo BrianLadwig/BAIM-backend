@@ -20,7 +20,7 @@ const artsCraftSchema = Schema(
     image:            { type: String , default: 'https://firebasestorage.googleapis.com/v0/b/baimimages.appspot.com/o/files%2Fimage%2FLokaWhite_forPosts.png?alt=media&token=006943af-6798-4067-aca2-ce0de5771391'},
     link:             { type: String },
     category:         { type: [String], default: [], enum: ["upcycling", "refashion", "decor", "ceramic", "textile", "drawings", "zero-waste", "other"] },
-    tags:             { type: [Schema.Types.ObjectId], default: [] },
+    tags:             { type: [String], default: [] },
     comments:         { type: [Object], default: [] },
     likes:            { type: [Schema.Types.ObjectId], default: [], ref: "user"  },
   },
