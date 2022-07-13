@@ -84,9 +84,10 @@ The users can edit their posts, pin them to their profile, read and write commen
 
 
 
-<!-- LINK -->
+<!-- LINKS -->
 
-## Link
+## Links
 
-[Loka Frontend](https://github.com/heyitsashleyhere/BAIM_frontend)
+- [Loka Frontend](https://github.com/heyitsashleyhere/BAIM_frontend)
+- [Github Projct Page](https://github.com/users/BrianLadwig/projects/1/views/1?filterQuery=)
 
