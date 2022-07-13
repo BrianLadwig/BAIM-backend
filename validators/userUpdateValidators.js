@@ -79,7 +79,7 @@ const userUpdateValidators = [
 		.withMessage("Zip code can only contain numbers"),
 	body("userAddress.country")
 		.optional({checkFalsy: true})
-		.isAlpha()
+		.isAlpha('en-US', {ignore: ' '})
 		.withMessage("Country can only contain letters"),
 	body("status")
 		.optional({checkFalsy: true})
