@@ -1,6 +1,7 @@
 <h1 align="center">Loka App Backend</h1>
 <!-- add our website link -->
 
+
 <!-- TABLE OF CONTENTS -->
 
 ## Table of Contents
@@ -11,7 +12,6 @@
 - [Team](#team)
 - [Links](#links)
 
-<!-- ABOUT -->
 
 ## Overview
 
@@ -83,4 +83,10 @@ The users can edit their posts, pin them to their profile, read and write commen
 
 
 
+
+<!-- LINK -->
+
+## Link
+
+[Loka Frontend](https://github.com/heyitsashleyhere/BAIM_frontend)
 
