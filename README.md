@@ -1,4 +1,6 @@
 <h1 align="center">Loka App Backend</h1>
+<!-- add our website link -->
+
 
 <!-- TABLE OF CONTENTS -->
 
@@ -8,18 +10,17 @@
 - [Features](#features)
 - [Technologies](#technologies)
 - [Team](#team)
-- [link](#link)
-
-<!-- ABOUT -->
-
-## About
+- [Links](#links)
 
 
-This Project is our Final Project of the one year fullstack web developer course at [DCI Digital Career Institute gGmbH](https://digitalcareerinstitute.org/de/).
+## Overview
+
+
+This Project is our Final Project of the one year fullstack web developer course at [DCI Digital Career Institute gGmbH]().
 
 The Project take place from the 30th of May to the 19th of Juli
 
-## about the App "Loka"
+## About
 
 "There is no power for change greater than a community discovering what it cares about." Margaret J. Wheatley
 
@@ -82,10 +83,10 @@ The users can edit their posts, pin them to their profile, read and write commen
 
 
 
-<!-- LINK -->
 
+<!-- LINK -->
 
 ## Link
 
-
 [Loka Frontend](https://github.com/heyitsashleyhere/BAIM_frontend)
+

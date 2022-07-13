@@ -7,7 +7,7 @@ const userRegisterValidators = [
 		.notEmpty()
 		.withMessage("First name should not be empty")
 		.bail()
-		.matches(/^([a-zA-Z]{3,20})*$/)
+		.matches(/^([a-zA-Z]{2,20})*$/)
 		.withMessage("First name should be between 3 and 20 characters")
 		.bail()
 		.trim()
@@ -16,7 +16,7 @@ const userRegisterValidators = [
 		.notEmpty()
 		.withMessage("Last name should not be empty")
 		.bail()
-		.matches(/^([a-zA-Z]{4,20})*$/)
+		.matches(/^([a-zA-Z]{2,20})*$/)
 		.withMessage("Last name should be between 4 and 20 characters")
 		.bail()
 		.trim()
@@ -99,9 +99,9 @@ const userRegisterValidators = [
 	body("userAddress.country")
 		.notEmpty()
 		.withMessage("Country should not be empty")
-		.bail(),
-		// .isAlpha()
-		// .withMessage("Country can only contain letters"),
+		.bail()
+		.isAlpha('en-US', {ignore: ' '})
+		.withMessage("Country can only contain letters"),
 	body("status")
 		.isLength({max:5000})
 		.withMessage('no more then 5000 characters including whitespace')
