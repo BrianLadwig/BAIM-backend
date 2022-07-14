@@ -27,6 +27,7 @@ commentsRouter
     checkLogin,
     requestValidator(commentsValidators),
     async (req, res, next) => {
+      console.log('req.body :>> ', req.body);
       try {
         const post = req.body;
         post.authorAvatar = req.user.avatar
@@ -120,7 +121,7 @@ commentsRouter
         });
 
         if (!comment) {
-          throw next({ status: 404, errors: "Comment not found." });
+          throw next({ status: 404, errors: "Comment not found" });
         }
 
         // To also update the reference in the related Post
@@ -197,14 +198,97 @@ commentsRouter
     }
   )
   .delete("/:id", checkLogin, async (req, res, next) => {
+    // console.log('req.body :>> ', req.body);
     try {
       const { id: _id } = req.params;
       const comment = await Comment.findById(_id);
 
       if (!comment) {
-        throw next({ status: 404, errors: errors.message });
+        throw next({ status: 404, errors: "Comment not found" });
       }
 
+      // To also update the reference in the related Post
+      const type = req.body.type;
+
+      if (type === "beauty") {
+        const beauty = await Beauty.findById(req.body.beauty);
+
+        if (!beauty) {
+          return next({
+            status: 404,
+            errors: "Post not found"
+          });
+        }
+        console.log('hello :>> ');
+        beauty.comments = beauty.comments.filter(
+          (x) => x._id.toString() !== _id
+        );
+
+        await beauty.save();
+      } else if (type === "recipe") {
+        const recipe = await Recipe.findById(req.body.recipe);
+
+        if (!recipe) {
+          return next({
+            status: 404,
+            errors: "Post not found"
+          });
+        }
+
+        recipe.comments = recipe.comments.filter(
+          (x) => x._id.toString() !== _id
+        );
+
+        await recipe.save();
+      } else if (type === "artsCraft") {
+        const artsCraft = await ArtsCraft.findById(req.body.artsCraft);
+
+        if (!artsCraft) {
+          return next({
+            status: 404,
+            errors: "Post not found"
+          });
+        }
+
+        artsCraft.comments = artsCraft.comments.filter(
+          (x) => x._id.toString() !== _id
+        );
+
+        await artsCraft.save();
+      } else if (type === "garden") {
+        const garden = await Garden.findById(req.body.garden);
+
+        if (!garden) {
+          return next({
+            status: 404,
+            errors: "Post not found"
+          });
+        }
+
+        garden.comments = garden.comments.filter(
+          (x) => x._id.toString() !== _id
+        );
+
+        await garden.save();
+      } else if (type === "event") {
+        const event = await Event.findById(req.body.event);
+        console.log(event);
+
+        if (!event) {
+          return next({
+            status: 404,
+            errors: "Post not found"
+          });
+        }
+
+        event.comments = event.comments.filter(
+          (x) => x._id.toString() !== _id
+        );
+
+        await event.save();
+      }
+      // /////////////////////////////////////////////////
+     
       await comment.remove();
       res.send({ ok: true, deleted: comment });
     } catch (error) {
