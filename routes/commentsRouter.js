@@ -19,7 +19,21 @@ commentsRouter
 
       res.status(200).send(comments);
     } catch (error) {
-      next({ status: 404, errors: error.message })
+      next({ status: 404, errors: error })
+    }
+  })
+  .get("/:id", async (req, res, next) => {
+    try {
+      const { id: _id } = req.params;
+      const comment = await Comment.findById(_id);
+
+      if (!comment) {
+        throw next({ status: 404, errors: "Comment not found" });
+      }
+
+      res.status(200).send(comment);
+    } catch (error) {
+      next({ status: 404, errors: error })
     }
   })
   .post(
@@ -27,7 +41,6 @@ commentsRouter
     checkLogin,
     requestValidator(commentsValidators),
     async (req, res, next) => {
-      console.log('req.body :>> ', req.body);
       try {
         const post = req.body;
         post.authorAvatar = req.user.avatar
@@ -105,7 +118,7 @@ commentsRouter
           res.status(201).send(comment);
         }
       } catch (error) {
-        next({ status: 404, errors: error.message });
+        next({ status: 404, errors: error });
       }
     }
   )
@@ -129,7 +142,6 @@ commentsRouter
 
         if (type === "beauty") {
           const beauty = await Beauty.findById(req.body.beauty);
-
           if (!beauty) {
             return next({ status: 404, errors: "Post not found" });
           }
@@ -191,7 +203,7 @@ commentsRouter
         }
         // /////////////////////////////////////////////////
 
-        res.json({ message: "Updated", comment });
+        res.json({ message: "Comment updated", comment });
       } catch (error) {
         next({ status: 404, errors: "something went wrong" });
       }
@@ -219,7 +231,7 @@ commentsRouter
             errors: "Post not found"
           });
         }
-        console.log('hello :>> ');
+        
         beauty.comments = beauty.comments.filter(
           (x) => x._id.toString() !== _id
         );
@@ -290,9 +302,9 @@ commentsRouter
       // /////////////////////////////////////////////////
      
       await comment.remove();
-      res.send({ ok: true, deleted: comment });
+      res.send({ message: "Comment deleted", deleted: comment });
     } catch (error) {
-      next({ status: 404, errors: error.message });
+      next({ status: 404, errors: error });
     }
   })
   .patch("/:id/like", checkLogin, async (req, res, next) => {
@@ -317,7 +329,7 @@ commentsRouter
       });
       res.json({ message: "toggle like" });
     } catch (error) {
-      next({ status: 400, errors: error.message });
+      next({ status: 400, errors: error });
     }
   });
 
