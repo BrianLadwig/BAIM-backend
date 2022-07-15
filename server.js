@@ -15,7 +15,7 @@ import requestLogger from "./middlewares/requestLogger.js";
 
 
 const corsOptions = {
-  origin: true, //included origin as true
+  origin: "http://localhost:3000", //included origin as true
   credentials: true, //included credentials as true
 };
 
