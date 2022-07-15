@@ -15,7 +15,7 @@ import requestLogger from "./middlewares/requestLogger.js";
 
 
 const corsOptions = {
-  origin: "http://localhost:3000", //included origin as true
+  origin: true, //included origin as true
   credentials: true, //included credentials as true
 };
 
@@ -23,24 +23,6 @@ dotenv.config();
 connect();
 const app = express();
 app.use(cors(corsOptions));
-//Cors Configuration - Start
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*")
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested, Content-Type, Accept Authorization"
-  )
-  if (req.method === "OPTIONS") {
-    res.header(
-      "Access-Control-Allow-Methods",
-      "POST, PUT, PATCH, GET, DELETE"
-    )
-    return res.status(200).json({})
-  }
-  next()
-})
-//Cors Configuration - End
-
 app.use(express.json());
 app.use(cookieParser());
 
