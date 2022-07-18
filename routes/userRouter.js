@@ -54,10 +54,27 @@ userRouter
           expiresIn: "7 days",
         });
 
-        res.cookie("token", token, { httpOnly: true });
-        res.cookie("id", user._id);
-        res.cookie("avatar", user.avatar);
-        res.cookie("profileName", user.profileName);
+        res.cookie("token", token, {
+          sameSite : "none",
+          secure: true,
+          domain: "baim-frontend.vercel.app",
+          httpOnly: true
+          });
+        res.cookie("id", user._id, {
+          sameSite : "none",
+          secure: true,
+          domain: "baim-frontend.vercel.app"
+          });
+        res.cookie("avatar", user.avatar, {
+          sameSite : "none",
+          secure: true,
+          domain: "baim-frontend.vercel.app"
+          });
+        res.cookie("profileName", user.profileName, {
+          sameSite : "none",
+          secure: true,
+          domain: "baim-frontend.vercel.app"
+          });
 
         res.status(201).send({
           message: "Registered successfully",
@@ -90,10 +107,27 @@ userRouter
         });
         // console.log("test",token);
         // console.log('user :>> ', user);
-        res.cookie("token", token, { httpOnly: true });
-        res.cookie("id", user._id);
-        res.cookie("avatar", user.avatar);
-        res.cookie("profileName", user.profileName);
+        res.cookie("token", token, {
+          sameSite : "none",
+          secure: true,
+          domain: "baim-frontend.vercel.app",
+          httpOnly: true
+          });
+        res.cookie("id", user._id, {
+          sameSite : "none",
+          secure: true,
+          domain: "baim-frontend.vercel.app"
+          });
+        res.cookie("avatar", user.avatar, {
+          sameSite : "none",
+          secure: true,
+          domain: "baim-frontend.vercel.app"
+          });
+        res.cookie("profileName", user.profileName, {
+          sameSite : "none",
+          secure: true,
+          domain: "baim-frontend.vercel.app"
+          });
 
 
         res.status(200).send({
