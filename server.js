@@ -26,6 +26,17 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
 app.set('trust proxy', true);
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: true,
+    saveUninitialized: false,
+    cookie: {
+      sameSite: process.env.NODE_ENV === "production" ? 'none' : 'lax', // must be 'none' to enable cross-site delivery
+      secure: process.env.NODE_ENV === "production", // must be true if sameSite='none'
+    }
+  })
+);
 
 app.use(requestLogger)
 app.use('/user', userRouter)
