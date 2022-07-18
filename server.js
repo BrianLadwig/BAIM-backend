@@ -15,7 +15,7 @@ import requestLogger from "./middlewares/requestLogger.js";
 
 
 const corsOptions = {
-  origin: 'https://baim-frontend.vercel.app', //included origin as true
+  origin: 'https://loka.vercel.app/', //included origin as true
   credentials: true, //included credentials as true
 };
 
