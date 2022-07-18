@@ -25,6 +25,7 @@ const app = express();
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
+app.set('trust proxy', true);
 
 app.use(requestLogger)
 app.use('/user', userRouter)
