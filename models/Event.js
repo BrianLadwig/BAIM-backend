@@ -27,7 +27,7 @@ const eventSchema = Schema({
     end:                { type: Date,   required },
     address:            { type: addressSchema, required },
     video:              { type: String },
-    image:              { type: String, default: 'https://firebasestorage.googleapis.com/v0/b/baimimages.appspot.com/o/files%2Fimage%2FLokaWhite_forPosts.png?alt=media&token=006943af-6798-4067-aca2-ce0de5771391' },
+    image:              { type: String,  },
     category:           { type: [String], default: [],enum: ["market", "tasting", "workshop", "charity","sit-in","meet-and-greet","fair", "other" ] },
     link:               { type: String },
     tags:               { type: [String], default: [] },

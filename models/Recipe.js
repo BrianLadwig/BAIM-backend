@@ -24,7 +24,7 @@ const recipeSchema = new Schema(
     // ingredients: { type: [ingredientsSchema] },
     description:      { type: String, required },
     video:            { type: String },
-    image:            { type: String, default: 'https://firebasestorage.googleapis.com/v0/b/baimimages.appspot.com/o/files%2Fimage%2FLokaWhite_forPosts.png?alt=media&token=006943af-6798-4067-aca2-ce0de5771391' },
+    image:            { type: String,  },
     link:             { type: String },
     category:         { type: [String], default: [],enum: ["juice","smoothie", "breakfast", "sandwiches", "main-dish", "soup", "salad", "appetizer", "dessert", "other"] },
     tags:             { type: [String], default: [] },
