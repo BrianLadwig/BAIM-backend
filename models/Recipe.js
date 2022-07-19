@@ -13,7 +13,7 @@ const trim = true;
 //   ingredient: { type: String, required },
 // });
 
-const lokaImage=lokaImage
+const lokaImage='https://firebasestorage.googleapis.com/v0/b/baimimages.appspot.com/o/files%2Fimage%2FLOKA2.jpg?alt=media&token=41828a67-7287-4afb-9ac2-cf21339aa29e'
 
 const recipeSchema = new Schema(
   {
