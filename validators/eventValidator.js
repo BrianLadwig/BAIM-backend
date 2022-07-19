@@ -17,9 +17,9 @@ const eventValidator=[
             .notEmpty()
             .withMessage("Description should not be empty")
             .isLength({max:5000})
-            .withMessage('Maximum of 5000 characters')
-            .matches(/^[a-zA-Z0-9äöüÄÖÜß\!@#*+\-;':"\ |,.\/?]*$/)
-            .withMessage("We only accept the following special characters: !@#*()+\"-;':,.?"),
+            .withMessage('Maximum of 5000 characters'),
+            // .matches(/^[a-zA-Z0-9äöüÄÖÜß\!@#*+\-;':"\ |,.\/?]*$/)
+            // .withMessage("We only accept the following special characters: !@#*()+\"-;':,.?"),
 
         body('start')
             .notEmpty()
