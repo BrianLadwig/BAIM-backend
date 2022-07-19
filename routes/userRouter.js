@@ -57,13 +57,11 @@ userRouter
         res.cookie("token", token, {
           sameSite : "none",
           secure: true,
-          ,
           httpOnly: true
           });
         res.cookie("id", user._id, {
           sameSite : "none",
           secure: true,
-          
           });
         res.cookie("avatar", user.avatar, {
           sameSite : "none",
