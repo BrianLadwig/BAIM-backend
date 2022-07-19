@@ -40,8 +40,8 @@ const eventValidator=[
 
         body('link')
             .trim()
-            .optional({checkFalsy: true})
-            .isURL({protocols:['http','https']}),
+            .optional({checkFalsy: true}),
+            // .isURL({protocols:['http','https']}),
         
         body('address')
             .isObject()
