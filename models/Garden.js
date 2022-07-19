@@ -16,7 +16,7 @@ const gardenSchema = Schema({
     title:            { type: String, required },
     description:      { type: String, required },
     video:            { type: String },
-    image:            { type: String,  },
+    image:            { type: String, default: 'https://firebasestorage.googleapis.com/v0/b/baimimages.appspot.com/o/files%2Fimage%2FLOKA2.jpg?alt=media&token=41828a67-7287-4afb-9ac2-cf21339aa29e' },
     link:             { type: String },
     category:         { type: [String], default: [],enum: ["vegetable", "fruit", "grain", "herb","plants", "flower", "indoor-plant", "outdoor-plant", "plant", "tree", "other"] },
     tags:             { type: [String], default: [] },
