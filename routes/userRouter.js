@@ -57,23 +57,23 @@ userRouter
         res.cookie("token", token, {
           sameSite : "none",
           secure: true,
-          domain: "loka.vercel.app",
+          ,
           httpOnly: true
           });
         res.cookie("id", user._id, {
           sameSite : "none",
           secure: true,
-          domain: "loka.vercel.app"
+          
           });
         res.cookie("avatar", user.avatar, {
           sameSite : "none",
           secure: true,
-          domain: "loka.vercel.app"
+          
           });
         res.cookie("profileName", user.profileName, {
           sameSite : "none",
           secure: true,
-          domain: "loka.vercel.app"
+          
           });
 
         res.status(201).send({
@@ -110,23 +110,19 @@ userRouter
         res.cookie("token", token, {
           sameSite : "none",
           secure: true,
-          domain: "loka.vercel.app",
           httpOnly: true
           });
         res.cookie("id", user._id, {
           sameSite : "none",
-          secure: true,
-          domain: "loka.vercel.app"
+          secure: true,    
           });
         res.cookie("avatar", user.avatar, {
           sameSite : "none",
-          secure: true,
-          domain: "loka.vercel.app"
+          secure: true,       
           });
         res.cookie("profileName", user.profileName, {
           sameSite : "none",
           secure: true,
-          domain: "loka.vercel.app"
           });
 
 
