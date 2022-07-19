@@ -102,6 +102,9 @@ recipeRouter
                 post.authorAvatar = req.user.avatar
                 post.authorProfileName = req.user.profileName
                 post.author = req.user._id // the id is in the cookie
+                if(req.body.image === "" ) {
+                    post.image = 'https://firebasestorage.googleapis.com/v0/b/baimimages.appspot.com/o/files%2Fimage%2FLOKA2.jpg?alt=media&token=41828a67-7287-4afb-9ac2-cf21339aa29e'
+                }
                 const newPost = new Recipe(post)
                 const user = await User.findById(req.body.author)
                 await newPost.save()
