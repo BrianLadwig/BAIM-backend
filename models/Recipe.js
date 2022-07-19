@@ -13,6 +13,8 @@ const trim = true;
 //   ingredient: { type: String, required },
 // });
 
+const lokaImage=lokaImage
+
 const recipeSchema = new Schema(
   {
     author:           { type: Schema.Types.ObjectId, ref: "user", required },
@@ -24,7 +26,7 @@ const recipeSchema = new Schema(
     // ingredients: { type: [ingredientsSchema] },
     description:      { type: String, required },
     video:            { type: String },
-    image:            { type: String, default: 'https://firebasestorage.googleapis.com/v0/b/baimimages.appspot.com/o/files%2Fimage%2FLOKA2.jpg?alt=media&token=41828a67-7287-4afb-9ac2-cf21339aa29e' },
+    image:            { type: String, default: lokaImage },
     link:             { type: String },
     category:         { type: [String], default: [],enum: ["juice","smoothie", "breakfast", "sandwiches", "main-dish", "soup", "salad", "appetizer", "dessert", "other"] },
     tags:             { type: [String], default: [] },

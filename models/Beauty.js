@@ -8,6 +8,9 @@ const required = true
 // const unique = true
 // const lowercase = true
 
+const lokaImage=lokaImage
+
+
 const beautySchema = Schema({
     author:           { type: Schema.Types.ObjectId, ref: "user", required },
     authorAvatar:     { type: String},
@@ -16,7 +19,7 @@ const beautySchema = Schema({
     title:            { type: String, required },
     description:      { type: String, required },
     video:            { type: String },
-    image:            { type: String, default: 'https://firebasestorage.googleapis.com/v0/b/baimimages.appspot.com/o/files%2Fimage%2FLOKA2.jpg?alt=media&token=41828a67-7287-4afb-9ac2-cf21339aa29e'},
+    image:            { type: String, default: lokaImage},
     link:             { type: String },
     category:         { type: [String], default: [], enum: ["hygiene","skin", "hair", "face", "anti-aging","makeup","other"] },
     tags:             { type: [String], default: [] },

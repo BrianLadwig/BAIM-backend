@@ -8,6 +8,8 @@ const trim = true
 // const unique = true
 // const lowercase = true
 
+const lokaImage=lokaImage
+
 const addressSchema = new Schema({
     street:       { type: String, trim, required },
     streetNumber: { type: String, trim, required },
@@ -27,7 +29,7 @@ const eventSchema = Schema({
     end:                { type: Date,   required },
     address:            { type: addressSchema, required },
     video:              { type: String },
-    image:              { type: String, default: 'https://firebasestorage.googleapis.com/v0/b/baimimages.appspot.com/o/files%2Fimage%2FLOKA2.jpg?alt=media&token=41828a67-7287-4afb-9ac2-cf21339aa29e' },
+    image:              { type: String, default: lokaImage },
     category:           { type: [String], default: [],enum: ["market", "tasting", "workshop", "charity","sit-in","meet-and-greet","fair", "other" ] },
     link:               { type: String },
     tags:               { type: [String], default: [] },
