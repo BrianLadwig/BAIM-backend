@@ -69,7 +69,7 @@ const eventUpdateValidator=[
         body('address.country')
             .optional({checkFalsy: true})
             .matches(/^[a-zA-Z\s]*$/)
-            .withMessage('Must be a valid country'),
+            .withMessage('Must be a valid city'),
 
         body('tags')
             .isArray()
