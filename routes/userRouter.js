@@ -182,10 +182,23 @@ userRouter
         return next({ status: 404, errors: "User not found" });
       }
       await user.remove()
-      res.clearCookie("token");
-      res.clearCookie("id");
-      res.clearCookie("avatar");
-      res.clearCookie("profileName");
+      res.clearCookie("token", {
+        sameSite: "none",
+        secure: true,
+        httpOnly: true
+      });
+      res.clearCookie("id", {
+        sameSite: "none",
+        secure: true
+      });
+      res.clearCookie("avatar", {
+        sameSite: "none",
+        secure: true
+      });
+      res.clearCookie("profileName", {
+        sameSite: "none",
+        secure: true
+      });
       // const user = await User.findByIdAndDelete(req.params.id);
       res.status(200).send({
         message: "User deleted successfully.",
