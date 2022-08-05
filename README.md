@@ -1,4 +1,7 @@
-<h1 align="center">Loka App Frontend</h1>
+<h1 align="center">Loka App Backend</h1>
+<p align="center">
+check our <a href="https://github.com/heyitsashleyhere/BAIM_frontend" target="_blank">Frontend</a> or our <a href="https://loka.vercel.app/" target="_blank">live app</a>
+</p>
 
 <!-- TABLE OF CONTENTS -->
 
@@ -19,7 +22,11 @@ This Project is our Final Project of the one year fullstack web developer course
 
 The Project take place from the 30th of May to the 19th of July, 2022.
 
-<video width="500px" src="./lib/demo.mp4"  autoPlay loop></video>
+
+
+https://user-images.githubusercontent.com/84905549/183072995-411a16a6-9a2e-4404-ac3d-74ad863dbefe.mp4
+
+
 
 ## About
 
