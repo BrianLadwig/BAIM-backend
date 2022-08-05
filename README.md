@@ -8,7 +8,7 @@
 - [Features](#features)
 - [Technologies](#technologies)
 - [Team](#team)
-- [links](#links)
+- [Links](#links)
 
 <!-- ABOUT -->
 
@@ -18,6 +18,8 @@
 This Project is our Final Project of the one year fullstack web developer course at [DCI Digital Career Institute gGmbH](https://digitalcareerinstitute.org/de/).
 
 The Project take place from the 30th of May to the 19th of July, 2022.
+
+<video width="500px" src="./lib/demo.mp4"  autoPlay loop></video>
 
 ## About
 
